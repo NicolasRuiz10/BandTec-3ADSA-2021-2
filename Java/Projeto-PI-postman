@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "8bb9b7e7-aab5-4cde-8e49-de0a4158a040",
+		"name": "Projeto PI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Serviços",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/servicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"servicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar PetShops",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/petshop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"petshop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Produtos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adiconar Serviço",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"tipoServico\":\"aaaa\",\"descricao\":\"aaaas\",\"preco\":50.0}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/adicionar/servico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adicionar",
+						"servico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar Produto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"codigo\": 21,\r\n    \"descricao\": \"aaaas\",\r\n    \"valor\": 50.0,\r\n    \"marca\": \"DALNDASLK\",\r\n    \"tipoPet\": \"das\",\r\n    \"tipoRacao\": \"dsadsadsa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/adicionar/produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adicionar",
+						"produto"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
