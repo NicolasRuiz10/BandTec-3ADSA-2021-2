@@ -13,22 +13,15 @@ public class CarrinhoController {
 
     PetShop petshop1 = new PetShop(1, "Cobasi", "1234567891021", "Rua mario ancona, 130", "05572100", true);
 
+
     @GetMapping("/servicos")
     public List<Servicos> listServiços() {
-
-        Servicos banho = new Servicos("Banho e tosa", "Banho e tosa de pets", 50.0);
-
-        petshop1.adicionarServico(banho);
-
         return petshop1.getListaServicos();
     }
 
     @GetMapping("/produtos")
     public List<Produtos> listProdutos() {
-
-        Racao racao1 = new Racao(2, "Preparada com nobres ingredientes, a Ração Golden Special é o alimento ideal para manter o seu cão saudável.", 199.99, "Golden", "Cachorro", "Cães Adultos Frango e Carne");
-
-        Petiscos petisco1 = new Petiscos(3, "Bifinho com sabor e aroma especial, feitos com ingredientes nobres.", 3.50, "Joy", "Cachorro", "Petisco Bifinho Joy Beef Carne");
+    Produtos racao1 = new Produtos(2, "dsdaas", 4.50, "dadsa", "dsadsa");
 
         return petshop1.getListaProdutos();
     }
@@ -46,7 +39,7 @@ public class CarrinhoController {
     }
 
     @PostMapping("adicionar/servico")
-    public String adicionarServiço(@RequestBody Servicos novoServico) {
+    public String adicionarServico(@RequestBody Servicos novoServico) {
         petshop1.adicionarServico(novoServico);
         return "Serviço cadastrado com sucesso!";
     }
