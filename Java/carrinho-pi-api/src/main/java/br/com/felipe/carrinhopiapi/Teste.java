@@ -6,9 +6,9 @@ public class Teste {
 
         Servicos banho = new Servicos("Banho e tosa", "Banho e tosa de pets", 50.0);
 
-        Racao racao1 = new Racao(2, "Preparada com nobres ingredientes, a Ração Golden Special é o alimento ideal para manter o seu cão saudável.", 199.99, "Golden", "Cachorro", "Cães Adultos Frango e Carne");
+        Racao racao1 = new Racao(2, "Preparada com nobres ingredientes, a Ração Golden Special é o alimento ideal para manter o seu cão saudável.", 199.99, "Golden", "Cachorro", "Cães Adultos Frango e Carne", 30);
 
-        Petiscos petisco1 = new Petiscos(3, "Bifinho com sabor e aroma especial, feitos com ingredientes nobres.", 3.50, "Joy", "Cachorro", "Petisco Bifinho Joy Beef Carne");
+        Petiscos petisco1 = new Petiscos(3, "Bifinho com sabor e aroma especial, feitos com ingredientes nobres.", 3.50, "Joy", "Cachorro", "Petisco Bifinho Joy Beef Carne", 12);
 
         petshop1.adicionarProduto(racao1);
         petshop1.adicionarProduto(petisco1);

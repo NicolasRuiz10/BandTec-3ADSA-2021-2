@@ -21,7 +21,7 @@ public class PetShopController {
 
     @GetMapping("/produtos")
     public List<Produtos> listProdutos() {
-    Produtos racao1 = new Produtos(2, "dsdaas", 4.50, "dadsa", "dsadsa");
+    Racao racao1 = new Racao(2, "dsdaas", 4.50, "dadsa", "dsadsa", "Qualquer", 12);
 
         return petshop1.getListaProdutos();
     }
