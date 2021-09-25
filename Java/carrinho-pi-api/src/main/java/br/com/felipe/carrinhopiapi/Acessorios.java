@@ -19,8 +19,6 @@ public class Acessorios extends Produtos {
     }
     @Override
     public String toString() {
-        return "Acessorios{" +
-                "tipoAcessorio='" + tipoAcessorio + '\'' +
-                "} " + super.toString();
+        return super.toString()+", tipoProduto: Acessorios, tipoAcessorio: " + tipoAcessorio;
     }
 }

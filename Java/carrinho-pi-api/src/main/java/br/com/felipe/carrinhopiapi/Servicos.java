@@ -25,10 +25,10 @@ public class Servicos {
 
     @Override
     public String toString() {
-        return "Servicos{" +
-                "tipoServico='" + tipoServico + '\'' +
-                ", Descricao='" + Descricao + '\'' +
-                ", preco=" + preco +
-                '}';
+
+        return "Servicos = " +
+                "tipoServico: " + tipoServico + '\'' +
+                ", Descricao: " + Descricao + '\'' +
+                ", preco: " + preco;
     }
 }

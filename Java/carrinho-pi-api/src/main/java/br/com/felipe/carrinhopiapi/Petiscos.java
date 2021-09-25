@@ -20,8 +20,6 @@ public class Petiscos extends Produtos{
 
     @Override
     public String toString() {
-        return "Petiscos{" +
-                "tipoPetisco='" + tipoPetisco + '\'' +
-                "} " + super.toString();
+        return super.toString()+", tipoProduto: Petiscos, tipoPetisco: " + tipoPetisco;
     }
 }

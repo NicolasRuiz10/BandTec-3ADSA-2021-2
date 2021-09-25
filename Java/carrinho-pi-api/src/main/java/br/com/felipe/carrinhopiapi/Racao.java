@@ -28,8 +28,6 @@ public class Racao extends Produtos {
 
     @Override
     public String toString() {
-        return "Racao{" +
-                "tipoRacao='" + tipoRacao + '\'' +
-                "} " + super.toString();
+        return super.toString()+", tipoProduto: Racao, tipoRacao: " + tipoRacao;
     }
 }

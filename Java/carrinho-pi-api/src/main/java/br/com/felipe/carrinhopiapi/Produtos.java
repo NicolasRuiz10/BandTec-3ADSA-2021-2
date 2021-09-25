@@ -67,12 +67,11 @@ public abstract  class Produtos implements Estoque{
 
     @Override
     public String toString() {
-        return "Produtos{" +
-                "codigo=" + codigo +
-                ", descricao='" + descricao + '\'' +
-                ", valor=" + valor +
-                ", marca='" + marca + '\'' +
-                ", tipoPet='" + tipoPet + '\'' +
-                '}';
+        return "Produto = " +
+                "codigo: " + codigo +
+                ", descricao: " + descricao +
+                ", valor: " + valor +
+                ", marca: " + marca +
+                ", tipoPet: " + tipoPet;
     }
 }

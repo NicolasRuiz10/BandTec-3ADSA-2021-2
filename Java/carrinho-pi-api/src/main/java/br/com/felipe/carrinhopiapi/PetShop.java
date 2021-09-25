@@ -11,8 +11,9 @@ public class PetShop {
     private String cep;
     private boolean delivery;
     private Boolean plano;
-    List<Produtos> listaProdutos;
-    List<Servicos> listaServicos;
+    ListaObj<Produtos> listaProdutos;
+    ListaObj<Servicos> listaServicos;
+
 
     public PetShop(Integer id, String nome, String cnpj, String endereço, String cep, boolean delivery) {
         this.id = id;
@@ -21,37 +22,37 @@ public class PetShop {
         this.endereço = endereço;
         this.cep = cep;
         this.delivery = delivery;
-        listaProdutos = new ArrayList<Produtos>();
-        listaServicos = new ArrayList<Servicos>();
+        listaProdutos = new ListaObj(10000);
+        listaServicos = new ListaObj(10000);
 
     }
 
     public void adicionarProduto(Produtos p) {
-        listaProdutos.add(p);
+        listaProdutos.adicionar(p);
     }
 
     public void exibeTodosProdutos() {
-        for(Produtos p : listaProdutos) {
-            System.out.println(p);
-        }
+        System.out.println();
+        System.out.println("------- Lista de todos serviços cadastrados -------");
+        listaProdutos.exibe();
     }
 
     public void adicionarServico(Servicos s) {
-        listaServicos.add(s);
+        listaServicos.adicionar(s);
     }
 
 
     public void exibeTodosServiccos() {
-        for(Servicos s : listaServicos) {
-            System.out.println(s);
-        }
+        System.out.println();
+        System.out.println("------- Lista de todos serviços cadastrados -------");
+        listaServicos.exibe();
     }
 
-    public List<Produtos> getListaProdutos() {
+    public ListaObj<Produtos> getListaProdutos() {
         return listaProdutos;
     }
 
-    public List<Servicos> getListaServicos() {
+    public ListaObj<Servicos> getListaServicos() {
         return listaServicos;
     }
 
@@ -111,11 +112,11 @@ public class PetShop {
         this.plano = plano;
     }
 
-    public void setListaProdutos(List<Produtos> listaProdutos) {
+    public void setListaProdutos(ListaObj<Produtos> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }
 
-    public void setListaServicos(List<Servicos> listaServicos) {
+    public void setListaServicos(ListaObj<Servicos> listaServicos) {
         this.listaServicos = listaServicos;
     }
 

@@ -10,9 +10,7 @@ public class Briquedos extends Produtos{
 
     @Override
     public String toString() {
-        return "Briquedos{" +
-                "tipoBrinquedo='" + tipoBrinquedo + '\'' +
-                "} " + super.toString();
+        return super.toString()+", tipoProduto: Briquedos, tipoBrinquedo: " + tipoBrinquedo;
     }
 
     @Override

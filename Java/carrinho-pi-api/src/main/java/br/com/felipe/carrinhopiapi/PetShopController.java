@@ -15,12 +15,12 @@ public class PetShopController {
 
 
     @GetMapping("/servicos")
-    public List<Servicos> listServiços() {
+    public ListaObj<Servicos> listServiços() {
         return petshop1.getListaServicos();
     }
 
     @GetMapping("/produtos")
-    public List<Produtos> listProdutos() {
+    public ListaObj<Produtos> listProdutos() {
     Racao racao1 = new Racao(2, "dsdaas", 4.50, "dadsa", "dsadsa", "Qualquer", 12);
 
         return petshop1.getListaProdutos();
