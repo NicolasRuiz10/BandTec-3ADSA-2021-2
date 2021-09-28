@@ -1,11 +1,11 @@
 import React from "react";
 import './Intro.css';
-import IntroImage from '../../../Assets/intro.png'
+import IntroImage from '../../Assets/intro.png'
 
 
-function Menu() {
+export function Intro() {
   return (
-    <React.Fragment>
+    <>
       <div className="intro">
         <div className="intro-text">
 
@@ -16,16 +16,14 @@ function Menu() {
       </div>
       <div className="text">
         <h2>Para o melhor cuidado
-            <br/>com seu pet e seu tempo
+          <br />com seu pet e seu tempo
         </h2>
         <p>
-          Vamos te ajudar a encontrar o melhor cuidado 
-          <br/>para o seu pet com o menos tempo possível
+          Vamos te ajudar a encontrar o melhor cuidado
+          <br />para o seu pet com o menos tempo possível
         </p>
       </div>
       <button className="btn-faca-parte">Faça seu cadastro</button>
-    </React.Fragment>
+    </>
   );
 }
-
-export default Menu;

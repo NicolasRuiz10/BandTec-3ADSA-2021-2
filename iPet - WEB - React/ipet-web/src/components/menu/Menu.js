@@ -1,12 +1,12 @@
 import React from "react";
 import './Menu.css';
-import logo from '../../../Assets/logo1.jpeg'
+import logo from '../../Assets/logo1.jpeg'
 import { FaShoppingCart } from 'react-icons/fa';
 
 
-function Menu() {
+export function Menu() {
   return (
-    <React.Fragment>
+    <>
       <div className="menu">
         <div className="logo">
           <img src={logo} alt="Logo iPet" />
@@ -22,7 +22,6 @@ function Menu() {
             <h3>Serviços</h3>
           </div>
         </div>
-
         <div className="itens-acesso">
           <div className="item-acesso">
             <button className="btn-login">Login</button>
@@ -32,13 +31,11 @@ function Menu() {
           </div>
           <div className="item-acesso">
             <div className="icon-car">
-              <FaShoppingCart size={34}/>
+              <FaShoppingCart size={34} />
             </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
-
-export default Menu;
