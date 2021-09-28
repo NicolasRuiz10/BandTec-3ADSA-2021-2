@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.menu {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  border-bottom: 1px solid #007DC5;
+  box-shadow: 0px 2px 5px #007DC5; 
+}
+
+.logo img {
+  width: 80px;
+  border-radius: 50%;
+  transition: all ease 0.2s;
+  transform: scale(0.9);
+}
+
+.logo img:hover {
+  cursor: pointer;
+  width: 85px;
+  transform: scale(1);
+}
+
+.itens-menu {
+  display: flex;
+  height: 100%;
+}
+
+.item-menu{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+.item-menu:hover{
+  background-color: #eff3f4;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  font-size: 16px;
+}
+
+.item-menu h3{
+  margin: 0;
+  color: #007DC5;
+}
+
+.itens-acesso {
+  display: flex;
+  height: 100%;
+}
+
+.item-acesso {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.btn-login {
+  background-color: #007DC5;
+  padding: 10px;
+  border: 0;
+  width: 80px;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.btn-login:hover {
+  background-color: #fff;
+  color: #007DC5;
+  padding: 11px;
+  border: 1px solid #007DC5;
+  cursor: pointer;
+}
+
+.btn-cadastro  {
+  background-color: #fff;
+  padding: 10px;
+  border: 0;
+  width: 80px;
+  border: 1px solid #007DC5;
+  color: #007DC5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.btn-cadastro:hover {
+  background-color: #007DC5;
+  color: #fff;
+  padding: 11px;
+  cursor: pointer;
+}
+
+.icon-car {
+  color: #007DC5;
+  transition: all ease 0.2s;
+  transform: scale(0.9);
+}
+
+.icon-car:hover {
+  size: 140px;  
+  cursor: pointer;
+  transform: scale(1);
+}
