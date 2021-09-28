@@ -1,14 +1,15 @@
 import React from "react";
+import { Intro } from "../../components/intro/Intro";
+import { Menu } from "../../components/menu/Menu";
 import './HomePage.css';
-import Menu from './menu/Menu';
-import Intro from './intro/Intro';
+
 
 function HomePage() {
   return (
-    <React.Fragment>
+    <>
       <Menu />
       <Intro />
-    </React.Fragment>
+    </>
   );
 }
 
