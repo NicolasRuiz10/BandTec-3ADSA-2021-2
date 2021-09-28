@@ -22,7 +22,6 @@ export function Menu() {
             <h3>Serviços</h3>
           </div>
         </div>
-
         <div className="itens-acesso">
           <div className="item-acesso">
             <button className="btn-login">Login</button>
