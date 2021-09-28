@@ -3,7 +3,6 @@ import { Intro } from "../../components/intro/Intro";
 import { Menu } from "../../components/menu/Menu";
 import './HomePage.css';
 
-
 function HomePage() {
   return (
     <>
