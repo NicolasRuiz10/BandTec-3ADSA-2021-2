@@ -69,6 +69,7 @@
   font-weight: bold;
   background: #FFFFFF;
   border-radius: 6px;
+  outline: none;
 }
 
 .btn-faca-parte:hover {
