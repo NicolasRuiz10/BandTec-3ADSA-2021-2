@@ -37,11 +37,11 @@ public class PetshopController {
 }
 
 //{
-//    "nome": "Pets",
-//    "cnpj": "78457148000147",
-//    "endereço": "Av. Politecnica",
-//    "numero": "1400",
-//    "delivery": 1,
-//    "plano": 1,
-//    "veterinario": 0
-//    }
+//"nome": "Pets",
+//"cnpj": "78457148000147",
+//"endereco": "Av. Politecnica",
+//"numero": "1400",
+//"delivery": 1,
+//"plano": 1,
+//"veterinario": 0
+//}

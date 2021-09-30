@@ -1,38 +1,48 @@
 package com.br.springsprint2.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class ItensPedido {
     @Id
-    @GeneratedValue
-    private int id;
-    private int fkProduto;
-    private int fkServico;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idIntesPedido;
 
-    public int getId() {
-        return id;
-    }
+    @ManyToOne
+    private Produto fkProduto;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ManyToOne
+    private Servico fkServico;
 
-    public int getFkProduto() {
+    public Produto getFkProdutos() {
         return fkProduto;
     }
 
-    public void setFkProduto(int fkProduto) {
+    public void setFkProdutos(Produto fkProduto) {
         this.fkProduto = fkProduto;
     }
 
-    public int getFkServico() {
+    public int getIdIntesPedido() {
+        return idIntesPedido;
+    }
+
+    public void setIdIntesPedido(int idIntesPedido) {
+        this.idIntesPedido = idIntesPedido;
+    }
+
+    public Produto getFkProduto() {
+        return fkProduto;
+    }
+
+    public void setFkProduto(Produto fkProduto) {
+        this.fkProduto = fkProduto;
+    }
+
+    public Servico getFkServico() {
         return fkServico;
     }
 
-    public void setFkServico(int fkServico) {
+    public void setFkServico(Servico fkServico) {
         this.fkServico = fkServico;
     }
 }

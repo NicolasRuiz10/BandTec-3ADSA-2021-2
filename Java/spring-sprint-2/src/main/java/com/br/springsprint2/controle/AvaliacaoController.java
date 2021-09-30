@@ -1,9 +1,7 @@
 package com.br.springsprint2.controle;
 
-import com.br.springsprint2.dominio.Avaliacoes;
-import com.br.springsprint2.dominio.Petshop;
-import com.br.springsprint2.repositorio.AvaliacoesRepository;
-import com.br.springsprint2.repositorio.PetshopRepository;
+import com.br.springsprint2.dominio.Avaliacao;
+import com.br.springsprint2.repositorio.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,23 +9,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("avaliacoes")
-public class AvaliacoesController {
+public class AvaliacaoController {
     @Autowired
-    private AvaliacoesRepository repository;
+    private AvaliacaoRepository repository;
 
     @PostMapping
-    public String createPetshop(@RequestBody Avaliacoes novaAvaliacao) {
+    public String createPetshop(@RequestBody Avaliacao novaAvaliacao) {
         repository.save(novaAvaliacao);
         return "Avaliação cadastrada";
     }
 
     @GetMapping
-    public List<Avaliacoes> getAvaliacoes() {
+    public List<Avaliacao> getAvaliacoes() {
         return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Avaliacoes getAvaliacao(@PathVariable int id) {
+    public Avaliacao getAvaliacao(@PathVariable int id) {
         return repository.findById(id).get();
     }
 

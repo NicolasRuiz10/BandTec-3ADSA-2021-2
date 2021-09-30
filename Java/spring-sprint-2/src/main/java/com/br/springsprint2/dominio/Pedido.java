@@ -1,38 +1,42 @@
 package com.br.springsprint2.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Pedido {
     @Id
-    @GeneratedValue
-    private int id;
-    private int fkIntensPedidos;
-    private int fkUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPedido;
 
-    public int getFkIntensPedidos() {
+    @ManyToOne
+    @JoinColumn(name = "fkIntensPedidos")
+    private ItensPedido fkIntensPedidos;
+
+    @ManyToOne
+    @JoinColumn(name = "fkUsuario")
+    private Usuario fkUsuario;
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public ItensPedido getFkIntensPedidos() {
         return fkIntensPedidos;
     }
 
-    public void setFkIntensPedidos(int fkIntensPedidos) {
+    public void setFkIntensPedidos(ItensPedido fkIntensPedidos) {
         this.fkIntensPedidos = fkIntensPedidos;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getFkUsuario() {
+    public Usuario getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(int fkUsuario) {
+    public void setFkUsuario(Usuario fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
 }

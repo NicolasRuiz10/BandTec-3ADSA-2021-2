@@ -1,29 +1,33 @@
 package com.br.springsprint2.dominio;
 
-import org.springframework.data.annotation.CreatedDate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Avaliacoes {
+public class Avaliacao {
     @Id
-    @GeneratedValue
-    private int id;
-    private LocalDate data = LocalDate.now();
-    private int notaPetshop;
-    private int notaUsuario;
-    private int fkUsuario;
-    private int fkPetshop;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idAvaliacao;
 
-    public int getId() {
-        return id;
+    private LocalDate data = LocalDate.now();
+
+    private int notaPetshop;
+
+    private int notaUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "fkUsuario")
+    private Usuario fkUsuario;
+
+    @ManyToOne
+    private Petshop fkPetShop;
+
+    public int getIdAvaliacao() {
+        return idAvaliacao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAvaliacao(int idAvaliacao) {
+        this.idAvaliacao = idAvaliacao;
     }
 
     public LocalDate getData() {
@@ -50,20 +54,20 @@ public class Avaliacoes {
         this.notaUsuario = notaUsuario;
     }
 
-    public int getFkUsuario() {
+    public Usuario getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(int fkUsuario) {
+    public void setFkUsuario(Usuario fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
 
-    public int getFkPetshop() {
-        return fkPetshop;
+    public Petshop getFkPetShop() {
+        return fkPetShop;
     }
 
-    public void setFkPetshop(int fkPetshop) {
-        this.fkPetshop = fkPetshop;
+    public void setFkPetShop(Petshop fkPetShop) {
+        this.fkPetShop = fkPetShop;
     }
 }
 

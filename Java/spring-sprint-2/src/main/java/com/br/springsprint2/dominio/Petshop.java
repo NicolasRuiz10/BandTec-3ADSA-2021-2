@@ -1,28 +1,43 @@
 package com.br.springsprint2.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Petshop {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPetshop;
+
     private String nome;
+
     private String cnpj;
-    private String endereço;
+
+    private String endereco;
+
     private int numero;
+
     private int delivery;
+
     private int plano;
+
     private String veterinario;
 
-    public int getId() {
-        return id;
+    @OneToMany(mappedBy = "fkPetShop")
+    private List<Produto> produtos;
+
+    @OneToMany(mappedBy = "fkPetShop")
+    private List<Avaliacao> avaliacoes;
+
+    @OneToMany(mappedBy = "fkPetShop")
+    private List<Servico> servico;
+
+    public int getIdPetshop() {
+        return idPetshop;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPetshop(int idPetshop) {
+        this.idPetshop = idPetshop;
     }
 
     public String getNome() {
@@ -41,12 +56,12 @@ public class Petshop {
         this.cnpj = cnpj;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public int getNumero() {
@@ -79,5 +94,29 @@ public class Petshop {
 
     public void setVeterinario(String veterinario) {
         this.veterinario = veterinario;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public List<Servico> getServico() {
+        return servico;
+    }
+
+    public void setServico(List<Servico> servico) {
+        this.servico = servico;
     }
 }
