@@ -1,36 +1,39 @@
 package com.br.springsprint2.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Produtos {
+public class Produto {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idProduto;
+
     private String nome;
+
     private String descricao;
+
     private Double valor;
+
     private String marca;
+
     private String especie;
+
     private int quantidade;
-    private int idPetshop;
 
-    public int getIdPetshop() {
-        return idPetshop;
+    @ManyToOne
+    private Petshop fkPetShop;
+
+    @OneToMany(mappedBy = "fkProduto")
+    private List<ItensPedido> itens = new ArrayList<>();
+
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setIdPetshop(int idPetshop) {
-        this.idPetshop = idPetshop;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getNome() {
@@ -80,14 +83,30 @@ public class Produtos {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+    public Petshop getFkPetShop() {
+        return fkPetShop;
+    }
+
+    public void setFkPetShop(Petshop fkPetShop) {
+        this.fkPetShop = fkPetShop;
+    }
+
+    public List<ItensPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItensPedido> itens) {
+        this.itens = itens;
+    }
 }
 
 //{
-//    "nome": "Ração Seca PremieR Pet Golden Special Cães Adultos Frango e Carne",
-//    "descricao": "A Ração Seca PremieR Pet Golden Special Cães Adultos Frango",
-//    "valor": 152.91,
-//    "marca": "Golden, Premier",
-//    "especie": "Cachorro",
-//    "quantidade": 30,
-//    "idPetshop": 1
-//    }
+//"nome": "Ração Seca PremieR Pet Golden Special Cães Adultos Frango e Carne",
+//"descricao": "A Ração Seca PremieR Pet Golden Special Cães Adultos Frango",
+//"valor": 152.91,
+//"marca": "Golden, Premier",
+//"especie": "Cachorro",
+//"quantidade": 30,
+//"idPetshop": 1
+//}

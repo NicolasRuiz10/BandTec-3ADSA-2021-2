@@ -1,26 +1,35 @@
 package com.br.springsprint2.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Servico {
     @Id
-    @GeneratedValue
-    private int id;
-    private String nome;
-    private String descricao;
-    private Double valor;
-    private String tipoServico;
-    private int idPetshop;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idServico;
 
-    public int getId() {
-        return id;
+    private String nome;
+
+    private String descricao;
+
+    private Double valor;
+
+    private String tipoServico;
+
+    @OneToMany(mappedBy = "fkServico")
+    private List<ItensPedido> itens = new ArrayList<>();
+
+    @ManyToOne
+    private Petshop fkPetShop;
+
+    public int getIdServico() {
+        return idServico;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdServico(int idServico) {
+        this.idServico = idServico;
     }
 
     public String getNome() {
@@ -55,12 +64,20 @@ public class Servico {
         this.tipoServico = tipoServico;
     }
 
-    public int getIdPetshop() {
-        return idPetshop;
+    public List<ItensPedido> getItens() {
+        return itens;
     }
 
-    public void setIdPetshop(int idPetshop) {
-        this.idPetshop = idPetshop;
+    public void setItens(List<ItensPedido> itens) {
+        this.itens = itens;
+    }
+
+    public Petshop getFkPetShop() {
+        return fkPetShop;
+    }
+
+    public void setFkPetShop(Petshop fkPetShop) {
+        this.fkPetShop = fkPetShop;
     }
 }
 //{

@@ -1,15 +1,15 @@
 package com.br.springsprint2.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idUsuario;
     private String nome;
     private String email;
     private String telefone;
@@ -20,12 +20,23 @@ public class Usuario {
     private String cep;
     private int numero;
 
-    public int getId() {
-        return id;
+    @OneToMany(mappedBy = "fkUsuario")
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {
