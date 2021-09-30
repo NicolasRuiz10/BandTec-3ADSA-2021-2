@@ -39,6 +39,11 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <section className="ipet">
+
+      </section>
+
       <section className="produtos">
         <h3>Produtos de diversas lojas</h3>
       </section>
