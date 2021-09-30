@@ -8,7 +8,6 @@
   justify-content: space-between;
   padding: 0 10%;
   border-bottom: 1px solid #007DC5;
-  box-shadow: 0px 2px 5px #007DC5;
 }
 
 .logo img {
@@ -34,7 +33,7 @@
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-family: 'Roboto', sans-serif;
+  font-family: Montserrat;
   font-size: 14px;
   justify-content: center;
   padding: 0 50px;
@@ -68,7 +67,7 @@
   border: 0;
   width: 80px;
   color: #000000;
-  font-family: 'Roboto', sans-serif;
+  font-family: Montserrat;
   font-weight: bold;
   background: #FFFFFF;
   border: 1px solid #3FFE96;
@@ -90,7 +89,7 @@
   width: 80px;
   border: 1px solid #007DC5;
   color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
+  font-family: Montserrat;
   font-weight: bold;
   background: #2484EC;
   border-radius: 6px;

@@ -7,6 +7,7 @@ import MagnusLogo from '../../Assets/magnus.png'
 import PedigreeLogo from '../../Assets/pedigree.png'
 import PurinaLogo from '../../Assets/purina.png'
 import WhiskasLogo from '../../Assets/whiskas-logo.png'
+import { Footer } from "../../components/footer/footer";
 
 function HomePage() {
   return (
@@ -40,8 +41,8 @@ function HomePage() {
       </section>
       <section className="produtos">
         <h3>Produtos de diversas lojas</h3>
-
       </section>
+      <Footer />
     </>
   );
 }
