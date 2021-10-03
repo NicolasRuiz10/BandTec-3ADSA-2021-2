@@ -1,18 +1,20 @@
 import React from "react";
+import './HomePage.css';
 import { Intro } from "../../components/intro/Intro";
 import { Menu } from "../../components/menu/Menu";
-import './HomePage.css';
-
+import { Footer } from "../../components/footer/footer";
 import MagnusLogo from '../../Assets/magnus.png'
 import PedigreeLogo from '../../Assets/pedigree.png'
 import PurinaLogo from '../../Assets/purina.png'
 import WhiskasLogo from '../../Assets/whiskas-logo.png'
-import { Footer } from "../../components/footer/footer";
+import banhoTosa from '../../Assets/banhoTosa.png'
+import Button from "../../components/button/Button";
+
 
 function HomePage() {
   return (
     <>
-      <Menu />
+      <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
       <Intro />
       <section className="brands">
         <div>
@@ -39,15 +41,27 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className="ipet">
-
-      </section>
-
-      <section className="produtos">
+      <section className="products">
         <h3>Produtos de diversas lojas</h3>
       </section>
-      <Footer />
+      <section className="bathAndGroom">
+        <div className="bathAndGroomContent">
+          <div className="bathAndGroomImage">
+            <img clasName="" src={banhoTosa} height="400px" width="580px" alt="none" />
+          </div>
+          <div className="bathAndGroomText">
+            <p>
+              <h2>BANHO E TOSA</h2>
+              Todos os cuidados higienicos com os melhores produtos!<br />
+              Encontre agora o petshop mais próximo do seu lar<br />
+            </p>
+            <Button btnTitle="Faça parte" />
+          </div>
+        </div>
+
+      </section>
+
+      <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
     </>
   );
 }

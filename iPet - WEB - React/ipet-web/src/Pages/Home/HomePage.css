@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-
 .brands {
     margin-top: 100px;
     width: 100%;
@@ -53,13 +52,14 @@
 }
 
 /* Section Produtos */
-.produtos {
+
+.products {
     height: 400px;
     width: 100%;
     background-color: #eff3f4;
 }
 
-.produtos h3 {
+.products h3 {
     margin: 0;
     margin-left: 150px;
     padding-top: 50px;
@@ -67,4 +67,45 @@
     font-size: 28px;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);
+}
+
+/* Section Banho e tosa */
+
+.bathAndGroom {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
+    background-color: #FEC302;
+}
+
+.bathAndGroom h3 {
+    margin: 0;
+    margin-left: 150px;
+    padding-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.bathAndGroomImage {}
+
+.bathAndGroomContent {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 500px;
+}
+
+.bathAndGroomText {
+    display: flex;
+    flex-direction: column;
+    margin-left: 70px;
+    margin-bottom: 200px;
+    font-size: 24px;
+    font-family: Montserrat;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+
 }

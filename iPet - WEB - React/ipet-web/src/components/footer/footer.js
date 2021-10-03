@@ -5,27 +5,27 @@ import facebook from '../../Assets/Facebook.png'
 import pinterest from '../../Assets/Pinterest.png'
 import youtube from '../../Assets/Youtube.png'
 
-export function Footer() {
+export function Footer(props) {
     return (
         <>
             <section className="footerMenu">
                 <div className="footerItems">
                     <div className="footerItem">
-                        Termos e condições de usos
+                        {props.item1}
                     </div>
                     <div className="footerItem">
                         <h3>
-                            Políticas e termos
+                            {props.item2}
                         </h3>
                     </div>
                     <div className="footerItem">
                         <h3>
-                            Help desk
+                            {props.item3}
                         </h3>
                     </div>
                     <div className="footerItem">
                         <h3>
-                            Formas de pagamento
+                            {props.item4}
                         </h3>
                     </div>
                     <div className="payment">
