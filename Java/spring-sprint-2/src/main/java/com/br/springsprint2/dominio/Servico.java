@@ -1,5 +1,7 @@
 package com.br.springsprint2.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +20,11 @@ public class Servico {
 
     private String tipoServico;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "fkServico")
     private List<ItensPedido> itens = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne
     private Petshop fkPetShop;
 

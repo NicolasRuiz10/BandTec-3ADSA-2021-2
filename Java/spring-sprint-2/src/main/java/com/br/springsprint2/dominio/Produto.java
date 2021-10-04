@@ -1,5 +1,7 @@
 package com.br.springsprint2.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +23,11 @@ public class Produto {
     private String especie;
 
     private int quantidade;
-
+    @JsonIgnore
     @ManyToOne
     private Petshop fkPetShop;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "fkProduto")
     private List<ItensPedido> itens = new ArrayList<>();
 

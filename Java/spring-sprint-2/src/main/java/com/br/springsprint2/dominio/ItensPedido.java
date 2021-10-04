@@ -1,6 +1,10 @@
 package com.br.springsprint2.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class ItensPedido {
@@ -14,13 +18,9 @@ public class ItensPedido {
     @ManyToOne
     private Servico fkServico;
 
-    public Produto getFkProdutos() {
-        return fkProduto;
-    }
-
-    public void setFkProdutos(Produto fkProduto) {
-        this.fkProduto = fkProduto;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "fkIntensPedidos")
+    private List<Pedido> pedido = new ArrayList<>();
 
     public int getIdIntesPedido() {
         return idIntesPedido;
@@ -44,6 +44,14 @@ public class ItensPedido {
 
     public void setFkServico(Servico fkServico) {
         this.fkServico = fkServico;
+    }
+
+    public List<Pedido> getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(List<Pedido> pedido) {
+        this.pedido = pedido;
     }
 }
 

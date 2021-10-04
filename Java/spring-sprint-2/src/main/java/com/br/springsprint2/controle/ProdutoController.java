@@ -5,41 +5,49 @@ import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
+import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
     @Autowired
-    private ProdutoRepository prodRepository;
+    private ProdutoRepository repository;
 
     @Autowired
     private PetshopRepository petRepository;
 
     @PostMapping("{fkPetshop}")
-    public String createProdutos(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
+    public ResponseEntity createProdutos(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         novoProduto.setFkPetShop(petshop);
-        prodRepository.save(novoProduto);
-        return "Produto cadastrado";
+        repository.save(novoProduto);
+        return status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public List<Produto> getProdutos() {
-        return prodRepository.findAll();
+    public ResponseEntity getProdutos() {
+        List<Produto> lista = repository.findAll();
+        return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
     @GetMapping("/{id}")
-    public Produto getPetshop(@PathVariable int id) {
-        return prodRepository.findById(id).get();
+    public ResponseEntity getPetshop(@PathVariable int id) {
+        return ResponseEntity.of(repository.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteProdutos(@PathVariable int id) {
-        prodRepository.deleteById(id);
-        return "Produto excluido";
+    public ResponseEntity deleteProdutos(@PathVariable int id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
     }
 }

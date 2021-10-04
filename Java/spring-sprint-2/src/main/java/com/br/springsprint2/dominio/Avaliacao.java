@@ -1,5 +1,7 @@
 package com.br.springsprint2.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,7 +21,9 @@ public class Avaliacao {
     @JoinColumn(name = "fkUsuario")
     private Usuario fkUsuario;
 
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "fkPetShop")
     private Petshop fkPetShop;
 
     public int getIdAvaliacao() {
@@ -74,6 +78,4 @@ public class Avaliacao {
 //{
 //"notaPetshop": 4,
 //"notaUsuario": 2,
-//"fkUsuario": 1,
-//"fkPetshop": 1
 //}
