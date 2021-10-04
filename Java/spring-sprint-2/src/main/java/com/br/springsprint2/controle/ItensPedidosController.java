@@ -30,6 +30,7 @@ public class ItensPedidosController {
     @Autowired
     private ServicoRepository servRepository;
 
+    @CrossOrigin
     @PostMapping("/{fkServico}/{fkProduto}")
     public ResponseEntity createItens(@RequestBody ItensPedido novoItem, @PathVariable int fkProduto, @PathVariable int fkServico) {
         Produto produto = prodRepository.findById(fkProduto).get();
@@ -40,6 +41,7 @@ public class ItensPedidosController {
         return status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getItens() {
         List<ItensPedido> lista = repository.findAll();
@@ -47,11 +49,13 @@ public class ItensPedidosController {
 
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getItem(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteItem(@PathVariable int id) {
         if (repository.existsById(id)) {

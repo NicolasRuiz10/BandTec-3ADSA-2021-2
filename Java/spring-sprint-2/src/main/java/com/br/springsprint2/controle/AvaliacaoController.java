@@ -27,6 +27,7 @@ public class AvaliacaoController {
     @Autowired
     private PetshopRepository petRepository;
 
+    @CrossOrigin
     @PostMapping("{fkUsuario}/{fkPetShop}")
     public ResponseEntity createPetshop(@RequestBody Avaliacao novaAvaliacao, @PathVariable int fkUsuario, @PathVariable int fkPetShop) {
         Usuario usuario = userRepository.findById(fkUsuario).get();
@@ -36,18 +37,20 @@ public class AvaliacaoController {
         repository.save(novaAvaliacao);
         return status(HttpStatus.CREATED).build();
     }
-
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getAvaliacoes() {
         List<Avaliacao> lista = repository.findAll();
         return lista.isEmpty() ? noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getAvaliacao(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAvaliacao(@PathVariable int id) {
         if (repository.existsById(id)) {

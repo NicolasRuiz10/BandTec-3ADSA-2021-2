@@ -17,23 +17,26 @@ public class PetshopController {
     @Autowired
     private PetshopRepository repository;
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createPetshop(@RequestBody Petshop novoPetshop) {
         repository.save(novoPetshop);
         return status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getPetshops() {
         List<Petshop> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getPetshop(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
-
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deletePetshop(@PathVariable int id) {
         if (repository.existsById(id)) {

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="teste">
+        <h1 id="testo"></h1>
+        <button onclick="testes()">teste</button>
+    </div>
+</body>
+</html>
+<script>
+    var teste = document.getElementById("testo");
+    function testes() {
+        console.log('teste');
+        fetch('http://localhost:8080/avaliacoes').then(response => {
+            return response.json();
+        }).then(data => {
+            console.log(data);
+            teste.innerHTML = data[1].data;
+        })
+
+    }
+</script>

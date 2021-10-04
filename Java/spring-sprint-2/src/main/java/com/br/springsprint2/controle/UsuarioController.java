@@ -17,23 +17,27 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity createUsuario(@RequestBody Usuario novoUsuario) {
         repository.save(novoUsuario);
         return status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getUsuarios() {
         List<Usuario> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getUsuario(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUsuario(@PathVariable int id) {
         if (repository.existsById(id)) {

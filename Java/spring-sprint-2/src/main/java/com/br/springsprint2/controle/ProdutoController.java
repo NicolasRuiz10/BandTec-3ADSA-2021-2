@@ -22,6 +22,7 @@ public class ProdutoController {
     @Autowired
     private PetshopRepository petRepository;
 
+    @CrossOrigin
     @PostMapping("{fkPetshop}")
     public ResponseEntity createProdutos(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
@@ -30,17 +31,20 @@ public class ProdutoController {
         return status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getProdutos() {
         List<Produto> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getPetshop(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProdutos(@PathVariable int id) {
         if (repository.existsById(id)) {

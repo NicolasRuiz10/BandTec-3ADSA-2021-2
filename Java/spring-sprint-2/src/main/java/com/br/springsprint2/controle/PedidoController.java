@@ -27,6 +27,7 @@ public class PedidoController {
     @Autowired
     private UsuarioRepository userRepository;
 
+    @CrossOrigin
     @PostMapping("/{fkIntensPedidos}/{fkUsuario}")
     public ResponseEntity createPedido(@RequestBody Pedido novoPedido, @PathVariable int fkIntensPedidos, @PathVariable int fkUsuario) {
         ItensPedido itens = itensRepository.findById(fkIntensPedidos).get();
@@ -37,17 +38,20 @@ public class PedidoController {
         return status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getPedidos() {
         List<Pedido> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getPedido(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deletePedido(@PathVariable int id) {
         if (repository.existsById(id)) {

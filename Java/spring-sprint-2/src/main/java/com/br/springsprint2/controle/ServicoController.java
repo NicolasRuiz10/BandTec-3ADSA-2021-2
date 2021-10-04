@@ -22,6 +22,7 @@ public class ServicoController {
     @Autowired
     private PetshopRepository petRepository;
 
+    @CrossOrigin
     @PostMapping("{fkPetshop}")
     public ResponseEntity createServico(@RequestBody Servico novoServico, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
@@ -30,17 +31,20 @@ public class ServicoController {
         return status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getServico() {
         List<Servico> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity getServico(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deleteServico(@PathVariable int id) {
         if (repository.existsById(id)) {
