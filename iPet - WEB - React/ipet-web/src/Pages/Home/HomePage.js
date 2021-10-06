@@ -8,6 +8,7 @@ import PedigreeLogo from '../../Assets/pedigree.png'
 import PurinaLogo from '../../Assets/purina.png'
 import WhiskasLogo from '../../Assets/whiskas-logo.png'
 import banhoTosa from '../../Assets/banhoTosa.png'
+import saude from '../../Assets/saude.png'
 import Button from "../../components/button/Button";
 
 
@@ -41,9 +42,26 @@ function HomePage() {
           </div>
         </div>
       </section>
+
       <section className="products">
         <h3>Produtos de diversas lojas</h3>
       </section>
+
+      <section className="health">
+        <div className="healthContent">
+          <p>
+            <h2>IPET - SAÚDE</h2>
+            Aqui você pode marcar o exame do seu pet com veterinarios profissionais.
+            A saúde e bem estar do seu pet em dia só na IPET
+            <br /><br />
+            <Button btnTitle="Faça parte" />
+          </p>
+          <div className="healthImg">
+            <img clasName="" src={saude} height="400px" width="580px" alt="none" />
+          </div>
+        </div>
+      </section>
+
       <section className="bathAndGroom">
         <div className="bathAndGroomContent">
           <div className="bathAndGroomImage">
@@ -58,8 +76,8 @@ function HomePage() {
             <Button btnTitle="Faça parte" />
           </div>
         </div>
-
       </section>
+
 
       <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
     </>

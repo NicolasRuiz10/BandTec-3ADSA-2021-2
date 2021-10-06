@@ -89,8 +89,6 @@
     color: rgba(0, 0, 0, 0.8);
 }
 
-.bathAndGroomImage {}
-
 .bathAndGroomContent {
     display: flex;
     align-items: center;
@@ -103,9 +101,38 @@
     flex-direction: column;
     margin-left: 70px;
     margin-bottom: 200px;
-    font-size: 24px;
+    font-size: 22px;
     font-family: Montserrat;
     font-weight: bold;
     letter-spacing: 0.05em;
+}
 
+/* Section Saude */
+
+.health {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
+    background-color: #eff3f4;
+    font-family: Montserrat;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.healthContent {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 500px;
+}
+
+.healthImg {
+    display: flex;
+    margin-left: 350px;
+    margin-bottom: 0px;
+    font-family: Montserrat;
+    font-weight: bold;
+    letter-spacing: 0.05em;
 }
