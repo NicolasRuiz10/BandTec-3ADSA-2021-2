@@ -1,0 +1,12 @@
+.principal-login {
+  display: inline-block;
+  width: 50%;
+  background-color: #ccc;
+}
+
+.principal-cadastro{
+  display: inline-block;
+  width: 50%;
+  height: 200px;
+  background-color: #fff;
+}

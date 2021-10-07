@@ -10,7 +10,9 @@ export function Menu(props) {
     <>
       <div className="menu">
         <div className="logo">
-          <img src={logo} alt="Logo iPet" />
+          <Link to="/">
+            <img src={logo} alt="Logo iPet" />
+          </Link>  
         </div>
         <div className="itens-menu">
           <div className="item-menu">
@@ -30,7 +32,9 @@ export function Menu(props) {
             </Link>
           </div>
           <div className="item-acesso">
-            <button className="btn-cadastro">Cadastro</button>
+            <Link to="/login">
+              <button className="btn-cadastro">Cadastro</button>
+            </Link>
           </div>
           <div className="item-acesso">
             <div className="icon-car">
