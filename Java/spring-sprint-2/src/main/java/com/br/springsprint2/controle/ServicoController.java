@@ -1,6 +1,7 @@
 package com.br.springsprint2.controle;
 
 import com.br.springsprint2.dominio.Petshop;
+import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.dominio.Servico;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ServicoRepository;
@@ -49,6 +50,19 @@ public class ServicoController {
     public ResponseEntity deleteServico(@PathVariable int id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putServico(@PathVariable int id,
+                                     @RequestBody Servico servicoAtualizado) {
+        if (repository.existsById(id)) {
+            servicoAtualizado.setIdServico(id);
+            repository.save(servicoAtualizado);
             return ResponseEntity.status(200).build();
         } else {
             return ResponseEntity.status(404).build();

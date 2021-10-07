@@ -18,13 +18,22 @@ public class Usuario {
     private String cpf;
     private String senha;
     private LocalDate dataNascimento;
-    private String endereço;
+    private String endereco;
     private String cep;
     private int numero;
+    private Boolean autenticacao = false;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "fkUsuario")
     private List<Pedido> pedidos = new ArrayList<>();
+
+    public Boolean autenticar(String login, String senha) {
+        if (login.equals(this.email) && senha.equals(this.senha)) {
+            return true;
+        }
+        return false;
+    }
 
     public List<Pedido> getPedidos() {
         return pedidos;
@@ -90,12 +99,12 @@ public class Usuario {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getCep() {
@@ -112,6 +121,14 @@ public class Usuario {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public Boolean getAutenticacao() {
+        return autenticacao;
+    }
+
+    public void setAutenticacao(Boolean autenticacao) {
+        this.autenticacao = autenticacao;
     }
 }
 //{

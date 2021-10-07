@@ -1,5 +1,6 @@
 package com.br.springsprint2.controle;
 
+import com.br.springsprint2.dominio.Servico;
 import com.br.springsprint2.dominio.Usuario;
 import com.br.springsprint2.repositorio.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,45 @@ public class UsuarioController {
     public ResponseEntity deleteUsuario(@PathVariable int id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @CrossOrigin
+    @PostMapping("/autenticar/{id}")
+    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Usuario ususario) {
+        Usuario u = repository.findById(id).get();
+        if (u.autenticar(ususario.getEmail(), ususario.getSenha())) {
+            u.setAutenticacao(true);
+            repository.save(u);
+            return ResponseEntity.status(200).build();
+        }
+        u.setAutenticacao(false);
+        repository.save(u);
+        return ResponseEntity.status(404).build();
+    };
+
+    @CrossOrigin
+    @PostMapping("/logoff/{id}")
+    public ResponseEntity logoff(@PathVariable int id) {
+        Usuario u = repository.findById(id).get();
+        if (repository.existsById(id)) {
+            u.setAutenticacao(false);
+            repository.save(u);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
+    };
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putUsuario(@PathVariable int id,
+                                     @RequestBody Usuario usuarioAtualizado) {
+        if (repository.existsById(id)) {
+            usuarioAtualizado.setIdUsuario(id);
+            repository.save(usuarioAtualizado);
             return ResponseEntity.status(200).build();
         } else {
             return ResponseEntity.status(404).build();

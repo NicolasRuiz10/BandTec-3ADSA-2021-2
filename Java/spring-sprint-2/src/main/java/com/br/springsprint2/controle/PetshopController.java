@@ -1,6 +1,7 @@
 package com.br.springsprint2.controle;
 
 import com.br.springsprint2.dominio.Petshop;
+import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,19 @@ public class PetshopController {
     public ResponseEntity deletePetshop(@PathVariable int id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putPetshop(@PathVariable int id,
+                                     @RequestBody Petshop petshopAtualizado) {
+        if (repository.existsById(id)) {
+            petshopAtualizado.setIdPetshop(id);
+            repository.save(petshopAtualizado);
             return ResponseEntity.status(200).build();
         } else {
             return ResponseEntity.status(404).build();

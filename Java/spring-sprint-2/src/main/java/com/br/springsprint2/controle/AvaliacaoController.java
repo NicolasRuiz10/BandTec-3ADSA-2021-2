@@ -60,4 +60,17 @@ public class AvaliacaoController {
             return ResponseEntity.status(404).build();
         }
     }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putAvaliacao(@PathVariable int id,
+                                   @RequestBody Avaliacao avaliacaoAtualizado) {
+        if (repository.existsById(id)) {
+            avaliacaoAtualizado.setIdAvaliacao(id);
+            repository.save(avaliacaoAtualizado);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
 }

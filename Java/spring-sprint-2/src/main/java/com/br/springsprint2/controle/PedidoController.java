@@ -61,4 +61,17 @@ public class PedidoController {
             return ResponseEntity.status(404).build();
         }
     }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putPedido(@PathVariable int id,
+                                    @RequestBody Pedido pedidoAtualizado) {
+        if (repository.existsById(id)) {
+            pedidoAtualizado.setIdPedido(id);
+            repository.save(pedidoAtualizado);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
 }

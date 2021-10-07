@@ -54,4 +54,17 @@ public class ProdutoController {
             return ResponseEntity.status(404).build();
         }
     }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putProduto(@PathVariable int id,
+                                     @RequestBody Produto produtoAtualizado) {
+        if (repository.existsById(id)) {
+            produtoAtualizado.setIdProduto(id);
+            repository.save(produtoAtualizado);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
 }

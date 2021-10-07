@@ -1,9 +1,6 @@
 package com.br.springsprint2.controle;
 
-import com.br.springsprint2.dominio.ItensPedido;
-import com.br.springsprint2.dominio.Petshop;
-import com.br.springsprint2.dominio.Produto;
-import com.br.springsprint2.dominio.Servico;
+import com.br.springsprint2.dominio.*;
 import com.br.springsprint2.repositorio.ItensPedidosRepository;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
@@ -60,6 +57,19 @@ public class ItensPedidosController {
     public ResponseEntity deleteItem(@PathVariable int id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    public ResponseEntity putItens(@PathVariable int id,
+                                       @RequestBody ItensPedido itensAtualizado) {
+        if (repository.existsById(id)) {
+            itensAtualizado.setIdIntesPedido(id);
+            repository.save(itensAtualizado);
             return ResponseEntity.status(200).build();
         } else {
             return ResponseEntity.status(404).build();
