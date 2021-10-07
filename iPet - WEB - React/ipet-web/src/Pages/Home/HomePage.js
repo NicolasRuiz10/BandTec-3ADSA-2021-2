@@ -42,11 +42,54 @@ function HomePage() {
           </div>
         </div>
       </section>
-
+      
       <section className="products">
         <h3>Produtos de diversas lojas</h3>
+        <div className="products--categorias">
+        <div className="categorias">
+          <div className="categorias-text">
+            <h3>Vestuario</h3>
+            <button>Compre</button>
+          </div>
+          <img src="https://lojadogu.vteximg.com.br/arquivos/ids/157484-400-400/Roupa-para-Cachorro-Corta-Vento-Verde.png?v=637594420928300000" alt="" />
+        </div>
+        <div className="categorias">
+        <div className="categorias-text">
+            <h3>Acessórios</h3>
+            <button>Compre</button>
+          </div>
+          <img src="https://www.vippng.com/png/full/131-1317350_todos-os-tipos-de-acessorios-para-caes-e.png" alt="" />
+        </div>
+        <div className="categorias">
+        <div className="categorias-text">
+            <h3>Brinquedos</h3>
+            <button>Compre</button>
+          </div>
+          <img src="https://lh3.googleusercontent.com/proxy/VPbaTZLr_70fQlLWycvjXovOp5IbBrbU-QIm6p94pfS07xrqxE90fkWhn70cP0DX9jbZCZNwGASPtZl5VBGWDkFlrg2PSHO0ICoFyNqPzRY0bL0SjklFqza5Bgo0Owb30zaRqWlrPaQRsxqUc2iEoUn9YWCh" alt="" />
+        </div>
+        <div className="categorias">
+        <div className="categorias-text">
+            <h3>Rações</h3>
+            <button>Compre</button>
+          </div>
+          <img src="https://img.freepik.com/fotos-gratis/alimentos-para-animais-de-estimacao-secos-em-uma-tigela-de-ceramica-branca-isolada-na-superficie-branca_128711-2795.jpg?size=626&ext=jpg" alt="" />
+        </div>
+        <div className="categorias">
+        <div className="categorias-text">
+            <h3>Higiene</h3>
+            <button>Compre</button>
+          </div>
+          <img src="https://saude.abril.com.br/wp-content/uploads/2020/06/banho-do-pet-em-casa.png" alt="" />
+        </div>
+        <div className="categorias">
+        <div className="categorias-text">
+            <h3>Pestiscos</h3>
+            <button>Compre</button>
+          </div>
+          <img src="https://www.bichosaudavel.com/wp-content/uploads/2013/08/biscoito-cachorro.jpg" alt="" />
+        </div>
+        </div>
       </section>
-
       <section className="health">
         <div className="healthContent">
           <p>
