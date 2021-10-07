@@ -11,17 +11,11 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduto;
-
     private String nome;
-
     private String descricao;
-
     private Double valor;
-
     private String marca;
-
     private String especie;
-
     private int quantidade;
     @JsonIgnore
     @ManyToOne
