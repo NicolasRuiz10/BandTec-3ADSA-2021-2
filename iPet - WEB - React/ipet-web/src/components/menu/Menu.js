@@ -2,6 +2,7 @@ import React from "react";
 import './Menu.css';
 import logo from '../../Assets/logo1.jpeg'
 import { FaShoppingCart } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 
 export function Menu(props) {
@@ -24,7 +25,9 @@ export function Menu(props) {
         </div>
         <div className="itens-acesso">
           <div className="item-acesso">
-            <button className="btn-login">Login</button>
+            <Link to="/login">
+              <button className="btn-login">Login</button>
+            </Link>
           </div>
           <div className="item-acesso">
             <button className="btn-cadastro">Cadastro</button>

@@ -1,9 +1,12 @@
 import './App.css';
-import HomePage from './Pages/Home/HomePage'
+import React from 'react';
+import Routes from "./Router/Router";
+
+
 
 function App() {
   return (
-    <HomePage />
+    <Routes />
   );
 }
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .menu {
   width: 100%;
-  height: 100px;
+  height: 80px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .logo img {
-  width: 80px;
+  width: 60px;
   border-radius: 50%;
   transition: all ease 0.2s;
   transform: scale(0.9);
@@ -19,7 +19,7 @@
 
 .logo img:hover {
   cursor: pointer;
-  width: 85px;
+  width: 70px;
   transform: scale(1);
 }
 
