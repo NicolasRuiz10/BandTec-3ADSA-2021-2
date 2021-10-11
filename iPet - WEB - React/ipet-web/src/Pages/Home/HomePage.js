@@ -9,7 +9,7 @@ import PurinaLogo from '../../Assets/purina.png'
 import WhiskasLogo from '../../Assets/whiskas-logo.png'
 import banhoTosa from '../../Assets/banhoTosa.png'
 import saude from '../../Assets/saude.png'
-import Button from "../../components/button/Button";
+import {Button} from "../../components/button/Button";
 
 
 function HomePage() {

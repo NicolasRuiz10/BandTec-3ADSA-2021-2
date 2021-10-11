@@ -1,12 +1,108 @@
+
+.principal-container{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  height: 470px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-left: 160px;
+  margin-bottom: 10px;
+  font-family: Montserrat;
+}
+
+hr {
+  width: 1200px;
+}
+
 .principal-login {
-  display: inline-block;
-  width: 50%;
-  background-color: #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.61);
+  margin-top: 20px;
+  padding: 20px 60px;
+  border-radius: 10px;
+  width: 525px;
+}
+
+.principal-login hr {
+  margin-top: 40px;
+  width: 400px;
+  color: #000;
+}
+
+.principal-login h1{
+  font-family: Montserrat;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  color: #007DC5;
+  padding-bottom: 30px;
+}
+
+.principal-login h2{
+  font-family: Montserrat;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  color: #007DC5;
+  padding-bottom: 10px;
+}
+
+.esqueceuSenha{
+  margin: 0;
+  text-align: left;
+  font-size: 12px;
+  color: #007DC5;
+  padding-bottom: 30px;
+}
+
+.esqueceuSenha:hover{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .principal-cadastro{
-  display: inline-block;
-  width: 50%;
-  height: 200px;
-  background-color: #fff;
+  margin-top: 40px;
+}
+
+.principal-cadastro h1 {
+  font-family: Montserrat;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  color: #007DC5;
+  padding-bottom: 30px;
+}
+
+.principal-cadastro p {
+  font-family: Montserrat;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  padding-bottom: 30px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.icones-acessos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.icon-face {
+  color: #007DC5;
 }

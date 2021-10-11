@@ -10,4 +10,15 @@ const Button = (props) => {
     )
 }
 
-export default Button
+const ButtonVerde = ({title}) => {
+    return (
+        <button className="btn-verde">
+            {title}
+        </button>
+    )
+}
+
+export {Button, ButtonVerde}
+
+
+

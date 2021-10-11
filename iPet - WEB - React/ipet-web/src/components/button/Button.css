@@ -17,3 +17,25 @@
     border: 1px solid #007DC5;
     cursor: pointer;
 }
+
+.btn-verde {
+    padding: 10px;
+    color: #fff;
+    font-family: Montserrat;
+    font-weight: bold;
+    background: #169F00;
+    border-radius: 6px;
+    font-family: Montserrat;
+    width: 400px;
+    height: 40px;
+    margin: 0 auto;
+    outline: none;
+    text-decoration: none;
+    opacity: 1;
+    border: 0;
+}
+
+.btn-verde:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
