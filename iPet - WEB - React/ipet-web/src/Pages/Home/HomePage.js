@@ -11,7 +11,6 @@ import banhoTosa from '../../Assets/banhoTosa.png'
 import saude from '../../Assets/saude.png'
 import {Button} from "../../components/button/Button";
 
-
 function HomePage() {
   return (
     <>

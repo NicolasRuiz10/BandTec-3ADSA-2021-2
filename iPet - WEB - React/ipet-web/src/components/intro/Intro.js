@@ -1,6 +1,8 @@
 import React from "react";
 import './Intro.css';
 import IntroImage from '../../Assets/intro.png'
+import { Link } from "react-router-dom";
+
 
 
 export function Intro() {
@@ -23,7 +25,9 @@ export function Intro() {
           <br />para o seu pet com o menos tempo possível
         </p>
       </div>
-      <button className="btn-faca-parte">Faça seu cadastro</button>
+      <Link to="/cadastro">
+        <button className="btn-faca-parte">Faça seu cadastro</button>
+      </Link>  
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import './Login.css';
-
+import { Link } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
 import Input from "../../components/input/Input"
 import { ButtonVerde } from "../../components/button/Button"
@@ -39,7 +39,9 @@ export function Login() {
          <br/> gerenciar a sua Assinatura Petz, acompanhar
          <br/>os seus pedidos e muito mais!
          </p>
-         <ButtonVerde title="Crie sua conta"/>
+         <Link to="/cadastro">
+          <ButtonVerde title="Crie sua conta"/>
+         </Link>
        </div>
        </div>
     </>

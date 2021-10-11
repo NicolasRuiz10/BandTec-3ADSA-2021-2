@@ -32,13 +32,15 @@ export function Menu(props) {
             </Link>
           </div>
           <div className="item-acesso">
-            <Link to="/login">
+            <Link to="/cadastro">
               <button className="btn-cadastro">Cadastro</button>
             </Link>
           </div>
           <div className="item-acesso">
             <div className="icon-car">
-              <FaShoppingCart size={34} />
+              <Link to="/carrinho">
+                <FaShoppingCart size={34} className="icon--carrinho"/>
+              </Link>
             </div>
           </div>
         </div>
