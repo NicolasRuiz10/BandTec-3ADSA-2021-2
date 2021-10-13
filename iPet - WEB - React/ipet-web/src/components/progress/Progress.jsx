@@ -59,8 +59,8 @@ const steps = ['Carrinho', 'Pagamento', 'Entrega'];
 
 export default function CustomizedSteppers() {
   return (
-    <Box sx={{ width: '50%' }} spacing={4}>
-      <Stepper alternativeLabel activeStep={0}>
+    <Box sx={{ width: '100%', backgroundColor: 'transparent' }} spacing={4}>
+      <Stepper style={{ backgroundColor: "transparent" }} alternativeLabel activeStep={1}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
