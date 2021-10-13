@@ -14,20 +14,8 @@ hr {
 .principal--carrinho {
   width: 80%;
   height: 200px;
-  background-color: #ffff;
   border-radius: 7px;
   margin: 20px auto;
-}
-
-.navBar--carrinho {
-  width: 100%;
-  height: 70px;
-  border-radius: 7px;
-  background-color: #fff;
-  border-bottom: 1px solid #007DC5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .etapas {
@@ -42,12 +30,12 @@ hr {
   align-items: center;
 }
 
-.section--etapas hr{
+.section--etapas hr {
   width: 120px;
   margin-left: 10px;
 }
 
-.btn--etapa{
+.btn--etapa {
   width: 25px;
   height: 25px;
   padding-top: 5px;
@@ -61,5 +49,17 @@ hr {
 .txt--etapa {
   text-align: center;
   margin-left: 10px;
+}
 
+.section-carrinho {
+  width: 100%;
+  height: 600px;
+  background-color: #ffff;
+}
+
+.progressBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
 }

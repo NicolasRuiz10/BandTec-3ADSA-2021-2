@@ -1,6 +1,7 @@
 import React from "react";
 import './Carrinho.css';
 import { Menu } from "../../components/menu/Menu";
+import Progress from "../../components/progress/Progress";
 
 export function Carrinho() {
   return (
@@ -10,23 +11,9 @@ export function Carrinho() {
       <hr />
       <div className="principal--carrinho">
         <div className="navBar--carrinho">
-          <div className="etapas">
-            <div className="section--etapas">
-              <div className="btn--etapa">1</div>
-              <p className="txt--etapa">Carrinho</p>
-              <hr />
-            </div>
-            <div className="section--etapas">
-              <div className="btn--etapa">2</div>
-              <p className="txt--etapa">Pagamento</p>
-              <hr />
-            </div>
-            <div className="section--etapas">
-              <div className="btn--etapa">3</div>
-              <p className="txt--etapa">Confirmação</p>
-            </div>
+          <div className="progressBar">
+            <Progress />
           </div>
-          
         </div>
       </div>
     </>
