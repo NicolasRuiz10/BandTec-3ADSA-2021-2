@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import './Carrinho.css';
 import { Menu } from "../../components/menu/Menu";
+import { ItemCarrinho } from "../../components/carrinho/ItemCarrinho";
 import Progress from "../../components/progress/Progress";
-import Cama from '../../Assets/cama.jpg'
+import { ButtonVerde } from "../../components/button/Button"
+
 
 
 
 export function Carrinho() {
-  const product = {
-    price: 100,
-  }
-  const [quantidade, setQuantidade] = useState(0);
-  const total = product.price * quantidade;
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -25,34 +22,53 @@ export function Carrinho() {
         </div>
         <div className="box-carrinho">
           <div className="itens-carrinho">
-            <div className="item-product">
+            <div className="item-title">
               <h1>Produto</h1>
-              <img src={Cama} width="400" height="300" />
-            </div>
-            <div className="item-price">
+              <hr />
+              <h1>Descrição</h1>
+              <hr />
               <h1>Preço</h1>
-              <div className="item-priceNumber">R$ - {product.price}</div>
-            </div>
-            <div className="item-quantity">
+              <hr />
               <h1>Quantidade</h1>
-              <button onClick={() => setQuantidade(quantidade + 1)}>
-                +
-              </button>
-              <div>
-                {quantidade}
-              </div>
-              <button onClick={() => setQuantidade(quantidade - 1)}>
-                -
-              </button>
-            </div>
-            <div className="item-total">
+              <hr />
               <h1>Total</h1>
-              <div>
-                {total}
-              </div>
+            </div>
+            <div className="itens">
+              <ItemCarrinho  
+                urlImg="https://essaseoutras.com.br/wp-content/uploads/2011/02/acessorios-para-caes-2.png" 
+                descProduto="Cama Viena Ziper G" 
+                preco="250" />
+            </div>
+            <div className="itens">
+              <ItemCarrinho  
+                urlImg="https://www.casadaracaobh.com.br/wp-content/uploads/2017/10/Ra%C3%A7%C3%A3o-Magnus-Premium-Original-C%C3%A3es-Adultos.png" 
+                descProduto="Ração Seca PremieR" 
+                preco="100" />
+            </div>
+            <div className="itens">
+              <ItemCarrinho  
+                urlImg="https://petcamp.vteximg.com.br/arquivos/ids/156124-1000-1000/7896029064344-png.png?v=637672210510900000 " 
+                descProduto="Ração Pet Golden" 
+                preco="100" />
+            </div>
+            <div className="itens">
+              <ItemCarrinho  
+                urlImg="https://petcamp.vteximg.com.br/arquivos/ids/156124-1000-1000/7896029064344-png.png?v=637672210510900000 " 
+                descProduto="Ração Pet Golden" 
+                preco="100" />
+            </div>
+            <div className="itens">
+              <ItemCarrinho  
+                urlImg="https://petcamp.vteximg.com.br/arquivos/ids/156124-1000-1000/7896029064344-png.png?v=637672210510900000 " 
+                descProduto="Ração Pet Golden" 
+                preco="100" />
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="btn-proximo">
+          <ButtonVerde title="Fechar pedido"/> 
       </div>
     </>
   );

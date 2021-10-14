@@ -13,7 +13,6 @@ hr {
 
 .principal--carrinho {
   width: 80%;
-  height: 200px;
   border-radius: 7px;
   margin: 20px auto;
 }
@@ -66,17 +65,15 @@ hr {
 
 .box-carrinho {
   width: 100%;
-  height: 600px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .itens-carrinho {
   width: 100%;
-  height: 500px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .item-product {
@@ -99,16 +96,44 @@ hr {
   margin-top: 120px;
 }
 
-.item-quantity {
-  width: 400px;
-  height: 400px;
-  text-align: center;
-  font-size: 32px;
-}
 
 .item-total {
   width: 400px;
   height: 400px;
   text-align: center;
   font-size: 32px;
+}
+
+.item-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007DC5;
+  padding: 20px 80px;
+}
+
+
+.item-title h1 {
+  color:#fff;
+  font-size: 20px;
+}
+
+.item-title hr {
+  background-color: #000;
+  color:#000;
+  width: 2px;
+  height: 20px;
+}
+
+.itens {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  border: 1px solid rgba(0, 0, 0, 0.425);
+}
+
+.btn-proximo {
+  float:right;
+  margin: 50px;
+  margin-right: 150px;
 }

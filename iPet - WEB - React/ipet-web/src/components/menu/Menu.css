@@ -37,8 +37,14 @@
   font-size: 14px;
   justify-content: center;
   padding: 0 50px;
+  text-decoration: none;
+  outline: none;
 }
 
+.item-menu h3 {
+  text-decoration: none;
+  outline: none;
+}
 .item-menu:hover {
   background-color: #eff3f4;
   cursor: pointer;
