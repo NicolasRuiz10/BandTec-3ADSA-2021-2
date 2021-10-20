@@ -1,15 +1,20 @@
 import './Input.css';
 
-import React, { useState } from 'react'
+import { React, useState } from 'react'
 
 
-const Input = (props) => {
+export default (props) => {
+    // const [value, setValue] = useState('');
+
+    function setValueInput(e) {
+        // setValue(e.target.value);
+        props.enviarDados(e.target.value);
+    }
     return (
-      <>
-        <p className="txt-input">{props.txt}</p>
-        <input className="input" placeholder={props.placeholder}></input>
-      </>
+        <>
+            <p className="txt-input">{props.txt}</p>
+            <input className="input" placeholder={props.placeholder} onChange={setValueInput} />
+        </>
     )
 }
 
-export default Input

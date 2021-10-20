@@ -16,11 +16,9 @@
 <script>
     var teste = document.getElementById("testo");
     function testes() {
-        console.log('teste');
         fetch('http://localhost:8080/avaliacoes').then(response => {
             return response.json();
         }).then(data => {
-            console.log(data);
             teste.innerHTML = data[1].data;
         })
 
