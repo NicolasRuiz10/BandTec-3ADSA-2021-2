@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, React } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
@@ -7,10 +7,12 @@ import { ButtonVerde } from "../../components/button/Button";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import Toast from "../../components/toast/Toast";
 
-export function Login() {
+export default (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showToast, setShowToast] = useState(false);
 
     function setValueEmail(value) {
         setEmail(value);
@@ -20,17 +22,28 @@ export function Login() {
         setPassword(value);
     }
 
+    function setValueToast(value) {
+        setShowToast(value);
+    }
+
     const verificarLogin = () => {
+
         axios.post("http://localhost:8080/usuarios/autenticar", {
             email: email,
             senha: password,
         }
         ).then((res) => {
-            console.log(res.status);
+            if (res.status === 200) {
+                props.history.push("/");
+            } else {
+                console.log(res.status);
+                setShowToast(true);
+            }
         });
     };
     return (
         <>
+            <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast}/>
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <h2>Acesse sua conta</h2>
             <hr />
@@ -71,5 +84,3 @@ export function Login() {
         </>
     );
 }
-
-export default Login;

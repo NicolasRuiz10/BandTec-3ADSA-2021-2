@@ -50,17 +50,19 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PostMapping("/autenticar/{id}")
-    public ResponseEntity autenticar(@PathVariable int id, @RequestBody Usuario ususario) {
-        Usuario u = repository.findById(id).get();
-        if (u.autenticar(ususario.getEmail(), ususario.getSenha())) {
-            u.setAutenticacao(true);
-            repository.save(u);
-            return ResponseEntity.status(200).build();
-        }
-        u.setAutenticacao(false);
-        repository.save(u);
-        return ResponseEntity.status(404).build();
+    @PostMapping("/autenticar")
+    public ResponseEntity autenticar(@RequestBody Usuario ususario) {
+        List<Usuario> usuarios = repository.findAll();
+        for (Usuario usuario : usuarios) {
+            if (usuario.autenticar(ususario.getEmail(), ususario.getSenha())) {
+                usuario.setAutenticacao(true);
+                repository.save(usuario);
+                return ResponseEntity.status(200).build();
+            } else {
+                usuario.setAutenticacao(false);
+                repository.save(usuario);
+            }
+        } return ResponseEntity.status(201).build();
     };
 
     @CrossOrigin
