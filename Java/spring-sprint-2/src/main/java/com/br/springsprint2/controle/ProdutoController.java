@@ -4,11 +4,7 @@ import com.br.springsprint2.dominio.Petshop;
 import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
-<<<<<<< HEAD
-import com.br.springsprint2.util.ListObj;
-=======
 import com.br.springsprint2.util.ListaObj;
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
-<<<<<<< HEAD
-import java.util.*;
-=======
-import java.util.ArrayList;
+
+
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -32,11 +25,8 @@ import static org.springframework.http.ResponseEntity.status;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-<<<<<<< HEAD
-    public static void gravaLista(ListObj<Produto> lista, String nomeArq) {
-=======
+
     public static void gravaLista(ListaObj<Produto> lista, String nomeArq) {
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
 
         FileWriter arq = null;
         Formatter saida = null;
@@ -84,29 +74,13 @@ public class ProdutoController {
         }
     }
 
-
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
     @Autowired
     private ProdutoRepository repository;
 
     @Autowired
     private PetshopRepository petRepository;
 
-<<<<<<< HEAD
-    private ListObj<Produto> lista = new ListObj(1000);
-
-
-=======
     private ListaObj listaObj = new ListaObj(1000);
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
-
 
     @CrossOrigin
     @PostMapping("{fkPetshop}")
@@ -114,11 +88,7 @@ public class ProdutoController {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         novoProduto.setFkPetShop(petshop);
         repository.save(novoProduto);
-<<<<<<< HEAD
-        lista.adicionar(novoProduto);
-=======
         listaObj.adicionar(novoProduto);
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
         return status(HttpStatus.CREATED).build();
     }
 
@@ -126,25 +96,16 @@ public class ProdutoController {
     @GetMapping
     public ResponseEntity getProdutos() {
         List<Produto> lista = repository.findAll();
-        /*
-        List listao = new ArrayList();
-        for (int x = 0; x < listaObj.getTamanho(); x++) {
-           listao.add(listaObj.getElemento(x));
-        }*/
-
+        for (Produto p: lista) {
+            listaObj.adicionar(p);
+        }
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
-<<<<<<< HEAD
 
     @GetMapping("/csv/{produtos}")
     public ResponseEntity getCSV(@PathVariable String produtos) {
-       gravaLista(lista , produtos);
-=======
-    @GetMapping("/csv/{produtos}")
-    public ResponseEntity getCSV(@PathVariable String produtos) {
         gravaLista(listaObj , produtos);
->>>>>>> 19cba0ce1329c842739a05876184ff1df32fd384
         return ResponseEntity.status(200).build();
     }
 
@@ -159,7 +120,6 @@ public class ProdutoController {
     public ResponseEntity deleteProdutos(@PathVariable int id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
-
             return ResponseEntity.status(200).build();
         } else {
             return ResponseEntity.status(404).build();
@@ -173,7 +133,6 @@ public class ProdutoController {
         if (repository.existsById(id)) {
             produtoAtualizado.setIdProduto(id);
             repository.save(produtoAtualizado);
-            lista.adicionar(produtoAtualizado);
             return ResponseEntity.status(200).build();
         } else {
             return ResponseEntity.status(404).build();
