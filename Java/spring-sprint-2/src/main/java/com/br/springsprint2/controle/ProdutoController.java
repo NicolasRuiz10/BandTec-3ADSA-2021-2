@@ -10,10 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
@@ -74,6 +75,117 @@ public class ProdutoController {
         }
     }
 
+
+    public static void gravaRegistro(String nomeArq, String registro) {
+        BufferedWriter saida = null;
+        // Abre o arquivo
+        try {
+            saida = new BufferedWriter (new FileWriter(nomeArq, true));
+        }
+        catch (IOException erro) {
+            System.out.println("Erro na abertura do arquivo: " +
+                    erro.getMessage());
+        }
+
+        // Grava o registro e finaliza
+        try {
+            saida.append(registro + "\n");
+            saida.close();
+        }
+        catch (IOException erro) {
+            System.out.println("Erro na gravação do arquivo: " +
+                    erro.getMessage());
+        }
+
+    }
+
+    public static void gravaArquivoTxt(List<Produto> lista, String nomeArq) {
+
+        int contaRegistro = 0;
+
+        // Monta o registro de header
+        String header = "00PRODUTO";
+        Date dataDeHoje = new Date();
+        SimpleDateFormat formataData =
+                new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        header += formataData.format(dataDeHoje);
+        header += "01";
+
+        // Grava o registro do header
+        gravaRegistro(nomeArq, header);
+
+        // Monta e grava o corpo
+        String corpo;
+        for (Produto a : lista) {
+            corpo = "02";
+            corpo += String.format("%-5.5s",a.getIdProduto());
+            corpo += String.format("%-13.8s",a.getNome());
+            corpo += String.format("%-50.50s", a.getDescricao());
+            corpo += String.format("%09.2f", a.getValor());
+            corpo += String.format("%-10.10s", a.getMarca());
+            corpo += String.format("%-14.14s", a.getEspecie());
+            corpo += String.format("%03d", a.getQuantidade());
+            if(a.getFkPetShop() == null) {
+                corpo += String.format("%-3.3s", "");
+            } else {
+                corpo += String.format("%03d", a.getFkPetShop().getIdPetshop());
+            }
+            gravaRegistro(nomeArq,corpo);
+            contaRegistro++;
+        }
+
+        // Monta e grava o trailer
+        String trailer = "01";
+        trailer += String.format("%03d", contaRegistro);
+        gravaRegistro(nomeArq,trailer);
+
+    }
+
+    public static void leArquivoTxt(String nomeArq) {
+        BufferedReader entrada = null;
+        String registro, tipoRegistro;
+
+        try {
+            entrada = new BufferedReader(new FileReader(nomeArq));
+        }
+        catch (IOException erro) {
+            System.out.println("Erro na abertura do arquivo: " +
+                    erro.getMessage());
+        }
+
+        try {
+            registro = entrada.readLine();  // Lê o primeiro registro do arquivo
+
+            while (registro != null) {      // Enquanto não chegou ao final do arquivo
+                // obtém o tipo do registro - primeiros 2 caracteres do registro
+                // substring devolve um "pedaço da String",
+                // que começa na posição 0 e termina na posição 1 (como num vetor)
+                //    0123456
+                //    00NOTA
+                tipoRegistro = registro.substring(0,2);
+
+                // Verifica se o tipoRegistro é "00" (header), ou "01" (trailer) ou "02" (corpo)
+                if (tipoRegistro.equals("00")) {
+                    System.out.println("Eh um header");
+                }
+                else if (tipoRegistro.equals("01")) {
+                    System.out.println("Eh um trailer");
+                }
+                else if (tipoRegistro.equals("02")) {
+                    System.out.println("Eh um registro de corpo");
+                }
+
+                // lê o próximo registro
+                registro = entrada.readLine();
+            }
+
+            entrada.close();
+        }
+        catch (IOException erro) {
+            System.out.println("Erro ao ler arquivo: " + erro.getMessage());
+        }
+    }
+
     @Autowired
     private ProdutoRepository repository;
 
@@ -106,6 +218,14 @@ public class ProdutoController {
     @GetMapping("/csv/{produtos}")
     public ResponseEntity getCSV(@PathVariable String produtos) {
         gravaLista(listaObj , produtos);
+        return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/layout/{nmArq}")
+    public ResponseEntity getLayout(@PathVariable String nmArq) {
+        List<Produto> produtos = repository.findAll();
+        gravaArquivoTxt(produtos, nmArq);
+        leArquivoTxt(nmArq);
         return ResponseEntity.status(200).build();
     }
 

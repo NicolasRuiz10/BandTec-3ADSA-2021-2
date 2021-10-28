@@ -17,6 +17,7 @@ public class Produto {
     private String marca;
     private String especie;
     private int quantidade;
+
     @JsonIgnore
     @ManyToOne
     private Petshop fkPetShop;
