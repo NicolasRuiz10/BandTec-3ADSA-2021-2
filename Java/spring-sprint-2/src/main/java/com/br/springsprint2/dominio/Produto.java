@@ -16,6 +16,7 @@ public class Produto {
     private Double valor;
     private String marca;
     private String especie;
+    private String urlImagem;
     private int quantidade;
 
     @JsonIgnore
@@ -25,6 +26,14 @@ public class Produto {
     @JsonIgnore
     @OneToMany(mappedBy = "fkProduto")
     private List<ItensPedido> itens = new ArrayList<>();
+
+    public String getUrlImagem() {
+        return urlImagem;
+    }
+
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
+    }
 
     public int getIdProduto() {
         return idProduto;

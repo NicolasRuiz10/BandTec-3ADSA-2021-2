@@ -14,10 +14,7 @@ import java.io.*;
 
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Formatter;
-import java.util.FormatterClosedException;
-import java.util.List;
+import java.util.*;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -227,6 +224,13 @@ public class ProdutoController {
         gravaArquivoTxt(produtos, nmArq);
         leArquivoTxt(nmArq);
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("url/{id}")
+    public ResponseEntity getUrl(@PathVariable Integer id){
+        Optional<Produto> a = repository.findById(id);
+
+        return ResponseEntity.status(200).body(a.);
     }
 
     @CrossOrigin
