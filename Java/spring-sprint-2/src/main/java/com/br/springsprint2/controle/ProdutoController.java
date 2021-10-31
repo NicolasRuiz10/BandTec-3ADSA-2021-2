@@ -225,13 +225,7 @@ public class ProdutoController {
         leArquivoTxt(nmArq);
         return ResponseEntity.status(200).build();
     }
-
-    @GetMapping("url/{id}")
-    public ResponseEntity getUrl(@PathVariable Integer id){
-        Optional<Produto> a = repository.findById(id);
-
-        return ResponseEntity.status(200).body(a.);
-    }
+    
 
     @CrossOrigin
     @GetMapping("/{id}/teste")
