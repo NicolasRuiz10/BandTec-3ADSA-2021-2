@@ -1,0 +1,55 @@
+.card {
+  width: 30%;
+  height: 450px;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #fff;
+}
+
+.btn {
+  width: 10px;
+  height: 10px;
+}
+
+.card--btn {
+  width: 100%;
+}
+
+
+.card hr {
+  width: 200px;
+}
+
+.card--desc {
+}
+.card--desc h3 {
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.2;
+  width: 200px;
+}
+
+.card--imagem {
+  width: 100%;
+  height: 60%;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.card--imagem img {
+  width: 100%;
+  margin: 0 auto;
+  padding: 14px;
+}
+
+.card--preco h2{
+ margin: 0 auto;
+ color: #FEC302;
+ font-weight: bold;
+}

@@ -17,6 +17,7 @@ public class Produto {
     private String marca;
     private String especie;
     private String urlImagem;
+    private String tipoProduto;
     private int quantidade;
 
     @JsonIgnore
@@ -105,6 +106,14 @@ public class Produto {
 
     public void setItens(List<ItensPedido> itens) {
         this.itens = itens;
+    }
+
+    public String getTipoProduto() {
+        return tipoProduto;
+    }
+
+    public void setTipoProduto(String tipoProduto) {
+        this.tipoProduto = tipoProduto;
     }
 }
 
