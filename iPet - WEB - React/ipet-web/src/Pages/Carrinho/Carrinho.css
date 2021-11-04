@@ -15,6 +15,7 @@ hr {
   width: 80%;
   border-radius: 7px;
   margin: 20px auto;
+  margin-bottom: 100px;
 }
 
 .etapas {
@@ -134,6 +135,43 @@ hr {
 
 .btn-proximo {
   float:right;
-  margin: 50px;
-  margin-right: 150px;
+  margin-top: -40px;
+  width: 220px;
 }
+
+.btn-escolher a{
+  float:right;
+  margin-top: -40px;
+  width: 220px;
+  margin-right: 250px;
+  background-color:#ccc;
+  color: #000;
+  text-align: center;
+  height: 40px;
+  border-radius: 5px;
+  padding-top: 10px;
+  opacity: 1;
+}
+
+.btn-escolher a:hover{
+  opacity: 0.8;
+}
+ table {
+   border: 1px solid #ccc;
+   margin-top: 20px;
+   height: 120px;
+   width: 600px;
+   padding: 120px;
+ }
+
+ tr {
+   font-size: 20px;
+   border: 1px solid #ccc;
+   text-align: center;
+ }
+
+ th, td {
+  border: 1px solid #ccc;
+  text-align: center;
+  vertical-align: middle;
+ }  

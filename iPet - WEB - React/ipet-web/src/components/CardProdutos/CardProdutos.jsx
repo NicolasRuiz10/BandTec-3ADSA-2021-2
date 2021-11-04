@@ -6,10 +6,11 @@ import { ButtonVerde } from "../../components/button/Button"
 
 const CardProdutos = ({props}) => {
   console.log(props);
+  const URL = "https://www.petz.com.br/cachorro/racas/pointer-ingles/img/golden-formula-pointer-ingles.webp"
   return (
       <div className="card">
         <div className="card--imagem">
-          <img src="https://www.petz.com.br/cachorro/racas/pointer-ingles/img/golden-formula-pointer-ingles.webp" alt="" />
+          <img src={URL} alt="" />
           <hr />
         </div>
         <div className="card--desc">

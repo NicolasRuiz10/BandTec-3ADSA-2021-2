@@ -1,0 +1,65 @@
+.principal--pagamento {
+  width: 70%;
+  height: 350px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dados-pagamento {
+  padding: 20px;
+}
+
+table {
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  height: 120px;
+  width: 400px;
+  padding: 120px;
+  margin-right: 20px;
+}
+
+tr {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+th, td {
+ border: 1px solid #ccc;
+ text-align: center;
+ vertical-align: middle;
+}  
+
+.div-dados img {
+  width: 400px;
+}
+
+
+.botoes-div {
+  margin-top: 40px;
+  width: 70%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.btn-voltar {
+  float:right;
+  width: 150px;
+  background-color:#ccc;
+  color: #000;
+  text-align: center;
+  height: 40px;
+  border-radius: 5px;
+  opacity: 1;
+  padding-top: 12px;
+}
+
+.btn-voltar:hover {
+  opacity: 0.8;
+}

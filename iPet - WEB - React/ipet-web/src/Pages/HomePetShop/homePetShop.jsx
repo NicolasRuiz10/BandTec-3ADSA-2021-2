@@ -40,3 +40,5 @@ export function HomePetShop() {
         </>
     )
 }
+
+export default HomePetShop;

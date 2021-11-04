@@ -15,9 +15,11 @@ export function Menu(props) {
           </Link>  
         </div>
         <div className="itens-menu">
+          <Link to="/PetShop">
           <div className="item-menu">
             <h3>{props.menuItem1}</h3>
           </div>
+          </Link>
           <Link to="/produtos">
           <div className="item-menu">
             <h3>{props.menuItem2}</h3>
