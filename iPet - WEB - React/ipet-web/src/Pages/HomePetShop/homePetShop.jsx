@@ -10,6 +10,7 @@ import client4 from '../../Assets/client4.png'
 import bolaAmarela from '../../Assets/bolaAmarela.png'
 import novosClientes from '../../Assets/novosClientes.png'
 import dinheiro from '../../Assets/dinheiro.png'
+import { Footer } from '../../components/footer/footer';
 
 export function HomePetShop() {
     return (
@@ -76,6 +77,7 @@ export function HomePetShop() {
                 </div>
             </section>
 
+            <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
         </>
     )
 }
