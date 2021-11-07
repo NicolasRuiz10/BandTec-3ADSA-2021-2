@@ -10,6 +10,8 @@ import client4 from '../../Assets/client4.png'
 import bolaAmarela from '../../Assets/bolaAmarela.png'
 import novosClientes from '../../Assets/novosClientes.png'
 import dinheiro from '../../Assets/dinheiro.png'
+import bolaQuebrada from '../../Assets/bolaQuebrada.png'
+import olho from '../../Assets/olho.png'
 import { Footer } from '../../components/footer/footer';
 
 export function HomePetShop() {
@@ -56,7 +58,11 @@ export function HomePetShop() {
                     produtos e serviços “
                 </div>
             </section>
+
             <section>
+            <div className="textParceiro">
+                <h1>Por que ser parceiro do iPet</h1>
+            </div>
                 <div className="ipetPartner">
                     <div className="partnerimgs">
                         <div>
@@ -64,15 +70,37 @@ export function HomePetShop() {
                             <div className="novosClientes">
                                 <img src={novosClientes} alt="none" />
                             </div>
+                            <div className="text1">
+                                <h1>Novos Clientes</h1>
+                            </div>
                         </div>
                         <div>
                             <img src={bolaAmarela} alt="none" />
                             <div className="dinheiro">
                                 <img src={dinheiro} alt="none" />
                             </div>
+                            <div className="text2">
+                                <h1>Mais vendas</h1>
+                            </div>
                         </div>
-                        <div><img src={bolaAmarela} alt="none" /></div>
-                        <div><img src={bolaAmarela} alt="none" /></div>
+                        <div>
+                            <img src={bolaAmarela} alt="none" />
+                            <div className="facilGestao">
+                                <img src={bolaQuebrada} alt="none" />
+                            </div>
+                            <div className="text3">
+                                <h1>Fácil Gestão</h1>
+                            </div>
+                        </div>
+                        <div>
+                            <img src={bolaAmarela} alt="none" />
+                            <div className="maisVisibilidade">
+                                <img src={olho} alt="none" />
+                            </div>
+                            <div className="text4">
+                                <h1>Fácil Gestão</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

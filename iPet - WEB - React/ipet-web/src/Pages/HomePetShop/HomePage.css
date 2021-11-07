@@ -101,3 +101,50 @@
     margin-top: -140px;
     margin-left: 35px;
 }
+
+.facilGestao {
+    position: absolute;
+    margin-top: -140px;
+    margin-left: 43px;
+}
+
+.maisVisibilidade {
+    position: absolute;
+    margin-top: -140px;
+    margin-left: 43px;
+}
+
+.text1 {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 25px;
+}
+
+.text2 {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.text3 {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.text4 {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.textParceiro {
+    position: absolute;
+    margin-top: -200px;
+    margin-left: 620px;
+    font-size: 48px;
+    font-family: Montserrat;
+    color: #007DC5;
+    font-weight: bold;
+
+}
