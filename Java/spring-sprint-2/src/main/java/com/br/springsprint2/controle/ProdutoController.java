@@ -24,8 +24,6 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-
-
     public static void gravaLista(ListaObj<Produto> lista, String nomeArq) {
 
         FileWriter arq = null;
@@ -33,7 +31,6 @@ public class ProdutoController {
         boolean deuRuim = false;
 
         nomeArq += ".csv";
-
 
         try {
             arq = new FileWriter(nomeArq, true);
@@ -43,7 +40,6 @@ public class ProdutoController {
             System.err.println("Erro ao abrir arquivo");
             System.exit(1);
         }
-
 
         try {
 

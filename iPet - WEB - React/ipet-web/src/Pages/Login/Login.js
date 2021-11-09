@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
@@ -8,11 +8,16 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Toast from "../../components/toast/Toast";
+import { useHistory } from "react-router-dom";
+import { useAuth } from '../../hooks/AuthLogin'
 
 export default (props) => {
+    let history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
+
+    const { mudarAutenticacao, setIdUsuario } = useAuth();
 
     function setValueEmail(value) {
         setEmail(value);
@@ -34,9 +39,10 @@ export default (props) => {
         }
         ).then((res) => {
             if (res.status === 200) {
-                props.history.push("/");
+                mudarAutenticacao();
+                setIdUsuario(res.data);
+                history.push("/");
             } else {
-                console.log(res.status);
                 setShowToast(true);
             }
         });

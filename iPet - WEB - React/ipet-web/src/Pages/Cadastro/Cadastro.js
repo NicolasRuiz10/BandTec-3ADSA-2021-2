@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import './Cadastro.css'
 import { Link } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
@@ -9,6 +9,21 @@ import { FcGoogle } from 'react-icons/fc';
 
 
 export function Cadastro() {
+  const [email, setEmail] = useState('');
+  const [nome, setNome] = useState('');
+  const [senha, setSenha] = useState('');
+  const [cpf, setCpf] = useState('');
+
+  const [validacao, setvalidacao] = useState(true);
+
+  function confirmarSenha(value) {
+    if (senha === value) {
+      setvalidacao(true);
+    } else {
+      setvalidacao(false);
+    }
+  }
+
   return (
     <>
        <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -17,12 +32,11 @@ export function Cadastro() {
        <div className="principal">
        <div className="section--cadastro">
          <h1>Dados Pessoais</h1>
-         <Input txt="Nome Completo" placeholder="Digite seu nome completo"/>
-         <Input txt="Email" placeholder="Digite seu email"/>
-         <Input txt="Confirme seu Email" placeholder="Digite seu email"/>
-         <Input txt="CPF" placeholder="Digite seu CPF"/>
-         <Input txt="Senha" placeholder="Digite sua senha"/>
-         <Input txt="Confirme sua senha" placeholder="Digite sua senha"/>
+         <Input txt="Nome Completo" placeholder="Digite seu nome completo" enviarDados={setNome}/>
+         <Input txt="Email" placeholder="Digite seu email" enviarDados={setEmail}/>
+         <Input txt="CPF" placeholder="Digite seu CPF" enviarDados={setCpf}/>
+         <Input txt="Senha" placeholder="Digite sua senha" enviarDados={setSenha}/>
+         <Input txt="Confirme sua senha" placeholder="Digite sua senha" enviarDados={confirmarSenha}/>
          <hr />
          <Input txt="CEP" placeholder="Digite seu CEP"/>
          <Input txt="Endereço" placeholder="Digite seu endereço com Nº"/>
