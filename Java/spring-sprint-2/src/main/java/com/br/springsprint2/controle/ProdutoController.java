@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
@@ -209,6 +210,38 @@ public class ProdutoController {
             listaObj.adicionar(p);
         }
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
+    }
+
+    @PatchMapping("/foto/{id}")
+    public ResponseEntity patchFoto(@PathVariable Integer id,
+                                    @RequestParam MultipartFile foto) throws IOException {
+        // Não vamos validar se o carro existe
+        if (repository.existsById(id)) {
+            Produto produto = repository.findById(id).get();
+
+            byte[] novaFoto = foto.getBytes();
+
+            produto.setFoto(novaFoto);
+            repository.save(produto);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @GetMapping("/foto/{id}")
+    public ResponseEntity getFoto(@PathVariable int id){
+        if (repository.existsById(id)) {
+            Produto produto = repository.findById(id).get();
+            byte[] foto = produto.getFoto();
+
+            return ResponseEntity
+                    .status(200)
+                    .header("content-type", "image/jpeg")
+                    .body(foto);
+        } else {
+            return ResponseEntity.status(404).build();
+        }
     }
 
 
