@@ -3,9 +3,7 @@ import './Intro.css';
 import IntroImage from '../../Assets/intro.png'
 import { Link } from "react-router-dom";
 
-
-
-export function Intro() {
+export function Intro(props) {
   return (
     <>
       <div className="intro">

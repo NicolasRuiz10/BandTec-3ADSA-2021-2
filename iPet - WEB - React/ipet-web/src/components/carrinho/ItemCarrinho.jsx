@@ -2,7 +2,7 @@ import React , { useState } from "react";
 import './ItemCarrinho.css';
 
 export function ItemCarrinho({urlImg, descProduto, preco}) {
-  const [quantidade, setQuantidade] = useState(0);
+  const [quantidade, setQuantidade] = useState(1);
   const total = preco * quantidade;
   return (
     <>
@@ -19,19 +19,19 @@ export function ItemCarrinho({urlImg, descProduto, preco}) {
         
         
         <div className="section-itens--preco">
-          <div className={preco}>R$ - {preco}</div>
+          <div className={preco}>R$ {preco}</div>
         </div>
       
         <div className="section-itens--qtd"> 
           <div className="item-quantity">
             <button disabled={total === 0} onClick={() => setQuantidade(quantidade - 1)}>-</button>
-            <h1>Quantidade</h1>
+            <h1>{quantidade}</h1>
             <button onClick={() => setQuantidade(quantidade + 1)}>+</button>
           </div>
         </div>
        
         <div className="section-itens--total">
-          <div>{total}</div>
+          <div>R$ {total}</div>
         </div>
       </div>
     </>

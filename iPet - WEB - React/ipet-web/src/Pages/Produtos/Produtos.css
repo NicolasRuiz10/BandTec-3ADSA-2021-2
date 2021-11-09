@@ -1,0 +1,59 @@
+.principal {
+  width: 90%;
+  height: 900px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+hr {
+  width: 78%;
+}
+
+.filtro--produtos {
+  width: 30%;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  margin-top: 50px;
+}
+
+.filtro--produtos h3 {
+  color: #007DC5;
+  font-size: 35px;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.filtro--produtos hr {
+  width: 300px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.filtro--produtos a {
+  font-size: 20px;
+  padding: 10px;
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.filtro--produtos a:hover {
+  opacity: 0.9;
+}
+.card--principal {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+
+.card--produto {
+  width: 30%;
+  height: 300px;
+}
+
