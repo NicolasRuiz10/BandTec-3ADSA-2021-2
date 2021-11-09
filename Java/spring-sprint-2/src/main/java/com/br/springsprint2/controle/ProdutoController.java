@@ -225,7 +225,6 @@ public class ProdutoController {
         leArquivoTxt(nmArq);
         return ResponseEntity.status(200).build();
     }
-    
 
     @CrossOrigin
     @GetMapping("/{id}/teste")
