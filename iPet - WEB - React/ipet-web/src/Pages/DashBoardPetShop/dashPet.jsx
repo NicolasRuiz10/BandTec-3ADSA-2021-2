@@ -3,7 +3,6 @@ import './dashPet.css';
 import logo from '../../Assets/logo1.jpeg'
 import { Link } from "react-router-dom";
 import { ButtonVerde } from '../../components/button/Button';
-import bolaAmarela from '../../Assets/bolaAmarela.png'
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
 

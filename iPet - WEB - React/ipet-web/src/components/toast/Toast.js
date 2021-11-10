@@ -1,7 +1,8 @@
-import Reat from 'react';
+import React from 'react';
 import './toast.css';
 import { AiOutlineClose } from "react-icons/ai";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
     function closeToast() {
         props.changeValueToast(false);

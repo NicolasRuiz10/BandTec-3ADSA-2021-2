@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from "react";
 import "./Produtos.css";
-import api from "../../services/api"
+import api from "../../services/api";
 import { Menu } from "../../components/menu/Menu";
-import { CheckBox } from "../../components/CheckBox/CheckBox";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
-
-    useEffect(() => {
-    api
-      .get("/produtos")
-      .then((response) => setProdutos(response.data));
+  useEffect(() => {
+    const loadAll = async () => {
+      // pegando a lista total de produtos
+      let list = await api.get("/produtos");
+      setProdutos(list.data);
+    };
+    loadAll();
   }, []);
 
- 
+  const marcas = ["Golden", "Me.Au", "Nutrilus", "Magnus", "True", "LCM", "Snacks"]
   const tiposPets = ["Cachorro", "Gato", "Passaro", "Outros"];
-  const marcas = [
-    "Pedigree",
-    "Royal",
-    "Adimax",
-    "Affinity",
-    "BR4DOGS",
-    "Outros",
+  const outrosProdutos = [
+    "Ração",
+    "Brinquedos",
+    "Petiscos",
+    "Acessorios",
+    "Roupas",
   ];
-  const outrosProdutos = ["Brinquedos", "Petiscos", "Acessorios", "Roupas"];
   const servicos = ["Saúde", "Banho e Tosa"];
 
   return (
@@ -40,22 +39,36 @@ export function Produtos() {
           <h3>Pet</h3>
           <hr />
           {tiposPets.map((tipo, key) => (
-            <CheckBox key={key} label={tipo} />
+            <div className="checkBox">
+              <input type="checkbox" />
+              <label key={key}>{tipo}</label>
+            </div>
+          ))}
+          <h3>Tipo Produtos</h3>
+          <hr />
+          {outrosProdutos.map((op, key) => (
+            <div className="checkBox">
+              <input type="checkbox" />
+              <label key={key}>{op}</label>
+            </div>
           ))}
           <h3>Marca</h3>
           <hr />
           {marcas.map((marca, key) => (
-            <CheckBox key={key} label={marca} />
-          ))}
-          <h3>Outros Produtos</h3>
-          <hr />
-          {outrosProdutos.map((op, key) => (
-            <CheckBox key={key} label={op} />
+            <div className="checkBox">
+              <input type="checkbox" name="marcaCheck" />
+              <label key={key} for="marcaCheck">
+                {marca}
+              </label>
+            </div>
           ))}
           <h3>Serviços</h3>
           <hr />
           {servicos.map((servico, key) => (
-            <CheckBox key={key} label={servico} />
+            <div className="checkBox">
+              <input type="checkbox" />
+              <label key={key}>{servico}</label>
+            </div>
           ))}
         </div>
         <div className="card--principal">

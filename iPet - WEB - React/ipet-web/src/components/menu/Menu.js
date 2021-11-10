@@ -4,7 +4,7 @@ import logo from "../../Assets/logo1.jpeg";
 import { FaShoppingCart } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { useAuth } from '../../hooks/AuthLogin';
+import { useAuth } from '../../hooks/Context';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 

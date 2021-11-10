@@ -98,7 +98,7 @@ export function Cadastro() {
                 <div className="section--login">
                     <h1>
                         Já tem cadastro?
-         </h1>
+                    </h1>
                     <Link to="/login">
                         <ButtonVerde title="Login" />
                     </Link>

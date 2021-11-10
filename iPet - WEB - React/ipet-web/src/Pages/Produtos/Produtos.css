@@ -57,3 +57,19 @@ hr {
   height: 300px;
 }
 
+.checkBox {
+  padding: 10px;
+}
+
+.checkBox input {
+  width: 20px;
+  height: 15px;
+  margin-top: 10px;
+}
+
+.checkBox label {
+  text-align: center;
+  padding: 10px;
+  font-size: 22px;
+}
+

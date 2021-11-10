@@ -11,7 +11,8 @@ import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
 import { useAuth } from '../../hooks/AuthLogin'
 
-export default (props) => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
     let history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

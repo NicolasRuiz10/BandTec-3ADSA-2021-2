@@ -8,7 +8,7 @@ export function ItemCarrinho({urlImg, descProduto, preco}) {
     <>
       <div className="box-item">
         <div className="section-itens--img">
-          <img className="imagemProduto" src={urlImg}/>
+          <img className="imagemProduto" alt="" src={urlImg}/>
         </div>
 
         <div className="section-itens--desc">

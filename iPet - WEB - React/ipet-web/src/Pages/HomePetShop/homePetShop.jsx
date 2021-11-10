@@ -1,11 +1,9 @@
 import React from 'react';
 import './HomePage.css';
-import { Menu } from "../../components/menu/Menu";
 import { IntroPet } from '../../components/introPet/IntroPet';
 import logo from '../../Assets/logo1.jpeg'
 import { Link } from "react-router-dom";
 import { ButtonVerde } from '../../components/button/Button';
-import Line from '../../Assets/Line.png'
 import client1 from '../../Assets/client1.png'
 import client2 from '../../Assets/client2.png'
 import client3 from '../../Assets/client3.png'
