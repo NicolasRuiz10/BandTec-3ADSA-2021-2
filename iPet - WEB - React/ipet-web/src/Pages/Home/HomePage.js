@@ -12,6 +12,7 @@ import saude from '../../Assets/saude.png'
 import {Button} from "../../components/button/Button";
 
 function HomePage() {
+  
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />

@@ -7,9 +7,9 @@ export default (props) => {
         props.changeValueToast(false);
     }
     if (props.showToast === true) {
-        setInterval(() => {
+        setTimeout(() => {
             props.changeValueToast(false)
-        }, 7000)
+        }, 5000)
     }
     return (
         <div id="toast" className={props.color + " toast " + props.showToast}>

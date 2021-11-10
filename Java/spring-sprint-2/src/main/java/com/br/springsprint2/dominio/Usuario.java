@@ -17,9 +17,9 @@ public class Usuario {
     private String telefone;
     private String cpf;
     private String senha;
-    private LocalDate dataNascimento;
     private String endereco;
     private String cep;
+    private String complemento;
     private int numero;
     private Boolean autenticacao = false;
 
@@ -89,14 +89,6 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public String getEndereco() {

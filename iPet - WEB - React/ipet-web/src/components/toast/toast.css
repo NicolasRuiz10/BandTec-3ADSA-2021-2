@@ -18,12 +18,10 @@
 
 @keyframes toast-animation {
     from {
-        top: -100px;
         opacity: 0;
     }
 
     to {
-        top: 10px;
         opacity: 100%;
     }
 }
@@ -54,12 +52,10 @@
 
 @keyframes close-animation {
     from {
-        top: 10px;
         opacity: 100%;
     }
 
     to {
-        top: -100px;
         opacity: 0%;
     }
 }

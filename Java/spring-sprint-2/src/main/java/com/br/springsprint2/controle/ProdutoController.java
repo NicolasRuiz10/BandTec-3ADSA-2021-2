@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
@@ -22,8 +23,6 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-
-
     public static void gravaLista(ListaObj<Produto> lista, String nomeArq) {
 
         FileWriter arq = null;
@@ -31,7 +30,6 @@ public class ProdutoController {
         boolean deuRuim = false;
 
         nomeArq += ".csv";
-
 
         try {
             arq = new FileWriter(nomeArq, true);
@@ -41,7 +39,6 @@ public class ProdutoController {
             System.err.println("Erro ao abrir arquivo");
             System.exit(1);
         }
-
 
         try {
 
@@ -211,6 +208,38 @@ public class ProdutoController {
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @PatchMapping("/foto/{id}")
+    public ResponseEntity patchFoto(@PathVariable Integer id,
+                                    @RequestParam MultipartFile foto) throws IOException {
+        // Não vamos validar se o carro existe
+        if (repository.existsById(id)) {
+            Produto produto = repository.findById(id).get();
+
+            byte[] novaFoto = foto.getBytes();
+
+            produto.setFoto(novaFoto);
+            repository.save(produto);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @GetMapping("/foto/{id}")
+    public ResponseEntity getFoto(@PathVariable int id){
+        if (repository.existsById(id)) {
+            Produto produto = repository.findById(id).get();
+            byte[] foto = produto.getFoto();
+
+            return ResponseEntity
+                    .status(200)
+                    .header("content-type", "image/jpeg")
+                    .body(foto);
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
 
     @GetMapping("/csv/{produtos}")
     public ResponseEntity getCSV(@PathVariable String produtos) {
@@ -225,7 +254,6 @@ public class ProdutoController {
         leArquivoTxt(nmArq);
         return ResponseEntity.status(200).build();
     }
-    
 
     @CrossOrigin
     @GetMapping("/{id}/teste")
