@@ -9,22 +9,24 @@ import Carrinho from "../Pages/Carrinho/Carrinho"
 import Produtos from "../Pages/Produtos/Produtos.jsx"
 import Pagamento from "../Pages/Pagamento/Pagamento"
 import StatusPedido from "../Pages/StatusPedido/StatusPedido";
+import DashPet from "../Pages/DashBoardPetShop/dashPet";
 
 
 
 const Routes = () => {
-   return(
-       <BrowserRouter>
-           <Route component = { HomePage }  path="/" exact />
-           <Route component = { HomePetShop }  path="/PetShop"  />
-           <Route component = { Login }  path="/login" />
-           <Route component = { Cadastro }  path="/cadastro" />
-           <Route component = { Carrinho }  path="/carrinho" />
-           <Route component = { Pagamento }  path="/pagamento" />
-           <Route component = { Produtos } path="/produtos" />
-           <Route component = { StatusPedido } path="/status-pedido" />
-       </BrowserRouter>
-   )
+    return (
+        <BrowserRouter>
+            <Route component={HomePage} path="/" exact />
+            <Route component={HomePetShop} path="/PetShop" />
+            <Route component={DashPet} path="/dashboard" />
+            <Route component={Login} path="/login" />
+            <Route component={Cadastro} path="/cadastro" />
+            <Route component={Carrinho} path="/carrinho" />
+            <Route component={Pagamento} path="/pagamento" />
+            <Route component={Produtos} path="/produtos" />
+            <Route component={StatusPedido} path="/status-pedido" />
+        </BrowserRouter>
+    )
 }
 
 export default Routes;

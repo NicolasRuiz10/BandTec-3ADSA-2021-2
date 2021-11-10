@@ -2,7 +2,10 @@ import React from 'react';
 import './HomePage.css';
 import { Menu } from "../../components/menu/Menu";
 import { IntroPet } from '../../components/introPet/IntroPet';
-
+import logo from '../../Assets/logo1.jpeg'
+import { Link } from "react-router-dom";
+import { ButtonVerde } from '../../components/button/Button';
+import Line from '../../Assets/Line.png'
 import client1 from '../../Assets/client1.png'
 import client2 from '../../Assets/client2.png'
 import client3 from '../../Assets/client3.png'
@@ -17,7 +20,40 @@ import { Footer } from '../../components/footer/footer';
 export function HomePetShop() {
     return (
         <>
-            <Menu />
+            <div className="menu">
+                <div className="logo">
+                    <Link to="/">
+                        <img src={logo} alt="Logo iPet" />
+                    </Link>
+                </div>
+                <div className="itens-menu">
+                    <Link to="/PetShop">
+                        <div className="item-menu">
+                            <h3>Catálogo</h3>
+                        </div>
+                    </Link>
+                    <Link to="/produtos">
+                        <div className="item-menu">
+                            <h3>Pedidos</h3>
+                        </div>
+                    </Link>
+                    <div className="item-menu">
+                        <h3>Produtos</h3>
+                    </div>
+                    <Link to="/dashboard">
+                        <div className="item-menu">
+                            <h3>Dashboard</h3>
+                        </div>
+                    </Link>
+                </div>
+                <div className="itens-acesso">
+                    <div className="item-acesso">
+                        <ButtonVerde title="Login" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <ButtonVerde title="Cadastro" />
+                    </div>
+                </div>
+            </div>
             <IntroPet />
             <div className=""></div>
             <section className="clientFeedback">
@@ -60,9 +96,9 @@ export function HomePetShop() {
             </section>
 
             <section>
-            <div className="textParceiro">
-                <h1>Por que ser parceiro do iPet</h1>
-            </div>
+                <div className="textParceiro">
+                    <h1>Por que ser parceiro do iPet</h1>
+                </div>
                 <div className="ipetPartner">
                     <div className="partnerimgs">
                         <div>
