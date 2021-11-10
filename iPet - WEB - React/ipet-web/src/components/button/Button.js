@@ -10,10 +10,14 @@ const Button = (props) => {
     )
 }
 
-const ButtonVerde = ({title}) => {
+const ButtonVerde = (props) => {
+    function chamarFuncao() {
+        // setValue(e.target.value);
+        props.clickButton();
+    }
     return (
-        <button className="btn-verde">
-            {title}
+        <button className="btn-verde" onClick={chamarFuncao}>
+            {props.title}
         </button>
     )
 }

@@ -13,7 +13,7 @@ export default (props) => {
     return (
         <>
             <p className="txt-input">{props.txt}</p>
-            <input className="input" placeholder={props.placeholder} onChange={setValueInput} />
+            <input className="input" placeholder={props.placeholder} onChange={setValueInput} value={props.value}/>
         </>
     )
 }
