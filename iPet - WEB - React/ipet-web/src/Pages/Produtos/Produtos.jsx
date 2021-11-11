@@ -3,9 +3,12 @@ import "./Produtos.css";
 import api from "../../services/api";
 import { Menu } from "../../components/menu/Menu";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
+import Toast from "../../components/toast/Toast";
 
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
+  const [showToast, setShowToast] = useState(false);
+
   useEffect(() => {
     const loadAll = async () => {
       // pegando a lista total de produtos
@@ -14,6 +17,10 @@ export function Produtos() {
     };
     loadAll();
   }, []);
+
+  function setValueToast(value) {
+    setShowToast(value);
+}
 
   const marcas = ["Golden", "Me.Au", "Nutrilus", "Magnus", "True", "LCM", "Snacks"]
   const tiposPets = ["Cachorro", "Gato", "Passaro", "Outros"];
@@ -28,6 +35,7 @@ export function Produtos() {
 
   return (
     <>
+      <Toast text="Login ou senha incorretos" color="green" showToast={showToast} changeValueToast={setValueToast}/>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
       <h2>Produtos</h2>
       <hr />
@@ -73,7 +81,7 @@ export function Produtos() {
         </div>
         <div className="card--principal">
           {produtos.map((produto, key) => (
-            <CardProdutos key={key} props={produto} />
+            <CardProdutos key={key} produto={produto} emitToast={setValueToast}/>
           ))}
         </div>
       </div>

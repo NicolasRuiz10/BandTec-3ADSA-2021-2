@@ -6,8 +6,12 @@ import Progress from "../../components/progress/Progress";
 import { ButtonVerde } from "../../components/button/Button";
 import { Footer } from "../../components/footer/footer";
 import { Link } from "react-router-dom";
+import { useAuth } from '../../hooks/Context';
 
 export function Carrinho() {
+  const { itemsCarrinho } = useAuth();
+  console.log(itemsCarrinho);
+
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />

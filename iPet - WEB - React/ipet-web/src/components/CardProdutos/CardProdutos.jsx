@@ -1,12 +1,17 @@
 import React from "react";
 import './CardProdutos.css';
 import { ButtonVerde } from "../../components/button/Button"
+import { useAuth } from '../../hooks/Context';
 
-
-
-const CardProdutos = ({props}) => {
-  console.log(props);
+const CardProdutos = (props, { produto }) => {
+const { setItemsCarrinho } = useAuth();
   const URL = "https://www.petz.com.br/cachorro/racas/pointer-ingles/img/golden-formula-pointer-ingles.webp"
+
+  function adicionarProduto() {
+    setItemsCarrinho(produto);
+    props.emitToast(true);
+  }
+  
   return (
       <div className="card">
         <div className="card--imagem">
@@ -14,16 +19,16 @@ const CardProdutos = ({props}) => {
           <hr />
         </div>
         <div className="card--desc">
-          <h3>{props.descricao}</h3>
+          <h3>{produto.descricao}</h3>
         </div>
         <div className="card--preco">
-          <h2>R$ {props.valor}</h2>
+          <h2>R$ {produto.valor}</h2>
         </div>
         <div className="card--label">
-          <p>{props.quantidade} disponíveis</p>
+          <p>{produto.quantidade} disponíveis</p>
         </div>
         <div className="card--btn">
-          <ButtonVerde className="btn" title="Adicionar ao carrinho"/>
+          <ButtonVerde className="btn" title="Adicionar ao carrinho" clickButton={adicionarProduto}/>
         </div>
       </div>
   )

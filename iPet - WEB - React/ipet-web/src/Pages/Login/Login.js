@@ -9,7 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
-import { useAuth } from '../../hooks/AuthLogin'
+import { useAuth } from '../../hooks/Context';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
