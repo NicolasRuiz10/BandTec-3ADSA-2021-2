@@ -64,7 +64,9 @@ export function DashPet() {
                     <img className="line2" src={Line} alt="" />
                 </div>
                 <div className="produtos-items">
-                    <div className="produtos-line1">Cadastrar produtos</div>
+                    <Link to="/cadastroProdutos">
+                        <div className="produtos-line1">Cadastrar produtos</div>
+                    </Link>
                     <div className="produtos-line1">Editar produtos</div>
                 </div>
             </div>

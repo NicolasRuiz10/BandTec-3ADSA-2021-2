@@ -10,6 +10,7 @@ import Produtos from "../Pages/Produtos/Produtos.jsx"
 import Pagamento from "../Pages/Pagamento/Pagamento"
 import StatusPedido from "../Pages/StatusPedido/StatusPedido";
 import DashPet from "../Pages/DashBoardPetShop/dashPet";
+import { CadastroProdutos } from "../Pages/CadastroProdutos/CadastroProdutos";
 
 
 
@@ -19,6 +20,7 @@ const Routes = () => {
             <Route component={HomePage} path="/" exact />
             <Route component={HomePetShop} path="/PetShop" />
             <Route component={DashPet} path="/dashboard" />
+            <Route component={CadastroProdutos} path="/cadastroProdutos" />
             <Route component={Login} path="/login" />
             <Route component={Cadastro} path="/cadastro" />
             <Route component={Carrinho} path="/carrinho" />
