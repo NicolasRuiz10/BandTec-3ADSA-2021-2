@@ -7,16 +7,19 @@ import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [busca, setBusca] = useState("");
-  console.log('busca', busca);
 
-  produtos.filter((produto) => produto)
+  console.log(busca);
+  const buscaLowerCase = busca.toLowerCase()
+  const produtosFiltados = produtos
+  .filter((produto) => produto.nome.toLowerCase().includes(buscaLowerCase))
+
+  console.log('aaaaa', produtosFiltados);
 
   useEffect(() => {
     getProdutos();
   }, []);
 
   async function getProdutos() {
-    console.log("chamou");
     let list = await api.get("/produtos");
     setProdutos(list.data);
   }
@@ -192,7 +195,7 @@ export function Produtos() {
           ))}
         </div>
         <div className="card--principal">
-          {produtos.map((produto, key) => (
+          {produtosFiltados.map((produto, key) => (
             <CardProdutos key={key} produto={produto} />
           ))}
         </div>

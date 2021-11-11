@@ -1,20 +1,17 @@
 import React from "react";
 import "./CardProdutos.css";
 import { ButtonVerde } from "../../components/button/Button";
-import api from "../../services/api";
-
-
-
+import { useAuth } from "../../hooks/Context";
 
 const CardProdutos = ({ produto }) => {
-  async function pegarFoto(id) {
-    let foto = await api.get(`/produtos/foto/${id}`);
-    return foto;
+  const {itemsCarrinho, setItemsCarrinho} = useAuth();
+  function adicionarItem() {
+    setItemsCarrinho([...itemsCarrinho, produto])
   }
   return (
     <div className="card">
       <div className="card--imagem">
-        <img src={pegarFoto(produto.idProduto)} alt="" />
+        <img src="https://cobasi.vteximg.com.br/arquivos/ids/819567/racao-golden-formula-caes-adultos-duo-salmao-ervas-cordeiro-e-arroz-15kg.jpg?v=637667965127700000" alt="" />
         <hr />
       </div>
       <div className="card--desc">
@@ -27,7 +24,7 @@ const CardProdutos = ({ produto }) => {
         <p>{produto.quantidade} disponíveis</p>
       </div>
       <div className="card--btn">
-        <ButtonVerde className="btn" title="Adicionar ao carrinho" />
+        <ButtonVerde className="btn" title="Adicionar ao carrinho" clickButton={adicionarItem}/>
       </div>
     </div>
   );
