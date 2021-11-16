@@ -1,73 +1,96 @@
 import React, { useEffect, useState } from "react";
 import "./Produtos.css";
-import api from "../../services/api";
 import { Menu } from "../../components/menu/Menu";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
+import axios from "axios";
 
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [busca, setBusca] = useState("");
-
-  console.log(busca);
+  const [produtosBase, setProdutosBase] = useState("");
+  
+  useEffect(() => {
+    axios.get("http://localhost:8080/produtos").then((res) => {
+      setProdutos(res.data);
+      setProdutosBase(res.data);
+    });
+  }, [])
+  
   const buscaLowerCase = busca.toLowerCase()
   const produtosFiltados = produtos
   .filter((produto) => produto.nome.toLowerCase().includes(buscaLowerCase))
 
-  console.log('aaaaa', produtosFiltados);
-
-  useEffect(() => {
-    getProdutos();
-  }, []);
-
-  async function getProdutos() {
-    let list = await api.get("/produtos");
-    setProdutos(list.data);
-  }
-
-  const filtroMarca = async () => {
-    const filtoMarcas = [];
+  function filtroMarca() {
+    const filtroMarca = [];
+    const filtroPet = [];
     var marcaCheck = document.getElementsByName("marcaCheck");
+    console.log('filtro', marcaCheck);
     for (var i = 0; i < marcaCheck.length; i++) {
       if (marcaCheck[i].checked) {
         if (marcaCheck[i].value === "7") {
           var marca_1 = "Golden";
-          filtoMarcas.push(marca_1);
+          filtroMarca.push(marca_1);
         } else if (marcaCheck[i].value === "6") {
           var marca_2 = "Me.Au";
-          filtoMarcas.push(marca_2);
+          filtroMarca.push(marca_2);
         } else if (marcaCheck[i].value === "5") {
           var marca_3 = "Nutrilus";
-          filtoMarcas.push(marca_3);
+          filtroMarca.push(marca_3);
         } else if (marcaCheck[i].value === "4") {
           var marca_4 = "Magnus";
-          filtoMarcas.push(marca_4);
+          filtroMarca.push(marca_4);
         } else if (marcaCheck[i].value === "3") {
           var marca_5 = "True";
-          filtoMarcas.push(marca_5);
+          filtroMarca.push(marca_5);
         } else if (marcaCheck[i].value === "2") {
           var marca_6 = "LCM";
-          filtoMarcas.push(marca_6);
+          filtroMarca.push(marca_6);
         } else if (marcaCheck[i].value === "1") {
           var marca_7 = "Snacks";
-          filtoMarcas.push(marca_7);
+          filtroMarca.push(marca_7);
+        } else if (marcaCheck[i].value === "Cachorro") {
+          var tipoPet_1 = "Cachorro";
+          filtroPet.push(tipoPet_1);
+        } else if (marcaCheck[i].value === "Gato") {
+          var tipoPet_2= "Gato";
+          filtroPet.push(tipoPet_2);
+        } else if (marcaCheck[i].value === "Outros") {
+          var tipoPet_3 = "Outros";
+          filtroPet.push(tipoPet_3);
         }
       }
-      filto(filtoMarcas);
+      console.log('Esse é o filtro marca', filtroMarca);
+      console.log('Esse é o filtro Pet', filtroPet);
+      filtoPesquisa(filtroMarca, filtroPet);
     }
   };
 
-  async function filto(filtro) {
+  async function filtoPesquisa(filtroMarca, filtroTipoPet) {
     var novosProdutos = [];
     produtos.map((p) => {
-      filtro.forEach((f) => {
-        if (p.marca === f) {
-          novosProdutos.push(p);
-        }
-      });
+      if (filtroMarca.length > 0) {
+        console.log('Entrou filtro marca');
+        filtroMarca.forEach((f) => {
+          if (p.marca === f) {
+            novosProdutos.push(p);
+          }
+        });
+      }
+      if (filtroTipoPet.length > 0) {
+        console.log('Entrou filtro pet');
+        filtroTipoPet.forEach((f) => {
+          if (p.especie === f) {
+            novosProdutos.push(p);
+          }
+        });
+      }
       return true;
     });
+    console.log('Novos produtos', novosProdutos);
     if (novosProdutos.length > 0) {
       setProdutos(novosProdutos);
+    } else {
+      setProdutos(produtosBase)
     }
   }
 
@@ -77,14 +100,7 @@ export function Produtos() {
   //   console.log("entrou aqui 2", foto);
   //   return foto;
   // }
-  const tiposPets = ["Cachorro", "Gato", "Passaro", "Outros"];
-  const outrosProdutos = [
-    "Ração",
-    "Brinquedos",
-    "Petiscos",
-    "Acessorios",
-    "Roupas",
-  ];
+
   const servicos = ["Saúde", "Banho e Tosa"];
 
   return (
@@ -105,20 +121,81 @@ export function Produtos() {
           />
           <h3>Pet</h3>
           <hr />
-          {tiposPets.map((tipo, key) => (
-            <div className="checkBox">
-              <input type="checkbox" />
-              <label key={key}>{tipo}</label>
-            </div>
-          ))}
+          {/* CheckBox Pet */}
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="Cachorro"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Cachorro</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="Gato"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Gato</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="Outros"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Outros</label>
+          </div>
           <h3>Tipo Produtos</h3>
           <hr />
-          {outrosProdutos.map((op, key) => (
-            <div className="checkBox">
-              <input type="checkbox" />
-              <label key={key}>{op}</label>
-            </div>
-          ))}
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="7"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Ração</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="7"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Petiscos</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="7"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Acessórios</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="7"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Roupas</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="7"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Brinquedos</label>
+          </div>
           {/* CHECKBOX MARCAS */}
           <h3>Marca</h3>
           <hr />
