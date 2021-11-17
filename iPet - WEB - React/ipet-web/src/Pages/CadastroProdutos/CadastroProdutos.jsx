@@ -76,7 +76,40 @@ export function CadastroProdutos() {
                 <button>Limpar</button>
                 <button>Adicionar Produto</button>
             </div>
+            <hr></hr>
+            <div className="importacao">
+                <div className="importacaoTitle">
+                    <h1>Importação de produtos em lote</h1>
+                    <img className="Line" src={Line} alt="none" />
+                </div>
+                <div className="importacaoText">
+                    <p>
+                        Baixe nosso arquivo modelo e cadastre seus produtos
+                    </p>
+                </div>
+                <div className="baixarButton">
+                    <button className="botaoBaixar">Baixar arquivo</button>
+                </div>
+                <div className="enviarText">
+                    <p>
+                        Baixe nosso arquivo modelo e cadastre seus produtos
+                    </p>
+                </div>
+                <div className="baixarButton">
+                    <input></input>
+                    &nbsp;&nbsp;&nbsp;
+                    <button className="anexarImagem">Enviar arquivo</button>
+                </div>
+                <div className="baixarButton2">
+                    <input></input>
+                    &nbsp;&nbsp;&nbsp;
+                    <button className="anexarImagem">Anexar imagem</button>
+                </div>
 
+                <div className="adicionarButton">
+                    <button className="adicionarArquivos">Adicionar arquivos</button>
+                </div>
+            </div>
             <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
         </>
     );
