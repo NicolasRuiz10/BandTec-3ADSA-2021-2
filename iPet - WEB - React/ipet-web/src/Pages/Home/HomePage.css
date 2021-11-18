@@ -163,40 +163,38 @@
 }
 
 /* Section Saude */
-
+ 
 .health {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     height: 500px;
-    width: 100%;
+    width: 80%;
+    margin: auto;
     background-color: #eff3f4;
     font-family: Montserrat;
     font-size: 22px;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.8);
 }
 
-.healthContent {
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+/* .healthContent {
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 50%;
     height: 500px;
-}
+    flex-direction: column;
+} */
 
 .healthImg {
-    display: flex;
-    margin-left: 350px;
-    margin-bottom: 0px;
-    font-family: Montserrat;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-    -webkit-box-shadow: 6px 7px 9px rgba(50, 50, 50, 0.77);
-    -moz-box-shadow:    6px 7px 9px rgba(50, 50, 50, 0.77);
-    box-shadow:         6px 7px 9px rgba(50, 50, 50, 0.77);
+    height: 90%;
+    margin: auto;
 }
 
-.bathAndGroomImage {
-    -webkit-box-shadow: 6px 7px 9px rgba(50, 50, 50, 0.77);
-    -moz-box-shadow:    6px 7px 9px rgba(50, 50, 50, 0.77);
-    box-shadow:         6px 7px 9px rgba(50, 50, 50, 0.77);
+.box-shadow-image {
+    -webkit-box-shadow: 6px 7px 9px rgba(151, 151, 151, 0.77);
+    -moz-box-shadow: 6px 7px 9px rgba(151, 151, 151, 0.77);
+    box-shadow: 6px 7px 9px rgba(151, 151, 151, 0.77);
 }

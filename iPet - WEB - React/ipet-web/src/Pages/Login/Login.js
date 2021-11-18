@@ -32,7 +32,7 @@ export default () => {
         setShowToast(value);
     }
 
-    const verificarLogin = () => {
+    function verificarLogin() {
 
         axios.post("http://localhost:8080/usuarios/autenticar", {
             email: email,
@@ -48,9 +48,12 @@ export default () => {
             }
         });
     };
+    function redirectCadastro() {
+        history.push("/cadastro");
+    }
     return (
         <>
-            <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast}/>
+            <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <h2>Acesse sua conta</h2>
             <hr />
@@ -60,9 +63,7 @@ export default () => {
                     <Input txt="CPF ou Email" placeholder="Digite seu email ou CPF" value={email} enviarDados={setValueEmail} />
                     <Input txt="Senha" placeholder="Digite sua senha" value={password} enviarDados={setValuePasssword} />
                     <p className="esqueceuSenha">Esqueceu sua senha?</p>
-                    <div onClick={verificarLogin}>
-                        <ButtonVerde title="Entrar" />
-                    </div>
+                    <ButtonVerde title="Entrar" clickButton={verificarLogin} />
                     <hr />
                     <h2>Acesso rápido</h2>
                     <div className="icones-acessos">
@@ -73,19 +74,17 @@ export default () => {
                 <div className="principal-cadastro">
                     <h1>
                         Criar uma conta é rápido,
-            <br />
-            fácil e gratuito!
-          </h1>
+                        <br />
+                        fácil e gratuito!
+                    </h1>
                     <p>
                         Com a sua conta da IPet você tem acesso
-            <br /> Ofertas exclusivas, descontos, pode criar
-            <br /> gerenciar a sua Assinatura Petz, acompanhar
-            <br />
-            os seus pedidos e muito mais!
-          </p>
-                    <Link to="/cadastro">
-                        <ButtonVerde title="Crie sua conta" />
-                    </Link>
+                        <br /> Ofertas exclusivas, descontos, pode criar
+                        <br /> gerenciar a sua Assinatura Petz, acompanhar
+                        <br />
+                        os seus pedidos e muito mais!
+                    </p>
+                    <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
                 </div>
             </div>
         </>

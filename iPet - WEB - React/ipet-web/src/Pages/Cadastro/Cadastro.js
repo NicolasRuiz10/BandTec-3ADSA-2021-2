@@ -69,6 +69,10 @@ export function Cadastro() {
         })
     }
 
+    function redirectLogin() {
+        history.push("/login");
+    }
+
     return (
         <>
             <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast}/>
@@ -99,9 +103,7 @@ export function Cadastro() {
                     <h1>
                         Já tem cadastro?
                     </h1>
-                    <Link to="/login">
-                        <ButtonVerde title="Login" />
-                    </Link>
+                    <ButtonVerde title="Login" clickButton={redirectLogin} />
                     <hr />
                     <h2>Cadastro rápido</h2>
                     <div className="icones-acessos">

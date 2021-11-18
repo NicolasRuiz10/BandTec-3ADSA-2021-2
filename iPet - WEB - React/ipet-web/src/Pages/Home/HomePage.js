@@ -92,27 +92,26 @@ function HomePage() {
       </section>
       <section className="health">
         <div className="healthContent">
-          <p>
-            <h2>IPET - SAÚDE</h2>
+          <h2>IPET - SAÚDE</h2>
+          <p className="mb-1">
             Aqui você pode marcar o exame do seu pet com veterinarios profissionais.
             A saúde e bem estar do seu pet em dia só na IPET
-            <br /><br />
-            <Button btnTitle="Faça parte" />
           </p>
-          <div className="healthImg">
-            <img clasName="" src={saude} height="400px" width="580px" alt="none" />
-          </div>
+            <Button btnTitle="Faça parte" />
+        </div>
+        <div className="healthImg box-shadow-image">
+          <img clasName="" src={saude} height="400px" width="580px" alt="none" />
         </div>
       </section>
 
       <section className="bathAndGroom">
         <div className="bathAndGroomContent">
-          <div className="bathAndGroomImage">
+          <div className="box-shadow-image">
             <img clasName="" src={banhoTosa} height="400px" width="580px" alt="none" />
           </div>
           <div className="bathAndGroomText">
-            <p>
-              <h2>BANHO E TOSA</h2>
+            <h2>BANHO E TOSA</h2>
+            <p className="mb-1">
               Todos os cuidados higienicos com os melhores produtos!<br />
               Encontre agora o petshop mais próximo do seu lar<br />
             </p>

@@ -1,16 +1,13 @@
 import React from "react";
-
 import "./CardProdutos.css";
 import { ButtonVerde } from "../../components/button/Button";
 import api from "../../services/api";
 import { useAuth } from '../../hooks/Context';
 
 const CardProdutos = (props, { produto }) => {
+  console.log(produto);
+  const URL = "https://www.petz.com.br/cachorro/racas/pointer-ingles/img/golden-formula-pointer-ingles.webp"
   const { setItemsCarrinho } = useAuth();
-  async function pegarFoto(id) {
-    let foto = await api.get(`/produtos/foto/${id}`);
-    return foto;
-  }
   function adicionarProduto() {
     setItemsCarrinho(produto);
     props.emitToast(true);
@@ -18,7 +15,7 @@ const CardProdutos = (props, { produto }) => {
   return (
     <div className="card">
       <div className="card--imagem">
-        <img src={pegarFoto(produto.idProduto)} alt="" />
+        <img src={URL} alt="" />
         <hr />
       </div>
       <div className="card--desc">
