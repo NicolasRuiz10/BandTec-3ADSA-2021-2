@@ -34,15 +34,15 @@ export function Cadastro() {
     function confirmarSenha(e) {
         console.log(senha);
         if (senha === e) {
-            setvalidacao(true);
+            setShowToast(true);
         } else {
+            setvalidacao(false);
             setvalidacao(false);
         }
     }
     function chamarViaCep(e) {
         setCep(e);
         axios.get(`https://viacep.com.br/ws/${e}/json/`).then((res) => {
-            console.log(res.data);
             setEndereco(res.data.logradouro);
             setBairro(res.data.bairro);
             setCidade(res.data.localidade);
@@ -50,23 +50,27 @@ export function Cadastro() {
         })
     }
     function criarConta() {
-        axios.post(`http://localhost:8080/usuarios`, {
-            nome: nome,
-            email: email,
-            telefone: telefone,
-            cpf: cpf,
-            senha: senha,
-            endereco: endereco,
-            cep: cep,
-            complemento: complemento,
-            numero: numero,
-        }).then((res) => {
-            if (res.status === 201) {
-                history.push("/login");
-            } else {
-                setShowToast(true);
-            }
-        })
+        if (email === '' || nome === '' || senha === '' || cpf === '') {
+            setShowToast(true);
+        } else {
+            axios.post(`http://localhost:8080/usuarios`, {
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                cpf: cpf,
+                senha: senha,
+                endereco: endereco,
+                cep: cep,
+                complemento: complemento,
+                numero: numero,
+            }).then((res) => {
+                if (res.status === 201) {
+                    history.push("/login");
+                } else {
+                    setShowToast(true);
+                }
+            })
+        }
     }
 
     function redirectLogin() {
@@ -75,40 +79,49 @@ export function Cadastro() {
 
     return (
         <>
-            <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast}/>
+            <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <h2>Crie sua conta iPet</h2>
             <hr />
-            <div className="principal">
-                <div className="section--cadastro">
-                    <h1>Dados Pessoais</h1>
-                    <Input txt="Nome Completo" placeholder="Digite seu nome completo" enviarDados={setNome} />
-                    <Input txt="Email" placeholder="Digite seu email" enviarDados={setEmail} />
-                    <Input txt="CPF" placeholder="Digite seu CPF" enviarDados={setCpf} />
-                    <Input txt="Telefone" placeholder="(XX) X XXXX-XXXX" enviarDados={setTelefone} />
-                    <Input txt="Senha" placeholder="Senha" enviarDados={setSenha} />
-                    <Input txt="Confirme sua senha" placeholder="Senha" enviarDados={confirmarSenha} />
-                    {!validacao ? <label>Senha incorreta</label> : ''}
-                    <hr />
-                    <Input txt="CEP" placeholder="CEP" enviarDados={chamarViaCep} />
-                    <Input txt="Endereço" placeholder="Digite o endereço" value={endereco} />
-                    <Input txt="Numero" placeholder="Nº da residência" enviarDados={setNumero} />
-                    <Input txt="Complemento" placeholder="Digite o complemento" enviarDados={setComplemento} />
-                    <Input txt="Bairro" placeholder="Digite o bairro" value={bairro} />
-                    <Input txt="Cidade" placeholder="Digite a cidade" value={cidade} />
-                    <Input txt="Estado" placeholder="Digite o estado" value={estado} />
-                    <ButtonVerde title="Criar conta" clickButton={criarConta} />
-                </div>
-                <div className="section--login">
-                    <h1>
-                        Já tem cadastro?
-                    </h1>
-                    <ButtonVerde title="Login" clickButton={redirectLogin} />
-                    <hr />
-                    <h2>Cadastro rápido</h2>
-                    <div className="icones-acessos">
-                        <FcGoogle size={34} />
-                        <FaFacebook size={34} className="icon-face" />
+            <div>
+                <div className="tela-login">
+                    <div className="card-cadastro">
+                        <div className="d-flex">
+                            <div className="w-100 pr-1">
+                                <Input txt="Nome Completo" placeholder="Digite seu nome completo" enviarDados={setNome} />
+                                <Input txt="Email" placeholder="Digite seu email" enviarDados={setEmail} />
+                                <Input txt="CPF" placeholder="Digite seu CPF" enviarDados={setCpf} />
+                                <Input txt="Telefone" placeholder="(XX) X XXXX-XXXX" enviarDados={setTelefone} />
+                                <Input txt="Senha" placeholder="Senha" enviarDados={setSenha} />
+                                <Input txt="Confirme sua senha" placeholder="Senha" enviarDados={confirmarSenha} />
+                                {!validacao ? <label>Senha incorreta</label> : ''}
+                            </div>
+                            <div className="w-100 pl-1">
+                                <Input txt="CEP" placeholder="CEP" enviarDados={chamarViaCep} />
+                                <Input txt="Endereço" placeholder="Digite o endereço" value={endereco} />
+                                <Input txt="Numero" placeholder="Nº da residência" enviarDados={setNumero} />
+                                <Input txt="Complemento" placeholder="Digite o complemento" enviarDados={setComplemento} />
+                                <Input txt="Bairro" placeholder="Digite o bairro" value={bairro} />
+                                <Input txt="Cidade" placeholder="Digite a cidade" value={cidade} />
+                                <Input txt="Estado" placeholder="Digite o estado" value={estado} />
+                                <div className="mt-1">
+                                </div>
+                            </div>
+                        </div>
+                        <ButtonVerde title="Criar conta" clickButton={criarConta} />
+                    </div>
+                    <div className="card-login">
+                        <div className="section--login">
+                            <h1>
+                                Já tem cadastro?
+                            </h1>
+                            <ButtonVerde title="Login" clickButton={redirectLogin} />
+                            <h2>Cadastro rápido</h2>
+                            <div className="icones-acessos">
+                                <FcGoogle size={34} />
+                                <FaFacebook size={34} className="icon-face" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
