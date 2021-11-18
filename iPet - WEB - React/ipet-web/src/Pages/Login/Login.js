@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
 import Input from "../../components/input/Input";
 import { ButtonVerde } from "../../components/button/Button";
@@ -33,12 +32,11 @@ export default () => {
     }
 
     function verificarLogin() {
-
         axios.post("http://localhost:8080/usuarios/autenticar", {
             email: email,
             senha: password,
-        }
-        ).then((res) => {
+        }).then((res) => {
+            console.log('entrou');
             if (res.status === 200) {
                 mudarAutenticacao();
                 setIdUsuario(res.data);

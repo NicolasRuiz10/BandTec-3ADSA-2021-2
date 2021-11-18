@@ -180,13 +180,10 @@
     margin-bottom: 1rem;
 }
 
-/* .healthContent {
-    display: flex;
-    align-items: center;
+.healthContent {
+    margin-top: 30px;
     width: 50%;
-    height: 500px;
-    flex-direction: column;
-} */
+}
 
 .healthImg {
     height: 90%;
@@ -197,4 +194,9 @@
     -webkit-box-shadow: 6px 7px 9px rgba(151, 151, 151, 0.77);
     -moz-box-shadow: 6px 7px 9px rgba(151, 151, 151, 0.77);
     box-shadow: 6px 7px 9px rgba(151, 151, 151, 0.77);
+}
+
+.format-text {
+    width: 60%;
+    letter-spacing: 1px;
 }

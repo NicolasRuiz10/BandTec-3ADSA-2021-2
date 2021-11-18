@@ -8,36 +8,6 @@ import youtube from '../../Assets/Youtube.png'
 export function Footer(props) {
     return (
         <>
-            <section className="footerMenu">
-                <div className="footerItems">
-                    <div className="footerItem">
-                        {props.item1}
-                    </div>
-                    <div className="footerItem">
-                        <h3>
-                            {props.item2}
-                        </h3>
-                    </div>
-                    <div className="footerItem">
-                        <h3>
-                            {props.item3}
-                        </h3>
-                    </div>
-                    <div className="footerItem">
-                        <h3>
-                            {props.item4}
-                        </h3>
-                    </div>
-                    <div className="payment">
-                        <h3>
-                            a
-                            a
-                            a
-                            a
-                        </h3>
-                    </div>
-                </div>
-            </section>
             <section className="socialMediaFooter">
                 <div className="grayRow"></div>
                 <div className="socialMediaImages">

@@ -93,7 +93,7 @@ function HomePage() {
       <section className="health">
         <div className="healthContent">
           <h2>IPET - SAÚDE</h2>
-          <p className="mb-1">
+          <p className="mb-1 format-text">
             Aqui você pode marcar o exame do seu pet com veterinarios profissionais.
             A saúde e bem estar do seu pet em dia só na IPET
           </p>
@@ -119,8 +119,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-
       <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
     </>
   );
