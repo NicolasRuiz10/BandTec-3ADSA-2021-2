@@ -11,7 +11,7 @@ import { useAuth } from "../../hooks/Context";
 
 export function Carrinho() {
   const {itemsCarrinho} = useAuth();
-  console.log(itemsCarrinho);
+  const { totalCarrinho } = useAuth();
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -36,41 +36,23 @@ export function Carrinho() {
               <hr />
               <h1>Total</h1>
             </div>
-            <div className="itens">
-              <ItemCarrinho
-                urlImg="https://essaseoutras.com.br/wp-content/uploads/2011/02/acessorios-para-caes-2.png"
-                descProduto="Cama Viena Ziper G"
-                preco="250"
-              />
-            </div>
-            <div className="itens">
-              <ItemCarrinho
-                urlImg="https://www.casadaracaobh.com.br/wp-content/uploads/2017/10/Ra%C3%A7%C3%A3o-Magnus-Premium-Original-C%C3%A3es-Adultos.png"
-                descProduto="Ração Seca PremieR"
-                preco="100"
-              />
-            </div>
-            <div className="itens">
-              <ItemCarrinho
-                urlImg="https://petcamp.vteximg.com.br/arquivos/ids/156124-1000-1000/7896029064344-png.png?v=637672210510900000 "
-                descProduto="Ração Pet Golden"
-                preco="100"
-              />
-            </div>
+            {
+              itemsCarrinho.map((item, key) => (
+                <div className="itens" key={key}>
+                  <ItemCarrinho
+                    urlImg="https://essaseoutras.com.br/wp-content/uploads/2011/02/acessorios-para-caes-2.png"
+                    descProduto={item.nome}
+                    preco={item.valor}
+                  />
+                </div>
+              ))
+            }
           </div>
         </div>
         <table border="1">
           <tr>
-            <th>Subtotal:</th>
-            <td>R$ 1000,00</td>
-          </tr>
-          <tr>
-            <th>Frete:</th>
-            <td>Calcular</td>
-          </tr>
-          <tr>
             <th>Total:</th>
-            <td>R$ 1000,00</td>
+            <td>R$ {totalCarrinho}</td>
           </tr>
         </table>
       <Link to="/pagamento">
@@ -84,7 +66,6 @@ export function Carrinho() {
       </div>
       </Link>
       </div>
-
       <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
     </>
   );

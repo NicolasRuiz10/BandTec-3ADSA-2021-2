@@ -6,13 +6,22 @@ const AuthProvider = ({ children }) => {
     const [autenticado, setAutenticado] = useState(false);
     const [idUsuario, setIdUsuario] = useState('');
     const [itemsCarrinho, setItemsCarrinho] = useState([]);
+    const [totalCarrinho, setTotalCarrinho] = useState([]);
 
     function mudarAutenticacao() {
         setAutenticado(!autenticado);
     }
 
     return (
-        <AuthContext.Provider value={{ autenticado, mudarAutenticacao, setIdUsuario, idUsuario, itemsCarrinho, setItemsCarrinho }}>
+        <AuthContext.Provider value={{  autenticado, 
+                                        mudarAutenticacao, 
+                                        setIdUsuario, 
+                                        idUsuario, 
+                                        itemsCarrinho, 
+                                        setItemsCarrinho,
+                                        totalCarrinho,
+                                        setTotalCarrinho
+                                         }}>
             {children}
         </AuthContext.Provider>
     )

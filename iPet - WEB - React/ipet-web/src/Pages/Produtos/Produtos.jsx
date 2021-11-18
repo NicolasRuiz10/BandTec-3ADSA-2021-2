@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import "./Produtos.css";
 import { Menu } from "../../components/menu/Menu";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
+import { useAuth } from "../../hooks/Context";
 import axios from "axios";
+import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+
 
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [busca, setBusca] = useState("");
   const [produtosBase, setProdutosBase] = useState("");
+  const {itemsCarrinho} = useAuth();
+  console.log(itemsCarrinho);
+
+
   
   useEffect(() => {
     axios.get("http://localhost:8080/produtos").then((res) => {
@@ -23,8 +32,8 @@ export function Produtos() {
   function filtroMarca() {
     const filtroMarca = [];
     const filtroPet = [];
+    const filtroProduto = [];
     var marcaCheck = document.getElementsByName("marcaCheck");
-    console.log('filtro', marcaCheck);
     for (var i = 0; i < marcaCheck.length; i++) {
       if (marcaCheck[i].checked) {
         if (marcaCheck[i].value === "7") {
@@ -57,19 +66,31 @@ export function Produtos() {
         } else if (marcaCheck[i].value === "Outros") {
           var tipoPet_3 = "Outros";
           filtroPet.push(tipoPet_3);
+        } else if (marcaCheck[i].value === "Ração") {
+          var tipoProduto_1 = "Ração";
+          filtroProduto.push(tipoProduto_1);
+        } else if (marcaCheck[i].value === "Ração") {
+          var tipoProduto_2 = "Pestiscos";
+          filtroProduto.push(tipoProduto_2);
+        } else if (marcaCheck[i].value === "Acessório") {
+          var tipoProduto_3 = "Acessório";
+          filtroProduto.push(tipoProduto_3);
+        } else if (marcaCheck[i].value === "Roupas") {
+          var tipoProduto_4 = "Roupas";
+          filtroProduto.push(tipoProduto_4);
+        } else if (marcaCheck[i].value === "Brinquedos") {
+          var tipoProduto_5 = "Brinquedos";
+          filtroProduto.push(tipoProduto_5);
         }
       }
-      console.log('Esse é o filtro marca', filtroMarca);
-      console.log('Esse é o filtro Pet', filtroPet);
-      filtoPesquisa(filtroMarca, filtroPet);
+      filtoPesquisa(filtroMarca, filtroPet, filtroProduto);
     }
   };
 
-  async function filtoPesquisa(filtroMarca, filtroTipoPet) {
+  async function filtoPesquisa(filtroMarca, filtroTipoPet, filtroProduto) {
     var novosProdutos = [];
     produtos.map((p) => {
       if (filtroMarca.length > 0) {
-        console.log('Entrou filtro marca');
         filtroMarca.forEach((f) => {
           if (p.marca === f) {
             novosProdutos.push(p);
@@ -77,16 +98,21 @@ export function Produtos() {
         });
       }
       if (filtroTipoPet.length > 0) {
-        console.log('Entrou filtro pet');
         filtroTipoPet.forEach((f) => {
           if (p.especie === f) {
             novosProdutos.push(p);
           }
         });
       }
+      if (filtroProduto.length > 0) {
+        filtroProduto.forEach((f) => {
+          if (p.tipoProduto === f) {
+            novosProdutos.push(p);
+          }
+        });
+      }
       return true;
     });
-    console.log('Novos produtos', novosProdutos);
     if (novosProdutos.length > 0) {
       setProdutos(novosProdutos);
     } else {
@@ -106,7 +132,16 @@ export function Produtos() {
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      <h2>Produtos</h2>
+      {
+        itemsCarrinho.length > 0 &&
+        <>
+        <Link to="/carrinho">
+          <FaShoppingCart size={20} className="icon-carrinho" />
+          <div className="notify-carrinho">{itemsCarrinho.length}</div>
+        </Link>
+        </>
+      }
+      <h2>Produtos</h2> 
       <hr />
       <div className="principal">
         <div className="filtro--produtos">
@@ -151,11 +186,12 @@ export function Produtos() {
           </div>
           <h3>Tipo Produtos</h3>
           <hr />
+          {/* CheckBox tipoProduto */}
           <div className="checkBox">
             <input
               type="checkbox"
               name="marcaCheck"
-              value="7"
+              value="Ração"
               onClick={filtroMarca}
             />
             <label for="marcaCheck">Ração</label>
@@ -164,7 +200,7 @@ export function Produtos() {
             <input
               type="checkbox"
               name="marcaCheck"
-              value="7"
+              value="Petiscos"
               onClick={filtroMarca}
             />
             <label for="marcaCheck">Petiscos</label>
@@ -173,7 +209,7 @@ export function Produtos() {
             <input
               type="checkbox"
               name="marcaCheck"
-              value="7"
+              value="Acessório"
               onClick={filtroMarca}
             />
             <label for="marcaCheck">Acessórios</label>
@@ -182,7 +218,7 @@ export function Produtos() {
             <input
               type="checkbox"
               name="marcaCheck"
-              value="7"
+              value="Roupas"
               onClick={filtroMarca}
             />
             <label for="marcaCheck">Roupas</label>
@@ -191,7 +227,7 @@ export function Produtos() {
             <input
               type="checkbox"
               name="marcaCheck"
-              value="7"
+              value="Brinquedos"
               onClick={filtroMarca}
             />
             <label for="marcaCheck">Brinquedos</label>
