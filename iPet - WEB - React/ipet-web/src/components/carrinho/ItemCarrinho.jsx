@@ -1,9 +1,16 @@
 import React , { useState } from "react";
 import './ItemCarrinho.css';
+import { useAuth } from "../../hooks/Context";
+
 
 export function ItemCarrinho({urlImg, descProduto, preco}) {
   const [quantidade, setQuantidade] = useState(1);
+  const { setTotalCarrinho } = useAuth();
+
+  let totalCarrinho = 0;
   const total = preco * quantidade;
+  totalCarrinho += total;
+  setTotalCarrinho(totalCarrinho)
   return (
     <>
       <div className="box-item">
@@ -24,7 +31,7 @@ export function ItemCarrinho({urlImg, descProduto, preco}) {
       
         <div className="section-itens--qtd"> 
           <div className="item-quantity">
-            <button disabled={total === 0} onClick={() => setQuantidade(quantidade - 1)}>-</button>
+            <button disabled={quantidade < 2} onClick={() => setQuantidade(quantidade - 1)}>-</button>
             <h1>{quantidade}</h1>
             <button onClick={() => setQuantidade(quantidade + 1)}>+</button>
           </div>

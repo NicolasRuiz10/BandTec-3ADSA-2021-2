@@ -1,5 +1,4 @@
 import React from "react";
-import Input from "../../components/input/Input";
 import { Menu } from "../../components/menu/Menu";
 import Progress from "../../components/progress/Progress";
 import "./Pagamento.css";
@@ -18,48 +17,30 @@ export function Pagamento() {
         <Progress />
       </div>
       <div className="principal--pagamento">
-        <div className="dados-pagamento">
-          <Input
-            txt="Número cartão *"
-            placeholder="Digite o número do seu cartão"
-          />
-          <Input
-            txt="Bandeira *"
-            placeholder="Selecione a bandeira do seu cartão"
-          />
-          <Input
-            txt="Validade Mês/Ano"
-            placeholder="Digite o mês e ano do seu cartão"
-          />
-          <Input
-            txt="Nome impresso no seu cartão *"
-            placeholder="Digite o nome completo"
-          />
-          <Input
-            txt="Parcelas"
-            placeholder="Selecione a quantidade de parcelas"
-          />
+        <div className="pagamento-radios">
+          <h3>Escolha a forma de pagamento</h3>
+          <div className="radios">
+            <div className="radio-pag">
+            <input type="radio" name="FormaPagamento" value="pix"/>
+              <label for="pix">Pix</label>       
+              <input type="radio" name="FormaPagamento" value="dinheiro" />
+              <label for="dinheiro">Dinheiro</label>
+
+              <input type="radio" name="FormaPagamento" value="cartao" />
+              <label for="cartao">Cartão</label>
+            </div>
+          </div>
+          <p>*Pagamento em Dinheiro e Cartão deve ser realizado no ato da entrega</p>
         </div>
-        <div className="div-dados">
-          <table border="1">
-            <tr>
-              <th>Subtotal:</th>
-              <td>R$ 1000,00</td>
-            </tr>
-            <tr>
-              <th>Frete:</th>
-              <td>Calcular</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td>R$ 1000,00</td>
-            </tr>
-          </table>
-          <img
-            src="https://kontaazul.com.br/wp-content/uploads/2020/02/bandeira-dos-cartoes-de-credito.png"
-            alt=""
-          />
-        </div>
+          <div className="pix">
+            <h3>Chave Pix para o pagamento: A5YYYTWW28882JJJ27712</h3>
+            <p>Chave Aleatória : iPet</p>
+            <img src="https://logopng.com.br/logos/pix-106.png" alt="" />
+            <p>Valor da compra: R$ 120,00</p>
+            <span>Comprovante</span>
+            <input type="file" />
+          </div>
+
       </div>
       <div className="botoes-div">
         <Link to="/status-pedido">

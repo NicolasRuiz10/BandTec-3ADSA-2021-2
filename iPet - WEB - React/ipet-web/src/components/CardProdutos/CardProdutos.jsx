@@ -1,21 +1,17 @@
 import React from "react";
 import "./CardProdutos.css";
 import { ButtonVerde } from "../../components/button/Button";
-import api from "../../services/api";
-import { useAuth } from '../../hooks/Context';
+import { useAuth } from "../../hooks/Context";
 
-const CardProdutos = (props, { produto }) => {
-  console.log(produto);
-  const URL = "https://www.petz.com.br/cachorro/racas/pointer-ingles/img/golden-formula-pointer-ingles.webp"
-  const { setItemsCarrinho } = useAuth();
-  function adicionarProduto() {
-    setItemsCarrinho(produto);
-    props.emitToast(true);
+const CardProdutos = ({ produto }) => {
+  const {itemsCarrinho, setItemsCarrinho} = useAuth();
+  function adicionarItem() {
+    setItemsCarrinho([...itemsCarrinho, produto])
   }
   return (
     <div className="card">
       <div className="card--imagem">
-        <img src={URL} alt="" />
+        <img src="https://cobasi.vteximg.com.br/arquivos/ids/819567/racao-golden-formula-caes-adultos-duo-salmao-ervas-cordeiro-e-arroz-15kg.jpg?v=637667965127700000" alt="" />
         <hr />
       </div>
       <div className="card--desc">
@@ -28,7 +24,7 @@ const CardProdutos = (props, { produto }) => {
         <p>{produto.quantidade} disponíveis</p>
       </div>
       <div className="card--btn">
-        <ButtonVerde className="btn" title="Adicionar ao carrinho" clickButton={adicionarProduto}/>
+        <ButtonVerde className="btn" title="Adicionar ao carrinho" clickButton={adicionarItem}/>
       </div>
     </div>
   );
