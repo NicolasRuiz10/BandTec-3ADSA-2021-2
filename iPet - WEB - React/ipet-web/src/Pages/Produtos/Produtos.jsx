@@ -146,8 +146,9 @@ export function Produtos() {
         </Link>
         </>
       }
-      <div className = "produto">
+      <div className="produto">
       <h2>Produtos</h2>
+
       </div> 
       <hr />
       <div className="principal">
