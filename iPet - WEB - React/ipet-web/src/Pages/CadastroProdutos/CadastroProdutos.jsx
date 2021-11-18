@@ -2,41 +2,14 @@ import React from 'react'
 import './CadastroProdutos.css';
 import logo from '../../Assets/logo1.jpeg'
 import { Link } from "react-router-dom";
-import { ButtonVerde } from '../../components/button/Button';
+import { Menu } from '../../components/menu/Menu';
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
 
 export function CadastroProdutos() {
     return (
         <>
-            <div className="menu">
-                <div className="logo">
-                    <Link to="/">
-                        <img src={logo} alt="Logo iPet" />
-                    </Link>
-                </div>
-                <div className="itens-menu">
-                    <Link to="/PetShop">
-                        <div className="item-menu">
-                            <h3>Catálogo</h3>
-                        </div>
-                    </Link>
-                    <Link to="/produtos">
-                        <div className="item-menu">
-                            <h3>Pedidos</h3>
-                        </div>
-                    </Link>
-                    <div className="item-menu">
-                        <h3>Produtos</h3>
-                    </div>
-                </div>
-                <div className="itens-acesso">
-                    <div className="item-acesso">
-                        <ButtonVerde title="sair" />
-                    </div>
-                </div>
-            </div>
-
+            <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="cadastroTitle">
                 <h1>Cadastro de produto</h1>
                 <img className="Line" src={Line} alt="none" />

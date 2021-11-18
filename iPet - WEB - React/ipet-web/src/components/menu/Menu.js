@@ -27,7 +27,7 @@ export function Menu(props) {
 					</Link>
 				</div>
 				<div className="itens-menu">
-					<Link to="/dashboard">
+					<Link to="/cadastroProdutos">
 						<div className="item-menu">
 							<h3>{props.menuItem1}</h3>
 						</div>

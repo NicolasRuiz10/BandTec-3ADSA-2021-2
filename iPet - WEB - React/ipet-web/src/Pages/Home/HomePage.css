@@ -17,6 +17,24 @@
     color: #007DC5;
 }
 
+.healthContent h2 {
+    font-size: 28px;
+    margin-top: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+  }
+
+.bathAndGroomText h2 {
+    font-size: 28px;
+    margin-top: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+}
+
+
+
 .brandText {
     font-family: Montserrat;
     font-size: 28px;

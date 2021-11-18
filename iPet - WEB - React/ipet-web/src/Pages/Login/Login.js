@@ -53,7 +53,9 @@ export default () => {
         <>
             <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <div className="acessaConta">
             <h2>Acesse sua conta</h2>
+            </div>
             <hr />
             <div className="principal-container">
                 <div className="principal-login">

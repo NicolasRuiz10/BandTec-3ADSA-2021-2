@@ -146,7 +146,10 @@ export function Produtos() {
         </Link>
         </>
       }
-      <h2>Produtos</h2> 
+      <div className="produto">
+      <h2>Produtos</h2>
+
+      </div> 
       <hr />
       <div className="principal">
         <div className="filtro--produtos">

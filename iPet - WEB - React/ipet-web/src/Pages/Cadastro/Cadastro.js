@@ -81,7 +81,9 @@ export function Cadastro() {
         <>
             <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <div className="crieConta">
             <h2>Crie sua conta iPet</h2>
+            </div>
             <hr />
             <div>
                 <div className="tela-login">

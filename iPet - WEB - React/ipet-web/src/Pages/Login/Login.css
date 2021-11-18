@@ -6,13 +6,42 @@
   height: 470px;
 }
 
-h2 {
+.h2-carrinho {
   font-size: 28px;
   margin-top: 30px;
+  margin-left: 155px;
   font-weight: bold;
   margin-bottom: 10px;
   font-family: Montserrat;
 }
+
+.produto h2 {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-left: 165px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Montserrat;
+}
+
+.acessaConta h2 {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-left: 165px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Montserrat;
+}
+
+.crieConta h2 {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-left: 155px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Montserrat;
+}
+
 
 hr {
   width: 1200px;

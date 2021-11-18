@@ -15,7 +15,7 @@ export function Carrinho() {
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      <h2>Meu Carrinho</h2>
+      <h2 className= 'h2-carrinho'>Meu Carrinho</h2>
       <hr />
       <div className="principal--carrinho">
         <div className="navBar--carrinho">
