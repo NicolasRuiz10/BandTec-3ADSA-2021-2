@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Cadastro.css'
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
 import Input from "../../components/input/Input"
 import { ButtonVerde } from "../../components/button/Button"

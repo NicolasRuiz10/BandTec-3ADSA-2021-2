@@ -8,9 +8,13 @@ import { useAuth } from '../../hooks/Context';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+
 export function Menu(props) {
 	let history = useHistory();
 	const { autenticado, mudarAutenticacao, idUsuario } = useAuth();
+	const {itemsCarrinho} = useAuth();
+	console.log('daknnkdasl', itemsCarrinho);
+
 
 	const RealizarLogoff = () => {
 		axios.post("http://localhost:8080/usuarios/logoff/" + idUsuario).then((res) => {
@@ -57,6 +61,11 @@ export function Menu(props) {
 							<div className="icon-car">
 								<Link to="/carrinho">
 									<FaShoppingCart size={34} className="icon--carrinho" />
+									{ itemsCarrinho.length > 0 ?
+										<div className="notificao">{itemsCarrinho.length}</div>
+										:
+										<div></div>
+									}
 								</Link>
 							</div>
 						</div>

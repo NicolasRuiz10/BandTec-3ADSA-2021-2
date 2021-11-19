@@ -5,10 +5,6 @@ import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 import Toast from "../../components/toast/Toast";
 import { useAuth } from "../../hooks/Context";
 import axios from "axios";
-import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
-
 
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
@@ -137,15 +133,6 @@ export function Produtos() {
     <>
       <Toast text="Login ou senha incorretos" color="green" showToast={showToast} changeValueToast={setValueToast}/>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      {
-        itemsCarrinho.length > 0 &&
-        <>
-        <Link to="/carrinho">
-          <FaShoppingCart size={20} className="icon-carrinho" />
-          <div className="notify-carrinho">{itemsCarrinho.length}</div>
-        </Link>
-        </>
-      }
       <div className="produto">
       <h2>Produtos</h2>
 
