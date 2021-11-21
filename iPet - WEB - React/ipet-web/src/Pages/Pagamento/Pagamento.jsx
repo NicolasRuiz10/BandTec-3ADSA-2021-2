@@ -2,16 +2,20 @@ import React from "react";
 import { Menu } from "../../components/menu/Menu";
 import Progress from "../../components/progress/Progress";
 import "./Pagamento.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ButtonVerde } from "../../components/button/Button";
 import { Footer } from "../../components/footer/footer";
 
 
 export function Pagamento() {
+  const history = useHistory();
+  function redirectStatus() {
+    history.push('/status-pedido');
+  }
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      <h2>Pagamento</h2>
+      <h2 className="h2">Pagamento</h2>
       <hr />
       <div className="progressBar">
         <Progress />
@@ -43,11 +47,9 @@ export function Pagamento() {
 
       </div>
       <div className="botoes-div">
-        <Link to="/status-pedido">
-          <div className="btn-finalizar">
-            <ButtonVerde title="Finalizar Compra" />
-          </div>
-        </Link>
+        <div className="btn-finalizar">
+          <ButtonVerde title="Finalizar Compra" clickButton={redirectStatus} />
+        </div>
         <Link to="/carrinho">
           <div className="btn-voltar">
             <a href="/carrinho">Voltar carrinho</a>

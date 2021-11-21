@@ -5,13 +5,18 @@ import { ItemCarrinho } from "../../components/carrinho/ItemCarrinho";
 import Progress from "../../components/progress/Progress";
 import { ButtonVerde } from "../../components/button/Button";
 import { Footer } from "../../components/footer/footer";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../hooks/Context";
 
 
 export function Carrinho() {
+  const history = useHistory();
   const {itemsCarrinho} = useAuth();
   const { totalCarrinho } = useAuth();
+
+  function rediretPagamento() {
+    history.push('/pagamento')
+  }
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -55,11 +60,9 @@ export function Carrinho() {
             <td>R$ {totalCarrinho}</td>
           </tr>
         </table>
-      <Link to="/pagamento">
         <div className="btn-proximo">
-          <ButtonVerde title="Fechar pedido" />
+          <ButtonVerde title="Fechar pedido" clickButton={rediretPagamento} />
         </div>
-      </Link>
       <Link to="/produtos">
       <div className="btn-escolher">
         <a href="/produtos">Escolher mais produtos</a>

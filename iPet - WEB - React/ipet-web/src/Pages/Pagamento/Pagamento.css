@@ -42,6 +42,15 @@
   padding: 20px;
 }
 
+.h2 {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-left: 155px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Montserrat;
+}
+
 table {
   border: 1px solid #ccc;
   margin-top: 20px;
@@ -102,7 +111,6 @@ th, td {
 
 
 .pix h3{
-  color: #007DC5;
   font-weight: bold;
   font-size: 16px;
   font-family: Montserrat;

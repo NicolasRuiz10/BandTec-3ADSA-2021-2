@@ -6,7 +6,7 @@ const AuthProvider = ({ children }) => {
     const [autenticado, setAutenticado] = useState(false);
     const [idUsuario, setIdUsuario] = useState('');
     const [itemsCarrinho, setItemsCarrinho] = useState([]);
-    const [totalCarrinho, setTotalCarrinho] = useState([]);
+    const [totalCarrinho, setTotalCarrinho] = useState(0);
 
     function mudarAutenticacao() {
         setAutenticado(!autenticado);

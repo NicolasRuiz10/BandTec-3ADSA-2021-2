@@ -4,9 +4,10 @@ import { ButtonVerde } from "../../components/button/Button";
 import { useAuth } from "../../hooks/Context";
 
 const CardProdutos = ({ produto }) => {
-  const {itemsCarrinho, setItemsCarrinho} = useAuth();
+  const { itemsCarrinho, setItemsCarrinho, setTotalCarrinho, totalCarrinho } = useAuth();
   function adicionarItem() {
     setItemsCarrinho([...itemsCarrinho, produto])
+    setTotalCarrinho(totalCarrinho + produto.valor);
   }
   return (
     <div className="card">
@@ -21,7 +22,7 @@ const CardProdutos = ({ produto }) => {
         <h2>R$ {produto.valor}</h2>
       </div>
       <div className="card--label">
-        <p>{produto.quantidade} disponíveis</p>
+        <p className="p">{produto.quantidade} disponíveis</p>
       </div>
       <div className="card--btn">
         <ButtonVerde className="btn" title="Adicionar ao carrinho" clickButton={adicionarItem}/>
