@@ -1,7 +1,7 @@
 import React from 'react'
 import './CadastroProdutos.css';
-import logo from '../../Assets/logo1.jpeg'
-import { Link } from "react-router-dom";
+// import logo from '../../Assets/logo1.jpeg'
+// import { Link } from "react-router-dom";
 import { Menu } from '../../components/menu/Menu';
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';

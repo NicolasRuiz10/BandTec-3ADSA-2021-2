@@ -139,15 +139,6 @@ export function Produtos(props) {
     <>
       <Toast text="Login ou senha incorretos" color="green" showToast={showToast} changeValueToast={setValueToast}/>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      {
-        itemsCarrinho.length > 0 &&
-        <>
-        <Link to="/carrinho">
-          <FaShoppingCart size={20} className="icon-carrinho" />
-          <div className="notify-carrinho">{itemsCarrinho.length}</div>
-        </Link>
-        </>
-      }
       <div className="produto">
       <h2>Produtos</h2>
 
