@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Produtos.css";
 import { Menu } from "../../components/menu/Menu";
+import Input from "../../components/input/Input";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 import Toast from "../../components/toast/Toast";
 import { useAuth } from "../../hooks/Context";
@@ -148,12 +149,10 @@ export function Produtos(props) {
         <div className="filtro--produtos">
           <h3>Filtrar Produtos</h3>
           <hr />
-          <input
-            onChange={(ev) => setBusca(ev.target.value)}
-            type="text"
+          <Input
+            enviarDados={setBusca}
             value={busca}
             placeholder="Pesquisar produto.."
-            className="inputPesquisa"
           />
           <h3>Pet</h3>
           <hr />
