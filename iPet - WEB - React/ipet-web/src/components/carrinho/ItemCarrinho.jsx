@@ -6,12 +6,11 @@ import { useAuth } from "../../hooks/Context";
 export function ItemCarrinho({ urlImg, descProduto, preco }) {
     const [quantidade, setQuantidade] = useState(1);
     const { setTotalCarrinho, totalCarrinho } = useAuth();
+    console.log(totalCarrinho);
 
     function aumentarTotal() {
-        console.log(totalCarrinho);
         let total = preco * quantidade;
         setTotalCarrinho(totalCarrinho + total);
-        console.log(totalCarrinho);
     }
 
     function diminuirTotal() {
