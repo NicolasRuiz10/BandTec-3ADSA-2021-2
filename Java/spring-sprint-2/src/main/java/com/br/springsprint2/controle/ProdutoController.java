@@ -225,6 +225,7 @@ public class ProdutoController {
         }
     }
 
+    @CrossOrigin
     @GetMapping("/foto/{id}")
     public ResponseEntity getFoto(@PathVariable int id){
         if (repository.existsById(id)) {
@@ -233,7 +234,7 @@ public class ProdutoController {
 
             return ResponseEntity
                     .status(200)
-                    .header("content-type", "image/jpeg")
+                    .header("content-type", "image/png")
                     .body(foto);
         } else {
             return ResponseEntity.status(404).build();

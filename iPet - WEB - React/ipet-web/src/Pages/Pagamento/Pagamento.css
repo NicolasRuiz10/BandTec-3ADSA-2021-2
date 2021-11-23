@@ -104,18 +104,18 @@ th, td {
   opacity: 0.8;
 }
 
-.pix {
+.pagamento {
   text-align: center;
   padding: 10px;
 }
 
 
-.pix h3{
+.pagamento h3{
   font-weight: bold;
   font-size: 16px;
   font-family: Montserrat;
 }
-.pix p{
+.pagamento p{
   color: #000;
   font-weight: bold;
   font-size: 12px;
@@ -123,12 +123,12 @@ th, td {
   padding: 5px;
 }
 
-.pix img{
+.pagamento img{
   width: 150px;
   margin: 20px 0;
 }
 
-.pix span{
+.pagamento span{
   color: #000;
   font-weight: bold;
   font-size: 12px;

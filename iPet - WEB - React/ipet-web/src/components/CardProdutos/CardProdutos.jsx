@@ -3,8 +3,9 @@ import "./CardProdutos.css";
 import { ButtonVerde } from "../../components/button/Button";
 import { useAuth } from "../../hooks/Context";
 
+
 const CardProdutos = ({ produto }) => {
-  const { itemsCarrinho, setItemsCarrinho, setTotalCarrinho, totalCarrinho } = useAuth();
+  const { itemsCarrinho, setItemsCarrinho, setTotalCarrinho, totalCarrinho  } = useAuth();
   function adicionarItem() {
     setItemsCarrinho([...itemsCarrinho, produto])
     setTotalCarrinho(totalCarrinho + produto.valor);
@@ -12,7 +13,7 @@ const CardProdutos = ({ produto }) => {
   return (
     <div className="card">
       <div className="card--imagem">
-        <img src="https://cobasi.vteximg.com.br/arquivos/ids/819567/racao-golden-formula-caes-adultos-duo-salmao-ervas-cordeiro-e-arroz-15kg.jpg?v=637667965127700000" alt="" />
+        <img src={`http://localhost:8080/produtos/foto/${produto.idProduto}`} alt="" />
         <hr />
       </div>
       <div className="card--desc">
