@@ -57,13 +57,13 @@ public class UsuarioController {
             if (usuario.autenticar(ususario.getEmail(), ususario.getSenha())) {
                 usuario.setAutenticacao(true);
                 repository.save(usuario);
-                return ResponseEntity.status(200).body(usuario.getIdUsuario());
+                return ResponseEntity.status(200).body(usuario);
             } else {
                 usuario.setAutenticacao(false);
                 repository.save(usuario);
             }
         } return ResponseEntity.status(304).build();
-    };
+    }
 
     @CrossOrigin
     @PostMapping("/logoff/{id}")

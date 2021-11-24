@@ -2,7 +2,6 @@ import React from "react";
 import "./Menu.css";
 import logo from "../../Assets/logo1.jpeg";
 import { FaShoppingCart } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useAuth } from '../../hooks/Context';
 import axios from "axios";
@@ -11,8 +10,7 @@ import { useHistory } from "react-router-dom";
 
 export function Menu(props) {
 	let history = useHistory();
-	const { autenticado, mudarAutenticacao, idUsuario } = useAuth();
-	const {itemsCarrinho} = useAuth();
+	const { autenticado, mudarAutenticacao, idUsuario, itemsCarrinho, nomeUsuario } = useAuth();
 
 	const RealizarLogoff = () => {
 		axios.post("http://localhost:8080/usuarios/logoff/" + idUsuario).then((res) => {
@@ -29,7 +27,7 @@ export function Menu(props) {
 					</Link>
 				</div>
 				<div className="itens-menu">
-					<Link to="/cadastroProdutos">
+					<Link to="/petshop/login">
 						<div className="item-menu">
 							<h3>{props.menuItem1}</h3>
 						</div>
@@ -75,9 +73,7 @@ export function Menu(props) {
 						</div>
 						<div className="item-acesso">
 							<div className="icon-car">
-								<Link to="/carrinho">
-									<AiOutlineUser size={34} />
-								</Link>
+								Olá, {nomeUsuario}
 							</div>
 						</div>
 					</div>
