@@ -63,7 +63,7 @@ public class UsuarioController {
                 repository.save(usuario);
             }
         } return ResponseEntity.status(304).build();
-    };
+    }
 
     @CrossOrigin
     @PostMapping("/logoff/{id}")

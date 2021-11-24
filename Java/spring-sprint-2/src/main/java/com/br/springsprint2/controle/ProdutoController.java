@@ -1,7 +1,10 @@
 package com.br.springsprint2.controle;
 
+import com.br.springsprint2.Fila.FilaObj;
+import com.br.springsprint2.Pilha.PilhaObj;
 import com.br.springsprint2.dominio.Petshop;
 import com.br.springsprint2.dominio.Produto;
+import com.br.springsprint2.dominio.Usuario;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
 import com.br.springsprint2.util.ListaObj;
@@ -143,6 +146,8 @@ public class ProdutoController {
     private PetshopRepository petRepository;
 
     private ListaObj listaObj = new ListaObj(1000);
+    private PilhaObj<Produto> pilha = new PilhaObj<>(1000);
+    private FilaObj<Produto> fila = new FilaObj<>(1000);
 
     @CrossOrigin
     @PostMapping("{fkPetshop}")
@@ -273,6 +278,20 @@ public class ProdutoController {
         }
     }
 
+
+
+    @CrossOrigin
+    @DeleteMapping("/desfazer-cadastro")
+    public ResponseEntity desfazerCadastro(){
+        if( pilha.isEmpty()){
+            ResponseEntity.status(404).build();
+        }
+        Integer id = pilha.peek().getIdProduto();
+        deleteProdutos(id);
+        pilha.pop();
+        return ResponseEntity.status(200).build();
+    }
+
     @CrossOrigin
     @PostMapping("/txt")
     public ResponseEntity postLayout(@RequestParam MultipartFile txt, @RequestParam MultipartFile image) throws IOException {
@@ -326,8 +345,7 @@ public class ProdutoController {
                     byte[] foto2 = image.getBytes();
                     produtoTxt.setFoto(foto2);
                     createProdutos(produtoTxt,petshop);
-                    System.out.println("Criado");
-
+                    pilha.push(produtoTxt);
                     contaRegDados++;
                 }
                 else {

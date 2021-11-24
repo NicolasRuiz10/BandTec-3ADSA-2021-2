@@ -10,20 +10,23 @@ public class Petshop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPetshop;
-
     private String nome;
-
     private String cnpj;
-
     private String endereco;
-
     private int numero;
+    private String email;
+    private String senha;
+    private String cep;
+    private String complemento;
+    private String telefone;
+    private Boolean autenticacao = false;
 
-    private int delivery;
-
-    private int plano;
-
-    private String veterinario;
+    public Boolean autenticar(String login, String senha) {
+        if (login.equals(this.email) && senha.equals(this.senha)) {
+            return true;
+        }
+        return false;
+    }
 
     @OneToMany(mappedBy = "fkPetShop")
     private List<Produto> produtos;
@@ -74,28 +77,52 @@ public class Petshop {
         this.numero = numero;
     }
 
-    public int getDelivery() {
-        return delivery;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDelivery(int delivery) {
-        this.delivery = delivery;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getPlano() {
-        return plano;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPlano(int plano) {
-        this.plano = plano;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getVeterinario() {
-        return veterinario;
+    public String getCep() {
+        return cep;
     }
 
-    public void setVeterinario(String veterinario) {
-        this.veterinario = veterinario;
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Boolean getAutenticacao() {
+        return autenticacao;
+    }
+
+    public void setAutenticacao(Boolean autenticacao) {
+        this.autenticacao = autenticacao;
     }
 
     public List<Produto> getProdutos() {

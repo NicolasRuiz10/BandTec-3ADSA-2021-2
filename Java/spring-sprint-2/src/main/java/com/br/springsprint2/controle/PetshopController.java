@@ -26,6 +26,22 @@ public class PetshopController {
     }
 
     @CrossOrigin
+    @PostMapping("/autenticar")
+    public ResponseEntity autenticar(@RequestBody Petshop petshop) {
+        List<Petshop> petshops = repository.findAll();
+        for (Petshop petshop1 : petshops) {
+            if (petshop1.autenticar(petshop.getEmail(), petshop.getSenha())) {
+                petshop1.setAutenticacao(true);
+                repository.save(petshop);
+                return status(200).body(petshop1.getIdPetshop());
+            } else {
+                petshop1.setAutenticacao(false);
+                repository.save(petshop1);
+            }
+        } return status(304).build();
+    }
+
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getPetshops() {
         List<Petshop> lista = repository.findAll();
