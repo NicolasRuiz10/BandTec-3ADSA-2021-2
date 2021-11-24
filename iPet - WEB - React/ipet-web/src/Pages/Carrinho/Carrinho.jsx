@@ -45,7 +45,7 @@ export function Carrinho() {
               itemsCarrinho.map((item, key) => (
                 <div className="itens" key={key}>
                   <ItemCarrinho
-                    urlImg="https://essaseoutras.com.br/wp-content/uploads/2011/02/acessorios-para-caes-2.png"
+                    urlImg={`http://localhost:8080/produtos/foto/${item.idProduto}`}
                     descProduto={item.nome}
                     preco={item.valor}
                   />

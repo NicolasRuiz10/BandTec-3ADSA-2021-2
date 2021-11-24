@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import './ItemCarrinho.css';
+import "./ItemCarrinho.css";
 import { useAuth } from "../../hooks/Context";
-
 
 export function ItemCarrinho({ urlImg, descProduto, preco }) {
     const [quantidade, setQuantidade] = useState(1);

@@ -1,5 +1,7 @@
 package com.br.springsprint2.dominio;
 
+import com.br.springsprint2.repositorio.PetshopRepository;
+import com.br.springsprint2.repositorio.ProdutoRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -19,6 +21,23 @@ public class Produto {
     private String especie;
     private String tipoProduto;
     private int quantidade;
+
+
+
+
+
+    public Produto(String nome, String descricao, Double valor, String marca, String especie, String tipoProduto, int quantidade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.marca = marca;
+        this.especie = especie;
+        this.tipoProduto = tipoProduto;
+        this.quantidade = quantidade;
+    }
+
+    public Produto() {
+    }
 
     @JsonIgnore
     @Column(length = 20_000_000)

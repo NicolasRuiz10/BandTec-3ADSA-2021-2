@@ -17,7 +17,9 @@ const CardProdutos = ({ produto }) => {
         <hr />
       </div>
       <div className="card--desc">
-        <h3>{produto.descricao}</h3>
+        <div className="text-area-desc">
+          <h3>{produto.descricao}</h3>
+        </div>
       </div>
       <div className="card--preco">
         <h2>R$ {produto.valor}</h2>

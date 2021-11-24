@@ -1,6 +1,5 @@
 .principal--pagamento {
   width: 70%;
-  height: 350px;
   border: 1px solid #ccc;
   margin: 0 auto;
 }
@@ -135,4 +134,23 @@ th, td {
   font-family: Montserrat;
   padding: 5px;
   margin-top: 100px;
+}
+
+.pagamento h3 {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.pagamento p {
+  padding: 10px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.651);
+}
+
+.input-troco input{
+  padding: 5px;
+}
+
+.input-troco label{
+  padding: 10px;
 }
