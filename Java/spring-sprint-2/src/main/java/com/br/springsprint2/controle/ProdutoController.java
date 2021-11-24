@@ -335,9 +335,9 @@ public class ProdutoController {
         }
     }
 
+    @CrossOrigin
     @PostMapping("/txt")
-    public ResponseEntity postLayout(@RequestParam MultipartFile txt) throws IOException {
-
+    public ResponseEntity postLayout(@RequestBody MultipartFile txt) throws IOException {
         System.out.println("\nNome do arquivo: "+ txt.getOriginalFilename());
         String nmArq = txt.getOriginalFilename();
         BufferedReader entrada = new BufferedReader(new StringReader(new String(txt.getBytes())));
