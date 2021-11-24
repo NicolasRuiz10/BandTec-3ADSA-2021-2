@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './CadastroProdutos.css';
-import { Menu } from '../../components/menu/Menu';
+import { MenuPetshop } from "../menu/MenuPetshop";
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
 import axios from "axios";
@@ -33,13 +33,12 @@ export default function CadastroProdutos() {
             }
         }).then((res) => {
             setShowToast(true);
-            document.location.reload(true);
         })
     }
     return (
         <>
             <Toast text="Produto cadastrado com sucesso" color="green" showToast={showToast} changeValueToast={setValueToast} />
-            <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="cadastroTitle">
                 <h1>Cadastro de produto</h1>
                 <img className="Line" src={Line} alt="none" />

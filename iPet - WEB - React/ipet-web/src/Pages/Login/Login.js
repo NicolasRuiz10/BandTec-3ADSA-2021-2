@@ -16,7 +16,7 @@ export default () => {
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
 
-    const { mudarAutenticacao, setIdUsuario } = useAuth();
+    const { mudarAutenticacao, setIdUsuario, setNomeUsuario } = useAuth();
 
     function setValueEmail(value) {
         setEmail(value);
@@ -35,10 +35,10 @@ export default () => {
             email: email,
             senha: password,
         }).then((res) => {
-            console.log('entrou');
             if (res.status === 200) {
                 mudarAutenticacao();
-                setIdUsuario(res.data);
+                setIdUsuario(res.data.idUsuario);
+                setNomeUsuario(res.data.nome);
                 history.push("/");
             } else {
                 setShowToast(true);

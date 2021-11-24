@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Menu } from "../../components/menu/Menu";
+import { MenuPetshop } from "../menu/MenuPetshop";
 import Input from "../../components/input/Input";
 import { ButtonVerde } from "../../components/button/Button";
 import { FaFacebook } from "react-icons/fa";
@@ -16,8 +16,7 @@ export default function LoginPetshop() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
-
-    const { mudarAutenticacao, setIdUsuario } = useAuth();
+    const { setIdPetshop, setNomePetshop, setAutenticadoPetshop } = useAuth();
 
     function setValueEmail(value) {
         setEmail(value);
@@ -32,35 +31,35 @@ export default function LoginPetshop() {
     }
 
     function verificarLogin() {
-        axios.post("http://localhost:8080/usuarios/autenticar", {
+        axios.post("http://localhost:8080/ipet/autenticar", {
             email: email,
             senha: password,
         }).then((res) => {
-            console.log('entrou');
             if (res.status === 200) {
-                mudarAutenticacao();
-                setIdUsuario(res.data);
-                history.push("/");
+                setAutenticadoPetshop(true);
+                setIdPetshop(res.data.idPetshop);
+                setNomePetshop(res.data.nome);
+                history.push("/petshop/cadastro-produtos");
             } else {
                 setShowToast(true);
             }
         });
     };
     function redirectCadastro() {
-        history.push("/cadastro");
+        history.push("/petshop/cadastro");
     }
     return (
         <>
             <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast} />
-            <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="acessaConta">
             <h2>Acesse sua conta</h2>
             </div>
             <hr />
             <div className="principal-container">
                 <div className="principal-login">
-                    <h1>Faça o Login</h1>
-                    <Input txt="CPF ou Email" placeholder="Digite seu email ou CPF" value={email} enviarDados={setValueEmail} />
+                    <h1>Acessar sua conta</h1>
+                    <Input txt="Email" placeholder="Digite seu email ou CPF" value={email} enviarDados={setValueEmail} />
                     <Input txt="Senha" placeholder="Digite sua senha" value={password} enviarDados={setValuePasssword} />
                     <p className="esqueceuSenha">Esqueceu sua senha?</p>
                     <ButtonVerde title="Entrar" clickButton={verificarLogin} />
@@ -71,16 +70,11 @@ export default function LoginPetshop() {
                         <FaFacebook size={34} className="icon-face" />
                     </div>
                 </div>
-                <div className="principal-login">
+                <div className="secundary-login">
                     <div className="principal-cadastro">
                         <h1>
-                            Criar uma conta é rápido,
-                            <br />
-                            fácil e gratuito!
+                            Cadastre seu PetShop e venda como nunca! 
                         </h1>
-                        <p className="p">
-                            Com a sua conta da IPet você tem acesso. Ofertas exclusivas, descontos, pode criar gerenciar a sua Assinatura Petz, acompanhar os seus pedidos e muito mais!
-                        </p>
                         <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
                     </div>
                 </div>
