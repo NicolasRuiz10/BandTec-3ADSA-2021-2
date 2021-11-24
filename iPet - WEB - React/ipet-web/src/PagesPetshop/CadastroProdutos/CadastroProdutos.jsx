@@ -1,14 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CadastroProdutos.css';
-// import logo from '../../Assets/logo1.jpeg'
-// import { Link } from "react-router-dom";
 import { Menu } from '../../components/menu/Menu';
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
+import axios from "axios";
+import { Button } from "../../components/button/Button";
+import Toast from "../../components/toast/Toast";
 
-export function CadastroProdutos() {
+export default function CadastroProdutos() {
+    const [showToast, setShowToast] = useState(false);
+    const [img, setImg] = useState('');
+    const [file, setFile] = useState('');
+    function setValueToast(value) {
+        setShowToast(value);
+    }
+
+    function setValueImg(e) {
+        setImg(e.target.files[0]);
+    }
+
+    function setValueTxt(e) {
+        setFile(e.target.files[0]);
+    }
+
+    function send(e) {
+        var formData = new FormData();
+        formData.append("txt", file);
+        formData.append('image', img);
+        axios.post('http://localhost:8080/produtos/txt', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            }
+        }).then((res) => {
+            setShowToast(true);
+            document.location.reload(true);
+        })
+    }
     return (
         <>
+            <Toast text="Produto cadastrado com sucesso" color="green" showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="cadastroTitle">
                 <h1>Cadastro de produto</h1>
@@ -69,18 +99,13 @@ export function CadastroProdutos() {
                     </p>
                 </div>
                 <div className="baixarButton">
-                    <input></input>
-                    &nbsp;&nbsp;&nbsp;
-                    <button className="anexarImagem">Enviar arquivo</button>
+                    <input type="file" onChange={setValueImg}/>
                 </div>
-                <div className="baixarButton2">
-                    <input></input>
-                    &nbsp;&nbsp;&nbsp;
-                    <button className="anexarImagem">Anexar imagem</button>
+                <div className="baixarButton">
+                    <input type="file" onChange={setValueTxt}/>
                 </div>
-
-                <div className="adicionarButton">
-                    <button className="adicionarArquivos">Adicionar arquivos</button>
+                <div className="baixarButton">
+                    <Button btnTitle="Cadastrar produto" clickButton={send} />
                 </div>
             </div>
             <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />

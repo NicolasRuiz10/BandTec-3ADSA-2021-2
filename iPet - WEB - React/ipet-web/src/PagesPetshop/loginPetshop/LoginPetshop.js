@@ -10,7 +10,8 @@ import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
 import { useAuth } from '../../hooks/Context';
 
-export default () => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function LoginPetshop() {
     let history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

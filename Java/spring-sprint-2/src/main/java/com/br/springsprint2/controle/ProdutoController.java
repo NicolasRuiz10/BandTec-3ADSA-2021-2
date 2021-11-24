@@ -294,8 +294,7 @@ public class ProdutoController {
 
     @CrossOrigin
     @PostMapping("/txt")
-    public ResponseEntity postLayout(@RequestParam MultipartFile txt, @RequestParam MultipartFile image) throws IOException {
-
+    public ResponseEntity postLayout(@RequestBody MultipartFile txt, @RequestBody MultipartFile image) throws IOException {
         BufferedReader entrada = new BufferedReader(new StringReader(new String(txt.getBytes())));
         String registro, tipoRegistro;
 

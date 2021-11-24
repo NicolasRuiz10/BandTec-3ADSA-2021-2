@@ -3,8 +3,11 @@ import './Button.css';
 import React from 'react'
 
 const Button = (props) => {
-    return (
-        <button className="btn">
+    function chamarFuncao() {
+        props.clickButton();
+    }
+    return (   
+        <button className="btn" onClick={chamarFuncao}>
             {props.btnTitle}
         </button>
     )

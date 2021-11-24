@@ -2,7 +2,6 @@ import React from "react";
 import "./Menu.css";
 import logo from "../../Assets/logo1.jpeg";
 import { FaShoppingCart } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useAuth } from '../../hooks/Context';
 import axios from "axios";
@@ -29,7 +28,7 @@ export function Menu(props) {
 					</Link>
 				</div>
 				<div className="itens-menu">
-					<Link to="/cadastroProdutos">
+					<Link to="/petshop/login">
 						<div className="item-menu">
 							<h3>{props.menuItem1}</h3>
 						</div>
@@ -75,9 +74,7 @@ export function Menu(props) {
 						</div>
 						<div className="item-acesso">
 							<div className="icon-car">
-								<Link to="/carrinho">
-									<AiOutlineUser size={34} />
-								</Link>
+								Olá, {idUsuario}
 							</div>
 						</div>
 					</div>
