@@ -1,13 +1,19 @@
 import React from "react";
 import "./StatusPedido.css";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
+import { useAuth } from "../../hooks/Context";
 import { Button } from "../../components/button/Button";
 import Progress from "../../components/progress/Progress";
 import { Footer } from "../../components/footer/footer";
 
 export function StatusPedido() {
   const history = useHistory();
+  const {itemsCarrinho} = useAuth();
+  const { totalCarrinho } = useAuth();
+
+  console.log(itemsCarrinho);
+
   function redirectProdutos() {
     history.push('/produtos');
   }
@@ -26,8 +32,22 @@ export function StatusPedido() {
       </div>
       <h3 className="txt-pedido">Pedido: #v133344GH900</h3>
       <div className="informacoes">
-        <h1>Informações do pedido, do cliente e da entrega</h1>
-        <h1>Em construção...</h1>
+        <div className="informacoes-pedido">
+          <h1>Informações do pedido</h1>
+          <ol>
+            {itemsCarrinho.map((item, key) => (
+              <li key={key}>✔ {item.nome}</li>
+            ))}
+          </ol>
+          <p>Valor total da compra: R$ {totalCarrinho.toFixed(2)}</p>
+          <span className="color-gren">Pagamento aprovado</span>
+        </div>
+        <div className="informacoes-pet">
+          <h1>Informações da entrega</h1>
+          <p>PetShop: NobrePet</p>
+          <p>Tempo estimado: 2 horas</p>
+          <span className="color-gren">Pedido aprovado</span>
+        </div>
       </div>
       <div className="section-botoes">
         <Button btnTitle="Realizar nova compra" clickButton={redirectProdutos} />
