@@ -7,7 +7,7 @@ import axios from "axios";
 import { Button } from "../../components/button/Button";
 import Toast from "../../components/toast/Toast";
 
-export function CadastroProdutos() {
+export default function CadastroProdutos() {
     const [showToast, setShowToast] = useState(false);
     const [img, setImg] = useState('');
     const [file, setFile] = useState('');

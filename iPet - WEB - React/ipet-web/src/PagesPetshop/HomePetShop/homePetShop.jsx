@@ -15,7 +15,7 @@ import bolaQuebrada from '../../Assets/bolaQuebrada.png'
 import olho from '../../Assets/olho.png'
 import { Footer } from '../../components/footer/footer';
 
-export function HomePetShop() {
+export default function HomePetshop() {
     return (
         <>
             <div className="menu">
@@ -143,5 +143,3 @@ export function HomePetShop() {
         </>
     )
 }
-
-export default HomePetShop;
