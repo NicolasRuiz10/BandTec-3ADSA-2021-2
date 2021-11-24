@@ -13,8 +13,6 @@ export function Menu(props) {
 	let history = useHistory();
 	const { autenticado, mudarAutenticacao, idUsuario } = useAuth();
 	const {itemsCarrinho} = useAuth();
-	console.log('daknnkdasl', itemsCarrinho);
-
 
 	const RealizarLogoff = () => {
 		axios.post("http://localhost:8080/usuarios/logoff/" + idUsuario).then((res) => {

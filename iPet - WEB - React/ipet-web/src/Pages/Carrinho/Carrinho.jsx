@@ -57,7 +57,7 @@ export function Carrinho() {
         <table border="1">
           <tr>
             <th>Total:</th>
-            <td>R$ {totalCarrinho}</td>
+            <td>R$ {totalCarrinho.toFixed(2)}</td>
           </tr>
         </table>
         <div className="btn-proximo">

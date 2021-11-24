@@ -6,7 +6,6 @@ import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 import Toast from "../../components/toast/Toast";
 import { useAuth } from "../../hooks/Context";
 import axios from "axios";
-import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ContentLoader from "react-content-loader"
 
@@ -15,7 +14,6 @@ export function Produtos(props) {
   const [showToast, setShowToast] = useState(false);
   const [busca, setBusca] = useState("");
   const [produtosBase, setProdutosBase] = useState("");
-  const [processed, setProcessed] = useState(false);
   const {itemsCarrinho} = useAuth();
 
   function setValueToast(value) {
@@ -26,9 +24,6 @@ export function Produtos(props) {
     axios.get("http://localhost:8080/produtos").then((res) => {
       setProdutos(res.data);
       setProdutosBase(res.data);
-      console.log(processed);
-      setProcessed(true);
-      console.log(processed);
     });
   }, [])
   
@@ -309,21 +304,26 @@ export function Produtos(props) {
           ))}
         </div>
         <div className="card--principal">
-          {produtosFiltrados.map((produto, key) => (
-            processed ?
-            <CardProdutos key={key} produto={produto} /> :
-            <ContentLoader
-              speed={2}
-              width={400}
-              height={460}
-              viewBox="0 0 400 460"
-              backgroundColor="#f3f3f3"
-              foregroundColor="#ecebeb"
-              {...props}
-            >
-              <rect x="0" y="60" rx="2" ry="2" width="400" height="400" />
-            </ContentLoader>
-          ))}
+          {
+          produtos.length > 0 ?
+          produtosFiltrados.map((produto, key) => (
+            <CardProdutos key={key} produto={produto} />
+            
+          )) :
+          <ContentLoader
+            className="center"
+            speed={2}
+            width={400}
+            height={150}
+            viewBox="0 0 400 150"
+            backgroundColor="#2484ec"
+            foregroundColor="#fec302"
+            {...props}
+          >
+            <circle cx="265" cy="77" r="63" /> 
+            <circle cx="141" cy="82" r="36" /> 
+            <circle cx="51" cy="88" r="22" />
+            </ContentLoader>}
         </div>
       </div>
     </>

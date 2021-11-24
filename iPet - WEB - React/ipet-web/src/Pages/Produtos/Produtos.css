@@ -44,10 +44,15 @@ hr {
 .filtro--produtos a:hover {
   opacity: 0.9;
 }
+
+.center {
+  margin-top: 25%;
+}
+
 .card--principal {
   width: 70%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin: 0 auto;
 
