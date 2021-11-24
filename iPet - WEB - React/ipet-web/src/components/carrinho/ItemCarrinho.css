@@ -27,6 +27,7 @@
   cursor: pointer;
 }
 .descricaoProduto p {
+  text-align: center;
   color: #000;
   font-size: 16px;
   margin: 40px;
@@ -69,7 +70,6 @@
 .section-itens--qtd, 
 .section-itens--preco, 
 .section-itens--desc {
-  border-right: 1px solid rgba(0, 0, 0, 0.37);
   display: flex;
   justify-content: center;
   align-items: center;  

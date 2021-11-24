@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "../../components/menu/Menu";
 import Progress from "../../components/progress/Progress";
 import "./Pagamento.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ButtonVerde } from "../../components/button/Button";
 import { Footer } from "../../components/footer/footer";
+import { useAuth } from "../../hooks/Context";
+
 
 
 export function Pagamento() {
+  const history = useHistory();
+  const [formaPagamento, setFormaPagamento] = useState("");
+  const { totalCarrinho } = useAuth();
+
+
+
+  function redirectStatus() {
+    history.push('/status-pedido');
+  }
+
+  function contextPagamento() {
+    var formaPagChecked = document.getElementsByName("FormaPagamento");
+    for (var i = 0; i < formaPagChecked.length; i++) {
+      if (formaPagChecked[i].checked) {
+        if (formaPagChecked[i].value === "pix") {
+          setFormaPagamento("pix");
+        } else if (formaPagChecked[i].value === "dinheiro") {
+          setFormaPagamento("dinheiro");
+        } else if (formaPagChecked[i].value === "cartao") {
+          setFormaPagamento("cartao");
+        }
+      }
+    } 
+  }
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      <h2>Pagamento</h2>
+      <h2 className="h2">Pagamento</h2>
       <hr />
       <div className="progressBar">
         <Progress />
@@ -21,33 +47,55 @@ export function Pagamento() {
           <h3>Escolha a forma de pagamento</h3>
           <div className="radios">
             <div className="radio-pag">
-            <input type="radio" name="FormaPagamento" value="pix"/>
+              <input type="radio" name="FormaPagamento" onClick={contextPagamento} value="pix"/>
               <label for="pix">Pix</label>       
-              <input type="radio" name="FormaPagamento" value="dinheiro" />
+              <input type="radio" name="FormaPagamento" onClick={contextPagamento} value="dinheiro" />
               <label for="dinheiro">Dinheiro</label>
-
-              <input type="radio" name="FormaPagamento" value="cartao" />
+              <input type="radio" name="FormaPagamento" onClick={contextPagamento} value="cartao" />
               <label for="cartao">Cartão</label>
             </div>
           </div>
           <p>*Pagamento em Dinheiro e Cartão deve ser realizado no ato da entrega</p>
         </div>
-          <div className="pix">
-            <h3>Chave Pix para o pagamento: A5YYYTWW28882JJJ27712</h3>
-            <p>Chave Aleatória : iPet</p>
-            <img src="https://logopng.com.br/logos/pix-106.png" alt="" />
-            <p>Valor da compra: R$ 120,00</p>
-            <span>Comprovante</span>
-            <input type="file" />
-          </div>
-
+        { formaPagamento === 'pix' ?
+										<div className="pagamento">
+                      <h3>Chave Pix para o pagamento: A5YYYTWW28882JJJ27712</h3>
+                      <p>Chave Aleatória : iPet</p>
+                      <img src="https://logopng.com.br/logos/pix-106.png" alt="" />
+                        <p>Valor total da compra: R$ {totalCarrinho}</p>
+                      <span>Comprovante</span>
+                      <input type="file" />
+                    </div>
+										: formaPagamento === 'dinheiro' ?
+										<div className="pagamento">
+                      <div className="pagamento-dinheiro">
+                        <h3>Pagamento Dinheiro</h3>
+                          <p>Valor total da compra: R$ {totalCarrinho}</p>
+                        <div className="input-troco">
+                          <label htmlFor="">Troco para: </label>
+                          <input type="text" placeholder="Troco para R$"/>
+                        </div>
+                      </div>
+                    </div>
+                    : formaPagamento === 'cartao' ?
+                    <div className="pagamento">
+                      <div className="pagamento-cartao">
+                        <h3>Pagamento cartão</h3>
+                        <p>Valor total da compra: R$ {totalCarrinho}</p>
+                        <img src="https://kontaazul.com.br/wp-content/uploads/2020/02/bandeira-dos-cartoes-de-credito.png" alt="" />
+                      </div>
+                    </div>
+                    :
+                    <div className="pagamento">
+                      <h1>Escolha uma forma de pagamento acima</h1>
+                    </div>
+                    
+								}
       </div>
       <div className="botoes-div">
-        <Link to="/status-pedido">
-          <div className="btn-finalizar">
-            <ButtonVerde title="Finalizar Compra" />
-          </div>
-        </Link>
+        <div className="btn-finalizar">
+          <ButtonVerde title="Finalizar Compra" clickButton={redirectStatus} />
+        </div>
         <Link to="/carrinho">
           <div className="btn-voltar">
             <a href="/carrinho">Voltar carrinho</a>

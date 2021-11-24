@@ -5,13 +5,18 @@ import { ItemCarrinho } from "../../components/carrinho/ItemCarrinho";
 import Progress from "../../components/progress/Progress";
 import { ButtonVerde } from "../../components/button/Button";
 import { Footer } from "../../components/footer/footer";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../hooks/Context";
 
 
 export function Carrinho() {
+  const history = useHistory();
   const {itemsCarrinho} = useAuth();
   const { totalCarrinho } = useAuth();
+
+  function rediretPagamento() {
+    history.push('/pagamento')
+  }
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -40,7 +45,7 @@ export function Carrinho() {
               itemsCarrinho.map((item, key) => (
                 <div className="itens" key={key}>
                   <ItemCarrinho
-                    urlImg="https://essaseoutras.com.br/wp-content/uploads/2011/02/acessorios-para-caes-2.png"
+                    urlImg={`http://localhost:8080/produtos/foto/${item.idProduto}`}
                     descProduto={item.nome}
                     preco={item.valor}
                   />
@@ -55,11 +60,9 @@ export function Carrinho() {
             <td>R$ {totalCarrinho}</td>
           </tr>
         </table>
-      <Link to="/pagamento">
         <div className="btn-proximo">
-          <ButtonVerde title="Fechar pedido" />
+          <ButtonVerde title="Fechar pedido" clickButton={rediretPagamento} />
         </div>
-      </Link>
       <Link to="/produtos">
       <div className="btn-escolher">
         <a href="/produtos">Escolher mais produtos</a>

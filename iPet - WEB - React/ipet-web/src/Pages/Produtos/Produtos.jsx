@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./Produtos.css";
 import { Menu } from "../../components/menu/Menu";
+import Input from "../../components/input/Input";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 import Toast from "../../components/toast/Toast";
 import { useAuth } from "../../hooks/Context";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ContentLoader from "react-content-loader"
 
-
-
-export function Produtos() {
+export function Produtos(props) {
   const [produtos, setProdutos] = useState([]);
   const [showToast, setShowToast] = useState(false);
   const [busca, setBusca] = useState("");
   const [produtosBase, setProdutosBase] = useState("");
+  const [processed, setProcessed] = useState(false);
   const {itemsCarrinho} = useAuth();
-  console.log(itemsCarrinho);
 
   function setValueToast(value) {
     setShowToast(value);
@@ -26,11 +26,14 @@ export function Produtos() {
     axios.get("http://localhost:8080/produtos").then((res) => {
       setProdutos(res.data);
       setProdutosBase(res.data);
+      console.log(processed);
+      setProcessed(true);
+      console.log(processed);
     });
   }, [])
   
   const buscaLowerCase = busca.toLowerCase()
-  const produtosFiltados = produtos
+  const produtosFiltrados = produtos
   .filter((produto) => produto.nome.toLowerCase().includes(buscaLowerCase))
 
   function filtroMarca() {
@@ -137,15 +140,6 @@ export function Produtos() {
     <>
       <Toast text="Login ou senha incorretos" color="green" showToast={showToast} changeValueToast={setValueToast}/>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-      {
-        itemsCarrinho.length > 0 &&
-        <>
-        <Link to="/carrinho">
-          <FaShoppingCart size={20} className="icon-carrinho" />
-          <div className="notify-carrinho">{itemsCarrinho.length}</div>
-        </Link>
-        </>
-      }
       <div className="produto">
       <h2>Produtos</h2>
 
@@ -155,12 +149,10 @@ export function Produtos() {
         <div className="filtro--produtos">
           <h3>Filtrar Produtos</h3>
           <hr />
-          <input
-            onChange={(ev) => setBusca(ev.target.value)}
-            type="text"
+          <Input
+            enviarDados={setBusca}
             value={busca}
             placeholder="Pesquisar produto.."
-            className="inputPesquisa"
           />
           <h3>Pet</h3>
           <hr />
@@ -308,6 +300,7 @@ export function Produtos() {
           </div>
           <h3>Serviços</h3>
           <hr />
+          
           {servicos.map((servico, key) => (
             <div className="checkBox">
               <input type="checkbox" />
@@ -316,8 +309,20 @@ export function Produtos() {
           ))}
         </div>
         <div className="card--principal">
-          {produtosFiltados.map((produto, key) => (
-            <CardProdutos key={key} produto={produto} />
+          {produtosFiltrados.map((produto, key) => (
+            processed ?
+            <CardProdutos key={key} produto={produto} /> :
+            <ContentLoader
+              speed={2}
+              width={400}
+              height={460}
+              viewBox="0 0 400 460"
+              backgroundColor="#f3f3f3"
+              foregroundColor="#ecebeb"
+              {...props}
+            >
+              <rect x="0" y="60" rx="2" ry="2" width="400" height="400" />
+            </ContentLoader>
           ))}
         </div>
       </div>

@@ -32,7 +32,7 @@
   width: 600px;
   height: 200px;
   background-color: #fff;
-  border-radius: 15px 0 15px 0;
+  border-radius: .25rem;
   border: 1px solid #007DC5;
 }
 
@@ -65,19 +65,17 @@
   left: 10%;
   width: 150px;
   padding: 10px;
-  border: 0;
-  border: 1px solid #007DC5;
-  color: #007DC5;
+  width: 200px;
+  color: white;
   font-family: Montserrat;
   font-weight: bold;
-  background: #FFFFFF;
+  background: #007DC5;
+  border: 1px solid #2484EC;
+  box-sizing: border-box;
   border-radius: 6px;
-  outline: none;
 }
-
 .btn-faca-parte:hover {
-  background-color: #007DC5;
-  color: #fff;
-  padding: 11px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   cursor: pointer;
 }
+

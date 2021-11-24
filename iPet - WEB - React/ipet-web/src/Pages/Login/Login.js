@@ -71,20 +71,18 @@ export default () => {
                         <FaFacebook size={34} className="icon-face" />
                     </div>
                 </div>
-                <div className="principal-cadastro">
-                    <h1>
-                        Criar uma conta é rápido,
-                        <br />
-                        fácil e gratuito!
-                    </h1>
-                    <p>
-                        Com a sua conta da IPet você tem acesso
-                        <br /> Ofertas exclusivas, descontos, pode criar
-                        <br /> gerenciar a sua Assinatura Petz, acompanhar
-                        <br />
-                        os seus pedidos e muito mais!
-                    </p>
-                    <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
+                <div className="principal-login">
+                    <div className="principal-cadastro">
+                        <h1>
+                            Criar uma conta é rápido,
+                            <br />
+                            fácil e gratuito!
+                        </h1>
+                        <p className="p">
+                            Com a sua conta da IPet você tem acesso. Ofertas exclusivas, descontos, pode criar gerenciar a sua Assinatura Petz, acompanhar os seus pedidos e muito mais!
+                        </p>
+                        <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
+                    </div>
                 </div>
             </div>
         </>

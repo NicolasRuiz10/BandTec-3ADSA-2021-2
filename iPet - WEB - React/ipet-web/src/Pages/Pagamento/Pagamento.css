@@ -1,6 +1,5 @@
 .principal--pagamento {
   width: 70%;
-  height: 350px;
   border: 1px solid #ccc;
   margin: 0 auto;
 }
@@ -40,6 +39,15 @@
 }
 .dados-pagamento {
   padding: 20px;
+}
+
+.h2 {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-left: 155px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Montserrat;
 }
 
 table {
@@ -95,19 +103,18 @@ th, td {
   opacity: 0.8;
 }
 
-.pix {
+.pagamento {
   text-align: center;
   padding: 10px;
 }
 
 
-.pix h3{
-  color: #007DC5;
+.pagamento h3{
   font-weight: bold;
   font-size: 16px;
   font-family: Montserrat;
 }
-.pix p{
+.pagamento p{
   color: #000;
   font-weight: bold;
   font-size: 12px;
@@ -115,16 +122,35 @@ th, td {
   padding: 5px;
 }
 
-.pix img{
+.pagamento img{
   width: 150px;
   margin: 20px 0;
 }
 
-.pix span{
+.pagamento span{
   color: #000;
   font-weight: bold;
   font-size: 12px;
   font-family: Montserrat;
   padding: 5px;
   margin-top: 100px;
+}
+
+.pagamento h3 {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.pagamento p {
+  padding: 10px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.651);
+}
+
+.input-troco input{
+  padding: 5px;
+}
+
+.input-troco label{
+  padding: 10px;
 }

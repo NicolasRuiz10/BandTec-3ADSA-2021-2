@@ -59,29 +59,6 @@
   font-weight: bold;
 }
 
-.btn-faca-parte {
-  position: absolute;
-  top: 420px;
-  left: 10%;
-  width: 150px;
-  padding: 10px;
-  border: 0;
-  border: 1px solid #007DC5;
-  color: #007DC5;
-  font-family: Montserrat;
-  font-weight: bold;
-  background: #FFFFFF;
-  border-radius: 6px;
-  outline: none;
-}
-
-.btn-faca-parte:hover {
-  background-color: #007DC5;
-  color: #fff;
-  padding: 11px;
-  cursor: pointer;
-}
-
 .jaEcliente {
   position: absolute;
   top: 470px;

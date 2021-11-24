@@ -1,11 +1,16 @@
 import React from "react";
 import "./StatusPedido.css";
-
+import { Link, useHistory } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
+import { Button } from "../../components/button/Button";
 import Progress from "../../components/progress/Progress";
 import { Footer } from "../../components/footer/footer";
 
 export function StatusPedido() {
+  const history = useHistory();
+  function redirectProdutos() {
+    history.push('/produtos');
+  }
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -25,9 +30,7 @@ export function StatusPedido() {
         <h1>Em construção...</h1>
       </div>
       <div className="section-botoes">
-        <span href="/#" className="btn-nova-compra">Realizar nova compra</span>
-        <a href="/#">Ir para meus pedidos</a>
-        <a href="/#">Falar com o vendedor</a>
+        <Button btnTitle="Realizar nova compra" clickButton={redirectProdutos} />
       </div>
       <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
     </>

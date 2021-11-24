@@ -1,21 +1,36 @@
-import React , { useState } from "react";
-import './ItemCarrinho.css';
+import React, { useState } from "react";
+import "./ItemCarrinho.css";
 import { useAuth } from "../../hooks/Context";
 
-
-export function ItemCarrinho({urlImg, descProduto, preco}) {
+export function ItemCarrinho({ urlImg, descProduto, preco }) {
   const [quantidade, setQuantidade] = useState(1);
-  const { setTotalCarrinho } = useAuth();
+  const { setTotalCarrinho, totalCarrinho } = useAuth();
+  console.log(totalCarrinho);
 
-  let totalCarrinho = 0;
-  const total = preco * quantidade;
-  totalCarrinho += total;
-  setTotalCarrinho(totalCarrinho)
+  function aumentarTotal() {
+    let total = preco * quantidade;
+    setTotalCarrinho(totalCarrinho + total);
+  }
+
+  function diminuirTotal() {
+    setTotalCarrinho(totalCarrinho - preco);
+  }
+
+  function diminuirQuantidade() {
+    setQuantidade(quantidade - 1);
+    diminuirTotal();
+  }
+
+  function aumentarQuantidade() {
+    setQuantidade(quantidade + 1);
+    aumentarTotal();
+  }
+
   return (
     <>
       <div className="box-item">
         <div className="section-itens--img">
-          <img className="imagemProduto" alt="" src={urlImg}/>
+          <img className="imagemProduto" alt="" src={urlImg} />
         </div>
 
         <div className="section-itens--desc">
@@ -23,22 +38,23 @@ export function ItemCarrinho({urlImg, descProduto, preco}) {
             <p>{descProduto}</p>
           </div>
         </div>
-        
-        
+
         <div className="section-itens--preco">
           <div className={preco}>R$ {preco}</div>
         </div>
-      
-        <div className="section-itens--qtd"> 
+
+        <div className="section-itens--qtd">
           <div className="item-quantity">
-            <button disabled={quantidade < 2} onClick={() => setQuantidade(quantidade - 1)}>-</button>
+            <button disabled={quantidade < 2} onClick={diminuirQuantidade}>
+              -
+            </button>
             <h1>{quantidade}</h1>
-            <button onClick={() => setQuantidade(quantidade + 1)}>+</button>
+            <button onClick={aumentarQuantidade}>+</button>
           </div>
         </div>
-       
+
         <div className="section-itens--total">
-          <div>R$ {total}</div>
+          <div>R$ {totalCarrinho}</div>
         </div>
       </div>
     </>

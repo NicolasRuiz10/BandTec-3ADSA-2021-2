@@ -3,16 +3,19 @@
   margin-bottom: 3px;
   text-align: left;
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.801);
-  opacity: 0.9;
+  font-weight: 800;
+  opacity: 0.6;
+  font-family: Montserrat;
 }
 
 .input {
-  width: 400px;
-  height: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.562);
-  border-radius: 5px;
+  width: 100%;
+  height: 2.25rem;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  border: 1px solid #cbd5e0;
   outline: none;
-  padding: 5px;
   margin-bottom: 10px;
+  color: black;
+  font-family: Montserrat;
 }
