@@ -13,6 +13,7 @@ export function Carrinho() {
   const history = useHistory();
   const {itemsCarrinho} = useAuth();
   const { totalCarrinho } = useAuth();
+  console.log('item carrinho', itemsCarrinho);
 
   function rediretPagamento() {
     history.push('/pagamento')

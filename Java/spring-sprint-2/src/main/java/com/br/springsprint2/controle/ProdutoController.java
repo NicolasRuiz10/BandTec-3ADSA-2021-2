@@ -90,8 +90,9 @@ public class ProdutoController {
             System.out.println("Erro na gravação do arquivo: " +
                     erro.getMessage());
         }
-
     }
+
+
 
     public static void gravaArquivoTxt(List<Produto> lista, String nomeArq) {
 
@@ -134,98 +135,6 @@ public class ProdutoController {
         gravaRegistro(nomeArq,trailer);
 
     }
-    public static void leArquivoTxt(String nomeArq) {
-        BufferedReader entrada = null;
-        String registro, tipoRegistro;
-
-        int contaRegDados = 0;
-        int qtdRegGravados;
-        String nome;
-        String descricao;
-        Double valor;
-        String marca;
-        String especie;
-        String tipoProduto;
-        Integer quantidade;
-        Integer petshop;
-
-
-
-        // Abre o arquivo para leitura
-        try {
-            entrada = new BufferedReader(new FileReader(nomeArq));
-        }
-        catch (IOException erro) {
-            System.out.println("Erro na abertura do arquivo: " +
-                    erro.getMessage());
-        }
-
-        // Leitura do arquivo
-        try {
-            registro = entrada.readLine();  // Lê o primeiro registro do arquivo
-
-            while (registro != null) {      // Enquanto não chegou ao final do arquivo
-                // obtém o tipo do registro - primeiros 2 caracteres do registro
-                // substring devolve um "pedaço da String",
-                // que começa na posição 0 e termina na posição 1 (como num vetor)
-                //    0123456
-                //    00NOTA
-                tipoRegistro = registro.substring(0,2);
-
-                // Verifica se o tipoRegistro é "00" (header), ou "01" (trailer) ou "02" (corpo)
-                if (tipoRegistro.equals("00")) {
-                    System.out.println("Eh um header");
-                    System.out.println("Tipo do arquivo: "+registro.substring(2,6));
-                    System.out.println("Ano/semestre: "+registro.substring(6,11));
-                    System.out.println("Data e hora de gravação: "+registro.substring(11,30));
-                    System.out.println("Versão do documento: "+registro.substring(30,32));
-                }
-                else if (tipoRegistro.equals("01")) {
-                    System.out.println("Eh um trailer");
-                    // Lê a quantidade de registros gravados que está no trailer
-                    qtdRegGravados = Integer.valueOf(registro.substring(2,12));
-                    // Valida se a quantidade lida é igual a quantidade gravada
-                    if (qtdRegGravados == contaRegDados) {
-                        System.out.println("Quantidade de registros lidos compatível com quantidade de registros gravados");
-                    }
-                    else {
-                        System.out.println("Quantidade de registros lidos incompatível com quantidade de registros gravados");
-                    }
-
-                }
-                else if (tipoRegistro.equals("02")) {
-                    System.out.println("Eh um registro de corpo");
-                    // Lê os dados do registro de corpo
-                    nome = registro.substring(2, 15).trim();
-                    descricao = registro.substring(15, 65);
-                    valor = Double.valueOf(registro.substring(65,74).replace(',','.'));
-                    marca = registro.substring(74, 84).trim();
-                    especie = registro.substring(84, 98).trim();
-                    tipoProduto = registro.substring(98, 108).trim();
-                    quantidade = Integer.valueOf(registro.substring(108,111));
-                    petshop = Integer.valueOf(registro.substring(111,114));
-
-                    Produto produtoTxt = new Produto(nome,descricao,valor,marca,especie,tipoProduto,quantidade);
-
-
-
-                    contaRegDados++;
-                }
-                else {
-                    System.out.println("Tipo de registro inválido");
-                }
-
-                // lê o próximo registro
-                registro = entrada.readLine();
-            }
-
-            // Fecha o arquivo
-            entrada.close();
-        }
-        catch (IOException erro) {
-            System.out.println("Erro ao ler arquivo: " + erro.getMessage());
-        }
-    }
 
     @Autowired
     private ProdutoRepository repository;
@@ -246,6 +155,7 @@ public class ProdutoController {
     }
 
 
+
     @CrossOrigin
     @GetMapping
     public ResponseEntity getProdutos() {
@@ -256,6 +166,20 @@ public class ProdutoController {
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
+    @CrossOrigin
+    @PostMapping("produto-foto/{fkPetshop}")
+    public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
+        Petshop petshop = petRepository.findById(fkPetshop).get();
+        novoProduto.setFkPetShop(petshop);
+        byte[] novaFoto = foto.getBytes();
+        novoProduto.setFoto(novaFoto);
+        repository.save(novoProduto);
+        return status(HttpStatus.CREATED).build();
+    }
+
+
+
+    @CrossOrigin
     @PatchMapping("/foto/{id}")
     public ResponseEntity patchFoto(@PathVariable Integer id,
                                     @RequestParam MultipartFile foto) throws IOException {
@@ -289,17 +213,31 @@ public class ProdutoController {
         }
     }
 
+    @CrossOrigin
+    @GetMapping("/doc")
+    public ResponseEntity getDoc() throws IOException {
+
+            BufferedReader entrada = new BufferedReader(new FileReader("Documento de Layout.docx"));;
+
+            return ResponseEntity
+                    .status(200)
+                    .header("content-type", "application/pdf")
+                    .body(entrada);
+        }
+
+
+    @CrossOrigin
     @GetMapping("/csv/{produtos}")
     public ResponseEntity getCSV(@PathVariable String produtos) {
         gravaLista(listaObj , produtos);
         return ResponseEntity.status(200).build();
     }
 
+    @CrossOrigin
     @GetMapping("/layout/{nmArq}")
     public ResponseEntity getLayout(@PathVariable String nmArq) {
         List<Produto> produtos = repository.findAll();
         gravaArquivoTxt(produtos, nmArq);
-        leArquivoTxt(nmArq);
         return ResponseEntity.status(200).build();
     }
 
@@ -337,9 +275,7 @@ public class ProdutoController {
 
     @CrossOrigin
     @PostMapping("/txt")
-    public ResponseEntity postLayout(@RequestBody MultipartFile txt) throws IOException {
-        System.out.println("\nNome do arquivo: "+ txt.getOriginalFilename());
-        String nmArq = txt.getOriginalFilename();
+    public ResponseEntity postLayout(@RequestBody MultipartFile txt, @RequestBody MultipartFile image) throws IOException {
         BufferedReader entrada = new BufferedReader(new StringReader(new String(txt.getBytes())));
         String registro, tipoRegistro;
 
@@ -386,7 +322,8 @@ public class ProdutoController {
                     petshop = Integer.valueOf(registro.substring(111,114));
 
                     Produto produtoTxt = new Produto(nome,descricao,valor,marca,especie,tipoProduto,quantidade);
-
+                    byte[] foto2 = image.getBytes();
+                    produtoTxt.setFoto(foto2);
                     createProdutos(produtoTxt,petshop);
                     System.out.println("Criado");
 

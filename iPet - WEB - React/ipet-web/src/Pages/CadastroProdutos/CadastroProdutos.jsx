@@ -4,17 +4,29 @@ import { Menu } from '../../components/menu/Menu';
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
 import axios from "axios";
+import { Button } from "../../components/button/Button";
 import Toast from "../../components/toast/Toast";
 
 export function CadastroProdutos() {
     const [showToast, setShowToast] = useState(false);
+    const [img, setImg] = useState('');
+    const [file, setFile] = useState('');
     function setValueToast(value) {
         setShowToast(value);
     }
-    function setValueInput(e) {
+
+    function setValueImg(e) {
+        setImg(e.target.files[0]);
+    }
+
+    function setValueTxt(e) {
+        setFile(e.target.files[0]);
+    }
+
+    function send(e) {
         var formData = new FormData();
-        const file = e.target.files[0];
         formData.append("txt", file);
+        formData.append('image', img);
         axios.post('http://localhost:8080/produtos/txt', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
@@ -87,7 +99,13 @@ export function CadastroProdutos() {
                     </p>
                 </div>
                 <div className="baixarButton">
-                    <input type="file" onChange={setValueInput}/>
+                    <input type="file" onChange={setValueImg}/>
+                </div>
+                <div className="baixarButton">
+                    <input type="file" onChange={setValueTxt}/>
+                </div>
+                <div className="baixarButton">
+                    <Button btnTitle="Cadastrar produto" clickButton={send} />
                 </div>
             </div>
             <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
