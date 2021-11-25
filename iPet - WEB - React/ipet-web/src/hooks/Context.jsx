@@ -4,7 +4,11 @@ const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
     const [autenticado, setAutenticado] = useState(false);
+    const [autenticadoPetshop, setAutenticadoPetshop] = useState(false);
     const [idUsuario, setIdUsuario] = useState('');
+    const [idPetshop, setIdPetshop] = useState('');
+    const [nomePetshop, setNomePetshop] = useState('');
+    const [nomeUsuario, setNomeUsuario] = useState('');
     const [itemsCarrinho, setItemsCarrinho] = useState([]);
     const [totalCarrinho, setTotalCarrinho] = useState(0);
 
@@ -20,8 +24,16 @@ const AuthProvider = ({ children }) => {
                                         itemsCarrinho, 
                                         setItemsCarrinho,
                                         totalCarrinho,
-                                        setTotalCarrinho
-                                         }}>
+                                        setTotalCarrinho,
+                                        idPetshop,
+                                        setIdPetshop,
+                                        nomePetshop,
+                                        setNomePetshop,
+                                        nomeUsuario,
+                                        setNomeUsuario,
+                                        autenticadoPetshop,
+                                        setAutenticadoPetshop,
+                                        }}>
             {children}
         </AuthContext.Provider>
     )

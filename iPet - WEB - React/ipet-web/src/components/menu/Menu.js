@@ -10,8 +10,7 @@ import { useHistory } from "react-router-dom";
 
 export function Menu(props) {
 	let history = useHistory();
-	const { autenticado, mudarAutenticacao, idUsuario } = useAuth();
-	const {itemsCarrinho} = useAuth();
+	const { autenticado, mudarAutenticacao, idUsuario, itemsCarrinho, nomeUsuario } = useAuth();
 
 	const RealizarLogoff = () => {
 		axios.post("http://localhost:8080/usuarios/logoff/" + idUsuario).then((res) => {
@@ -74,7 +73,7 @@ export function Menu(props) {
 						</div>
 						<div className="item-acesso">
 							<div className="icon-car">
-								Olá, {idUsuario}
+								Olá, {nomeUsuario}
 							</div>
 						</div>
 					</div>

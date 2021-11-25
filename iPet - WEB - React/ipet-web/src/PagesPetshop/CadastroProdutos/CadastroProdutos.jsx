@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import './CadastroProdutos.css';
 import { Menu } from '../../components/menu/Menu';
-import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
+import Toast from "../../components/toast/Toast";
 import axios from "axios";
 import { Button } from "../../components/button/Button";
-import Toast from "../../components/toast/Toast";
 
 export default function CadastroProdutos() {
     const [showToast, setShowToast] = useState(false);
     const [img, setImg] = useState('');
     const [file, setFile] = useState('');
+    const [colorToast, setColorToast] = useState('');
+    const [textToast, setTextToast] = useState('');
     function setValueToast(value) {
         setShowToast(value);
     }
@@ -27,64 +28,79 @@ export default function CadastroProdutos() {
         var formData = new FormData();
         formData.append("txt", file);
         formData.append('image', img);
-        axios.post('http://localhost:8080/produtos/txt', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            }
-        }).then((res) => {
+        if (file !== '' || img !== '') {
+            axios.post('http://localhost:8080/produtos/txt', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                }
+            }).then((res) => {
+                setShowToast(true);
+                setColorToast('green');
+                setTextToast('Produto cadastrado com sucesso');
+            })
+        } else {
             setShowToast(true);
-            document.location.reload(true);
-        })
+            setColorToast('red');
+            setTextToast('Necessário anexar todos os arquivos');
+        }
     }
     return (
         <>
-            <Toast text="Produto cadastrado com sucesso" color="green" showToast={showToast} changeValueToast={setValueToast} />
+            <Toast text={textToast} color={colorToast} showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-            <div className="cadastroTitle">
+            <div className="id">
+              <p>ID PetShop: 11</p>  
+            </div>
+            <div className="cadastroTitleDiv">
                 <h1>Cadastro de produto</h1>
-                <img className="Line" src={Line} alt="none" />
+                <hr />
             </div>
-            <div className="anexoImg">
-                <div className="anexoImg1">
-
-                </div>
-                <div className="buttonAnexoDiv">
-                    <button>Anexar Imagem</button>
-                </div>
+            <div className="principal-cadastro-div">
+        <div className="info-produto-div">
+          <h5>Dados do Produto</h5>
+          <div className="input-produto-div">
+            <p>Nome do produto: </p>
+            <input type="text" placeholder="Digite o nome do produto" />
+            <p>Marca do produto: </p>
+            <input type="text" placeholder="Digite a marca do produto" />
+            <p>Valor do produto: </p>
+            <input type="number" placeholder="Digite o valor do produto" />
+            <p>Quantidade: </p>
+            <input type="number" placeholder="Digite a quantidade do produto" />
+            <p>Tipo do produto: </p>
+            <select name="select">
+              <option value="valor1">Valor 1</option>
+              <option value="valor2" selected>
+                Valor 2
+              </option>
+              <option value="valor3">Valor 3</option>
+            </select>
+            <p>Tipo do pet: </p>
+            <select name="select">
+              <option value="valor1">Valor 1</option>
+              <option value="valor2" selected>
+                Valor 2
+              </option>
+              <option value="valor3">Valor 3</option>
+            </select>
+            <p>Descrição do produto: </p>
+            <textarea type="text" placeholder="Digite a descrição do produto" />
+          </div>
+        </div>
+        <div className="anexoImg-div">
+          <h5>Escolha a foto do produto</h5>
+          <label htmlFor="imagem" className="label">{!img.name ? 'Escolher imagem' : img.name}</label>
+          <input id="imagem" type="file" onChange={setValueImg}/>
+        </div>
+      </div>
+      <div className="buttonsfinal-div">
+        <button id="adicionar-produto">Adicionar Produto</button>
+      </div>
+            <div className="cadastroTitleDiv">
+                <h1>Importação de produtos em lote</h1>
+                <hr />
             </div>
-
-            <h1 className="categoria">Categoria</h1>
-            <h1 className="nome">Nome</h1>
-            <div className="inputs1">
-                <input type="text" size="50" />
-                <input type="text" size="50" />
-            </div>
-
-            <h1 className="marca">Marca</h1>
-            <h1 className="valor">Valor</h1>
-            <div className="inputs1">
-                <input type="text" size="50" />
-                <input type="text" size="50" />
-            </div>
-
-            <h1 className="quantidade">Quantidade</h1>
-            <div className="inputs3">
-                <input type="text" size="20" />
-            </div>
-            <h1 className="descricaoLabel">Descrição</h1>
-            <div className="descricao">
-                <input className="descricaoinput" type="text" size="100" height="400" />
-            </div>
-            <div className="buttonsfinal">
-                <button>Limpar</button>
-                <button>Adicionar Produto</button>
-            </div>
-            <hr></hr>
             <div className="importacao">
-                <div className="importacaoTitle">
-                    <h1>Importação de produtos em lote</h1>
-                    <img className="Line" src={Line} alt="none" />
-                </div>
                 <div className="importacaoText">
                     <p>
                         Baixe nosso arquivo modelo e cadastre seus produtos
@@ -99,10 +115,12 @@ export default function CadastroProdutos() {
                     </p>
                 </div>
                 <div className="baixarButton">
-                    <input type="file" onChange={setValueImg}/>
+                    <label htmlFor="imagem" className="label">{!img.name ? 'Escolher imagem' : img.name}</label>
+                    <input id="imagem" type="file" onChange={setValueImg}/>
                 </div>
                 <div className="baixarButton">
-                    <input type="file" onChange={setValueTxt}/>
+                    <label htmlFor="txt" className="label">{!file.name ? 'Escolher arquivo txt' : file.name}</label>
+                    <input id="txt" type="file" onChange={setValueTxt}/>
                 </div>
                 <div className="baixarButton">
                     <Button btnTitle="Cadastrar produto" clickButton={send} />

@@ -1,37 +1,167 @@
-.cadastroTitle {
-    position: absolute;
-    font-size: 36px;
-    margin-top: 80px;
-    margin-left: 100px;
+.cadastroTitleDiv {
+    width: 80%;
+    margin: 2% auto;
+}
+
+.cadastroTitleDiv hr{
+    width: 100%;
+    margin-top: -20px;
+}
+
+.cadastroTitleDiv h1{
+    margin: 20px 0 0 0;
+    font-size: 28px;
+    color: rgba(0, 0, 0, 0.644);
+    text-align: left;
+}
+
+.id{
+    width: 80%;
+    margin: 2% auto;
+}
+
+.id p {
+    font-size: 24px;
     font-family: Montserrat;
-    font-style: normal;
+}
+
+.principal-cadastro-div{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.info-produto-div {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(168, 166, 166);
+}
+
+.buttonsfinal-div button{
+    width: 250px;
+    height: 35px;
+    float: left;
+    color: #fff;
     font-weight: bold;
-    font-size: 48px;
+    margin: 20px 470px;
+    border-radius: 10px;
+    border: none;
+    opacity: 1;
+    background-color: #2484EC;
+    margin-bottom: 50px;
+}
+
+.buttonsfinal-div button:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.buttonsfinal button{
+    width: 250px;
+    height: 40px;
+    float: left;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: none;
+    opacity: 1;
+}
+
+.buttonsfinal button:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.info-produto-div h5 {
+    font-size: 20px;
+    font-family: Montserrat;
     color: #2484EC;
-    line-height: 59px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.input-produto-div {
+    width: 400px;
+}
+
+.input-produto-div p {
+    margin: 0;
+    text-align: left;
+    font-size: 26px;
+    opacity: 0.6;
+    font-family: Montserrat;
+    padding: 0;
+    font-size: 18px;
+    padding-bottom: 5px;   
+}
+
+.input-produto-div input {
+    width: 100%;
+    height: 2.0rem;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    outline: none;
+    margin-bottom: 10px;
+    color: black;
+    border: 1px solid #ccc;
+    font-family: Montserrat;
+}
+
+.input-produto-div select {
+    width: 100%;
+    height: 2.0rem;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    outline: none;
+    margin-bottom: 10px;
+    color: black;
+    border: 1px solid #ccc;
+    font-family: Montserrat;
+}
+
+.input-produto-div textarea {
+    width: 100%;
+    height: 4.0rem;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    outline: none;
+    margin-bottom: 10px;
+    color: black;
+    border: 1px solid #ccc;
+    font-family: Montserrat;
 }
 
 .Line {
     position: absolute;
 }
 
-.anexoImg {
-    margin-top: 150px;
-    width: 100%;
-    height: 500px;
-    background-color: #ffffff;
+#adicionar-produto{
+    background-color: #2484EC;
+    color: #fff;
+    outline: none;
+}
+.anexoImg-div {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.anexoImg1 {
-    width: 360px;
-    height: 210px;
-    border: 1px solid #ccc;
+.anexoImg-div h5 {
+    font-size: 20px;
+    font-family: Montserrat;
+    color: #2484EC;
+    font-weight: bold;
+    margin-bottom: 10px;    
+    text-align: center; 
 }
-
 .buttonAnexoDiv {
     margin-top: 20px;
 }
@@ -162,7 +292,6 @@
 .importacao {
     width: 100%;
     height: 700px;
-    background-color: white;
 }
 
 .importacaoTitle {
@@ -172,7 +301,7 @@
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 32px;
     color: #2484EC;
     line-height: 59px;
 }
@@ -181,17 +310,6 @@
     position: relative;
     margin-left: 100px;
     margin-top: 50px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: black;
-    line-height: 59px;
-}
-
-.baixarButton {
-    position: relative;
-    text-align: center;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
@@ -233,6 +351,28 @@
     font-size: 36px;
     color: black;
     line-height: 59px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.label {
+    border: 1px solid #CBD5E0;
+    padding: calc((2.25rem - 1.5rem) / 2) 0.75rem;
+    font-size: 0.875rem;
+    width: 400px;
+    cursor: pointer;
+    border-radius: .25rem;
+    margin-top: 1rem;
+}
+
+.label::after {
+    border-left: 1px solid #CBD5E0;
+    padding: calc((2.25rem - 1.5rem) / 2) 0.75rem;
+    font-size: 0.875rem;
+    content: 'Arquivo';
+    margin-left: 2rem;
 }
 
 .baixarButton2 {

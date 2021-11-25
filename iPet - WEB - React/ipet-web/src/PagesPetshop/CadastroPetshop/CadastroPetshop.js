@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Cadastro.css'
 import { useHistory } from "react-router-dom";
-import { Menu } from "../../components/menu/Menu";
+import { MenuPetshop } from "../menu/MenuPetshop";
 import Input from "../../components/input/Input"
 import { ButtonVerde } from "../../components/button/Button"
 import { FaFacebook } from 'react-icons/fa';
@@ -16,7 +16,7 @@ export function Cadastro() {
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');
     const [senha, setSenha] = useState('');
-    const [cpf, setCpf] = useState('');
+    const [cnpj, setCnpj] = useState('');
     const [telefone, setTelefone] = useState('');
     const [cep, setCep] = useState('');
     const [endereco, setEndereco] = useState('');
@@ -50,14 +50,14 @@ export function Cadastro() {
         })
     }
     function criarConta() {
-        if (email === '' || nome === '' || senha === '' || cpf === '') {
+        if (email === '' || nome === '' || senha === '' || cnpj === '') {
             setShowToast(true);
         } else {
-            axios.post(`http://localhost:8080/usuarios`, {
+            axios.post(`http://localhost:8080/ipet`, {
                 nome: nome,
                 email: email,
                 telefone: telefone,
-                cpf: cpf,
+                cnpj: cnpj,
                 senha: senha,
                 endereco: endereco,
                 cep: cep,
@@ -65,7 +65,7 @@ export function Cadastro() {
                 numero: numero,
             }).then((res) => {
                 if (res.status === 201) {
-                    history.push("/login");
+                    history.push("/petshop/login");
                 } else {
                     setShowToast(true);
                 }
@@ -74,13 +74,13 @@ export function Cadastro() {
     }
 
     function redirectLogin() {
-        history.push("/login");
+        history.push("/petshop/login");
     }
 
     return (
         <>
             <Toast text="Necessário preencher todos os campos" color="red" showToast={showToast} changeValueToast={setValueToast} />
-            <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="crieConta">
             <h2>Crie sua conta iPet</h2>
             </div>
@@ -92,7 +92,7 @@ export function Cadastro() {
                             <div className="w-100 pr-1">
                                 <Input txt="Nome Completo" placeholder="Digite seu nome completo" enviarDados={setNome} />
                                 <Input txt="Email" placeholder="Digite seu email" enviarDados={setEmail} />
-                                <Input txt="CPF" placeholder="Digite seu CPF" enviarDados={setCpf} />
+                                <Input txt="CNPJ" placeholder="Digite seu CNPJ" enviarDados={setCnpj} />
                                 <Input txt="Telefone" placeholder="(XX) X XXXX-XXXX" enviarDados={setTelefone} />
                                 <Input txt="Senha" placeholder="Senha" enviarDados={setSenha} />
                                 <Input txt="Confirme sua senha" placeholder="Senha" enviarDados={confirmarSenha} />
