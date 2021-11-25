@@ -1,14 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CadastroProdutos.css';
-// import logo from '../../Assets/logo1.jpeg'
-// import { Link } from "react-router-dom";
 import { Menu } from '../../components/menu/Menu';
 import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
+import Toast from "../../components/toast/Toast";
+import axios from "axios";
 
-export function CadastroProdutos() {
+export default function CadastroProdutos() {
+    const [showToast, setShowToast] = useState(false);
+    const [img, setImg] = useState('');
+    const [file, setFile] = useState('');
+    function setValueToast(value) {
+        setShowToast(value);
+    }
+
+    function setValueImg(e) {
+        setImg(e.target.files[0]);
+    }
+
+    function setValueTxt(e) {
+        setFile(e.target.files[0]);
+    }
+
+    function send(e) {
+        var formData = new FormData();
+        formData.append("txt", file);
+        formData.append('image', img);
+        axios.post('http://localhost:8080/produtos/txt', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            }
+        }).then((res) => {
+            setShowToast(true);
+            document.location.reload(true);
+        })
+    }
     return (
         <>
+            <Toast text="Produto cadastrado com sucesso" color="green" showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="cadastroTitle">
                 <h1>Cadastro de produto</h1>

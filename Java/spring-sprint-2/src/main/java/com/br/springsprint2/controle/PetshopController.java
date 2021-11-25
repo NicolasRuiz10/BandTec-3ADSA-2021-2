@@ -33,7 +33,7 @@ public class PetshopController {
             if (petshop1.autenticar(petshop.getEmail(), petshop.getSenha())) {
                 petshop1.setAutenticacao(true);
                 repository.save(petshop);
-                return status(200).body(petshop1.getIdPetshop());
+                return status(200).body(petshop1);
             } else {
                 petshop1.setAutenticacao(false);
                 repository.save(petshop1);
