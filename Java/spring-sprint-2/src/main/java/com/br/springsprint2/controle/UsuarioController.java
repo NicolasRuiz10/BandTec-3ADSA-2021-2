@@ -75,7 +75,7 @@ public class UsuarioController {
             return ResponseEntity.status(200).build();
         }
         return ResponseEntity.status(404).build();
-    };
+    }
 
     @CrossOrigin
     @PutMapping("/{id}")
