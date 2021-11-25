@@ -31,12 +31,6 @@ public class Petshop {
     @OneToMany(mappedBy = "fkPetShop")
     private List<Produto> produtos;
 
-    @OneToMany(mappedBy = "fkPetShop")
-    private List<Avaliacao> avaliacoes;
-
-    @OneToMany(mappedBy = "fkPetShop")
-    private List<Servico> servico;
-
     public int getIdPetshop() {
         return idPetshop;
     }
@@ -133,19 +127,4 @@ public class Petshop {
         this.produtos = produtos;
     }
 
-    public List<Avaliacao> getAvaliacoes() {
-        return avaliacoes;
-    }
-
-    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }
-
-    public List<Servico> getServico() {
-        return servico;
-    }
-
-    public void setServico(List<Servico> servico) {
-        this.servico = servico;
-    }
 }

@@ -4,10 +4,8 @@ import com.br.springsprint2.Fila.FilaObj;
 import com.br.springsprint2.Pilha.PilhaObj;
 import com.br.springsprint2.dominio.Petshop;
 import com.br.springsprint2.dominio.Produto;
-import com.br.springsprint2.dominio.Usuario;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
-import com.br.springsprint2.util.ListaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,52 +24,6 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-    public static void gravaLista(ListaObj<Produto> lista, String nomeArq) {
-
-        FileWriter arq = null;
-        Formatter saida = null;
-        boolean deuRuim = false;
-
-        nomeArq += ".csv";
-
-        try {
-            arq = new FileWriter(nomeArq, true);
-            saida = new Formatter(arq);
-        }
-        catch (IOException erro) {
-            System.err.println("Erro ao abrir arquivo");
-            System.exit(1);
-        }
-
-        try {
-
-            for (int i=0; i< lista.getTamanho(); i++) {
-                Produto a = lista.getElemento(i);
-
-                saida.format("%d;%s;%s;%.2f;%s;%s;%d\n",a.getIdProduto(),
-                        a.getNome(),a.getDescricao(), a.getValor(), a.getMarca(), a.getEspecie(), a.getQuantidade());
-            }
-        }
-        catch (FormatterClosedException erro) {
-            System.err.println("Erro ao gravar no arquivo");
-            deuRuim= true;
-        }
-        finally {
-
-            saida.close();
-            try {
-                arq.close();
-            }
-            catch (IOException erro) {
-                System.err.println("Erro ao fechar arquivo.");
-                deuRuim = true;
-            }
-            if (deuRuim) {
-                System.exit(1);
-            }
-        }
-    }
-
 
     public static void gravaRegistro(String nomeArq, String registro) {
         BufferedWriter saida = null;
@@ -94,8 +46,6 @@ public class ProdutoController {
                     erro.getMessage());
         }
     }
-
-
 
     public static void gravaArquivoTxt(List<Produto> lista, String nomeArq) {
 
@@ -145,29 +95,23 @@ public class ProdutoController {
     @Autowired
     private PetshopRepository petRepository;
 
-    private ListaObj listaObj = new ListaObj(1000);
     private PilhaObj<Produto> pilha = new PilhaObj<>(1000);
     private FilaObj<Produto> fila = new FilaObj<>(1000);
 
     @CrossOrigin
     @PostMapping("{fkPetshop}")
-    public ResponseEntity createProdutos(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
+    public ResponseEntity createProdutosSemFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         novoProduto.setFkPetShop(petshop);
         repository.save(novoProduto);
-        listaObj.adicionar(novoProduto);
-        return status(HttpStatus.CREATED).build();
+        return status(HttpStatus.CREATED).body(novoProduto.getIdProduto());
     }
-
 
 
     @CrossOrigin
     @GetMapping
     public ResponseEntity getProdutos() {
         List<Produto> lista = repository.findAll();
-        for (Produto p: lista) {
-            listaObj.adicionar(p);
-        }
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
@@ -185,10 +129,9 @@ public class ProdutoController {
 
 
     @CrossOrigin
-    @PatchMapping("/foto/{id}")
+    @PatchMapping("/atualizar-foto/{id}")
     public ResponseEntity patchFoto(@PathVariable Integer id,
                                     @RequestParam MultipartFile foto) throws IOException {
-        // Não vamos validar se o carro existe
         if (repository.existsById(id)) {
             Produto produto = repository.findById(id).get();
 
@@ -203,7 +146,7 @@ public class ProdutoController {
     }
 
     @CrossOrigin
-    @GetMapping("/foto/{id}")
+    @GetMapping("/pegar-foto/{id}")
     public ResponseEntity getFoto(@PathVariable int id){
         if (repository.existsById(id)) {
             Produto produto = repository.findById(id).get();
@@ -218,28 +161,9 @@ public class ProdutoController {
         }
     }
 
-    @CrossOrigin
-    @GetMapping("/doc")
-    public ResponseEntity getDoc() throws IOException {
-
-            BufferedReader entrada = new BufferedReader(new FileReader("Documento de Layout.docx"));;
-
-            return ResponseEntity
-                    .status(200)
-                    .header("content-type", "application/pdf")
-                    .body(entrada);
-        }
-
 
     @CrossOrigin
-    @GetMapping("/csv/{produtos}")
-    public ResponseEntity getCSV(@PathVariable String produtos) {
-        gravaLista(listaObj , produtos);
-        return ResponseEntity.status(200).build();
-    }
-
-    @CrossOrigin
-    @GetMapping("/layout/{nmArq}")
+    @GetMapping("/arqTxt/{nmArq}")
     public ResponseEntity getLayout(@PathVariable String nmArq) {
         List<Produto> produtos = repository.findAll();
         gravaArquivoTxt(produtos, nmArq);
@@ -247,11 +171,10 @@ public class ProdutoController {
     }
 
 
-
     @CrossOrigin
-    @GetMapping("/{id}/teste")
-    public ResponseEntity getPetshop(@PathVariable int id) {
-        return ResponseEntity.of(repository.findById(id));
+    @GetMapping("/teste/{idPetshop}")
+    public ResponseEntity getPetshop(@PathVariable int idPetshop) {
+        return ResponseEntity.of(repository.findById(idPetshop));
     }
 
     @CrossOrigin
@@ -343,7 +266,7 @@ public class ProdutoController {
                     Produto produtoTxt = new Produto(nome,descricao,valor,marca,especie,tipoProduto,quantidade);
                     byte[] foto2 = image.getBytes();
                     produtoTxt.setFoto(foto2);
-                    createProdutos(produtoTxt,petshop);
+                    createProdutosSemFoto(produtoTxt,petshop);
                     pilha.push(produtoTxt);
                     contaRegDados++;
                 }

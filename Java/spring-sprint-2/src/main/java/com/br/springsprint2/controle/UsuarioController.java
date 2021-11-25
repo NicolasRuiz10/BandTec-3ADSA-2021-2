@@ -1,8 +1,7 @@
 package com.br.springsprint2.controle;
 
-import com.br.springsprint2.dominio.Servico;
-import com.br.springsprint2.dominio.Usuario;
-import com.br.springsprint2.repositorio.UsuarioRepository;
+import com.br.springsprint2.dominio.UsuarioLogar;
+import com.br.springsprint2.repositorio.UsuarioLogarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +15,11 @@ import static org.springframework.http.ResponseEntity.status;
 @RequestMapping("usuarios")
 public class UsuarioController {
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioLogarRepository repository;
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity createUsuario(@RequestBody Usuario novoUsuario) {
+    public ResponseEntity createUsuario(@RequestBody UsuarioLogar novoUsuario) {
         repository.save(novoUsuario);
         return status(HttpStatus.CREATED).build();
     }
@@ -28,7 +27,7 @@ public class UsuarioController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity getUsuarios() {
-        List<Usuario> lista = repository.findAll();
+        List<UsuarioLogar> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
 
@@ -51,9 +50,9 @@ public class UsuarioController {
 
     @CrossOrigin
     @PostMapping("/autenticar")
-    public ResponseEntity autenticar(@RequestBody Usuario ususario) {
-        List<Usuario> usuarios = repository.findAll();
-        for (Usuario usuario : usuarios) {
+    public ResponseEntity autenticar(@RequestBody UsuarioLogar ususario) {
+        List<UsuarioLogar> usuarios = repository.findAll();
+        for (UsuarioLogar usuario : usuarios) {
             if (usuario.autenticar(ususario.getEmail(), ususario.getSenha())) {
                 usuario.setAutenticacao(true);
                 repository.save(usuario);
@@ -68,7 +67,7 @@ public class UsuarioController {
     @CrossOrigin
     @PostMapping("/logoff/{id}")
     public ResponseEntity logoff(@PathVariable int id) {
-        Usuario u = repository.findById(id).get();
+        UsuarioLogar u = repository.findById(id).get();
         if (repository.existsById(id)) {
             u.setAutenticacao(false);
             repository.save(u);
@@ -80,7 +79,7 @@ public class UsuarioController {
     @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity putUsuario(@PathVariable int id,
-                                     @RequestBody Usuario usuarioAtualizado) {
+                                     @RequestBody UsuarioLogar usuarioAtualizado) {
         if (repository.existsById(id)) {
             usuarioAtualizado.setIdUsuario(id);
             repository.save(usuarioAtualizado);

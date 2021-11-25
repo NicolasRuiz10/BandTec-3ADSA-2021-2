@@ -8,13 +8,15 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPedido;
 
-    @ManyToOne
-    @JoinColumn(name = "fkIntensPedidos")
-    private ItensPedido fkIntensPedidos;
 
     @ManyToOne
     @JoinColumn(name = "fkUsuario")
-    private Usuario fkUsuario;
+    private UsuarioLogar fkUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "fkProduto")
+    private Produto fkProduto;
+
 
     public int getIdPedido() {
         return idPedido;
@@ -24,19 +26,11 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public ItensPedido getFkIntensPedidos() {
-        return fkIntensPedidos;
-    }
-
-    public void setFkIntensPedidos(ItensPedido fkIntensPedidos) {
-        this.fkIntensPedidos = fkIntensPedidos;
-    }
-
-    public Usuario getFkUsuario() {
+    public UsuarioLogar getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(Usuario fkUsuario) {
+    public void setFkUsuario(UsuarioLogar fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
 }
