@@ -11,11 +11,10 @@ import { useAuth } from "../../hooks/Context";
 
 export function Carrinho() {
   const history = useHistory();
-  const {itemsCarrinho} = useAuth();
-  const { totalCarrinho } = useAuth();
-  console.log('item carrinho', itemsCarrinho);
+  const { totalCarrinho, itemsCarrinho } = useAuth();
 
   function rediretPagamento() {
+    console.log(itemsCarrinho);
     history.push('/pagamento')
   }
   return (

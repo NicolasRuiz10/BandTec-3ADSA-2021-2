@@ -20,11 +20,18 @@ export function MenuPetshop(props) {
 	return (
 		<>
 			<div className="menu">
+			<div className="itens-menu">
 				<div className="logo">
 					<Link to="/">
 						<img src={logo} alt="Logo iPet" />
 					</Link>
 				</div>
+				<Link to="/petshop/pedidos">
+					<div className="item-menu">
+						<h3>Pedidos</h3>
+					</div>
+				</Link>
+			</div>
 				{!autenticadoPetshop ?
 					<div className="itens-acesso">
 						<div className="item-acesso">

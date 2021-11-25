@@ -10,6 +10,7 @@ import StatusPedido from "../Pages/StatusPedido/StatusPedido";
 import CadastroProdutos from "../PagesPetshop/CadastroProdutos/CadastroProdutos";
 import LoginPetshop from '../PagesPetshop/loginPetshop/LoginPetshop';
 import CadastroPetshop from '../PagesPetshop/CadastroPetshop/CadastroPetshop';
+import PedidoPetshop from '../PagesPetshop/PedidoPetshop/PedidoPetshop';
 const Routes = () => {
     return (
         <BrowserRouter>
@@ -17,6 +18,7 @@ const Routes = () => {
             <Route component={CadastroProdutos} path="/petshop/cadastro-produtos" />
             <Route component={LoginPetshop} path="/petshop/login" />
             <Route component={CadastroPetshop} path="/petshop/cadastro" />
+            <Route component={PedidoPetshop} path="/petshop/pedidos" />
             <Route component={Login} path="/login" />
             <Route component={Cadastro} path="/cadastro" />
             <Route component={Carrinho} path="/carrinho" />

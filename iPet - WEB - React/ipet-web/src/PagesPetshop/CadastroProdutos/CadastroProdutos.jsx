@@ -65,7 +65,7 @@ export default function CadastroProdutos() {
             <h1 className="categoria">Categoria</h1>
             <h1 className="nome">Nome</h1>
             <div className="inputs1">
-                <input type="text" size="50" />
+                <input className="input" type="text" size="50" />
                 <input type="text" size="50" />
             </div>
 
