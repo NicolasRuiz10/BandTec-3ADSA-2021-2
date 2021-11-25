@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Cadastro.css'
 import { useHistory } from "react-router-dom";
-import { Menu } from "../../components/menu/Menu";
+import { MenuPetshop } from "../menu/MenuPetshop";
 import Input from "../../components/input/Input"
 import { ButtonVerde } from "../../components/button/Button"
 import { FaFacebook } from 'react-icons/fa';
@@ -80,7 +80,7 @@ export function Cadastro() {
     return (
         <>
             <Toast text="Necessário preencher todos os campos" color="red" showToast={showToast} changeValueToast={setValueToast} />
-            <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="crieConta">
             <h2>Crie sua conta iPet</h2>
             </div>
