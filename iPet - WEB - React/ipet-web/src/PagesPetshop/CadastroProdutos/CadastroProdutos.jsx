@@ -5,6 +5,7 @@ import Line from '../../Assets/Line.png'
 import { Footer } from '../../components/footer/footer';
 import Toast from "../../components/toast/Toast";
 import axios from "axios";
+import { Button } from "../../components/button/Button";
 
 export default function CadastroProdutos() {
     const [showToast, setShowToast] = useState(false);
@@ -32,7 +33,6 @@ export default function CadastroProdutos() {
             }
         }).then((res) => {
             setShowToast(true);
-            document.location.reload(true);
         })
     }
     return (
@@ -98,18 +98,15 @@ export default function CadastroProdutos() {
                     </p>
                 </div>
                 <div className="baixarButton">
-                    <input></input>
-                    &nbsp;&nbsp;&nbsp;
-                    <button className="anexarImagem">Enviar arquivo</button>
+                    <label htmlFor="imagem" className="label">{!img.name ? 'Escolher imagem' : img.name}</label>
+                    <input id="imagem" type="file" onChange={setValueImg}/>
                 </div>
-                <div className="baixarButton2">
-                    <input></input>
-                    &nbsp;&nbsp;&nbsp;
-                    <button className="anexarImagem">Anexar imagem</button>
+                <div className="baixarButton">
+                    <label htmlFor="txt" className="label">{!file.name ? 'Escolher arquivo txt' : file.name}</label>
+                    <input id="txt" type="file" onChange={setValueTxt}/>
                 </div>
-
-                <div className="adicionarButton">
-                    <button className="adicionarArquivos">Adicionar arquivos</button>
+                <div className="baixarButton">
+                    <Button btnTitle="Cadastrar produto" clickButton={send} />
                 </div>
             </div>
             <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />

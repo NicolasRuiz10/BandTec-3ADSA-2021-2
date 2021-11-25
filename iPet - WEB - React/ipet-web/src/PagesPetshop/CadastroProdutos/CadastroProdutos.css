@@ -161,7 +161,7 @@
 
 .importacao {
     width: 100%;
-    height: 900px;
+    height: 700px;
     background-color: white;
 }
 
@@ -181,18 +181,6 @@
     position: relative;
     margin-left: 100px;
     margin-top: 50px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: black;
-    line-height: 59px;
-}
-
-.baixarButton {
-    position: relative;
-    text-align: center;
-    margin-top: 100px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
@@ -234,6 +222,28 @@
     font-size: 36px;
     color: black;
     line-height: 59px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.label {
+    border: 1px solid #CBD5E0;
+    padding: calc((2.25rem - 1.5rem) / 2) 0.75rem;
+    font-size: 0.875rem;
+    width: 400px;
+    cursor: pointer;
+    border-radius: .25rem;
+    margin-top: 5rem;
+}
+
+.label::after {
+    border-left: 1px solid #CBD5E0;
+    padding: calc((2.25rem - 1.5rem) / 2) 0.75rem;
+    font-size: 0.875rem;
+    content: 'Arquivo';
+    margin-left: 2rem;
 }
 
 .baixarButton2 {

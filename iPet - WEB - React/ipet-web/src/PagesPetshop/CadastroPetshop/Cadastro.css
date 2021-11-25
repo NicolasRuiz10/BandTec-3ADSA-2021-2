@@ -179,6 +179,7 @@ width: 100%;
 }
 
 .baixarButton{
+  margin-top: 2rem;
   text-align: center;
 }
 
@@ -203,8 +204,6 @@ width: 100%;
 
 .baixarButton input{
   width: 400px;
-  height: 100px;
-  margin: 20px auto;
 }
 
 .enviar-arq{

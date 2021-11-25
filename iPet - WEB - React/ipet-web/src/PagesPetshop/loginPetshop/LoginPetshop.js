@@ -10,7 +10,6 @@ import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
 import { useAuth } from '../../hooks/Context';
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default function LoginPetshop() {
     let history = useHistory();
     const [email, setEmail] = useState('');
@@ -71,12 +70,10 @@ export default function LoginPetshop() {
                     </div>
                 </div>
                 <div className="secundary-login">
-                    <div className="principal-cadastro">
-                        <h1>
-                            Cadastre seu PetShop e venda como nunca! 
-                        </h1>
-                        <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
-                    </div>
+                    <h1>
+                        Cadastre seu PetShop e venda como nunca! 
+                    </h1>
+                    <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
                 </div>
             </div>
         </>

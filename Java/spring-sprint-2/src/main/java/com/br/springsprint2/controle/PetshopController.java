@@ -2,6 +2,7 @@ package com.br.springsprint2.controle;
 
 import com.br.springsprint2.dominio.Petshop;
 import com.br.springsprint2.dominio.Produto;
+import com.br.springsprint2.dominio.Usuario;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,18 @@ public class PetshopController {
             }
         } return status(304).build();
     }
+
+    @CrossOrigin
+    @PostMapping("/logoff/{id}")
+    public ResponseEntity logoff(@PathVariable int id) {
+        Petshop p = repository.findById(id).get();
+        if (repository.existsById(id)) {
+            p.setAutenticacao(false);
+            repository.save(p);
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(404).build();
+    };
 
     @CrossOrigin
     @GetMapping
