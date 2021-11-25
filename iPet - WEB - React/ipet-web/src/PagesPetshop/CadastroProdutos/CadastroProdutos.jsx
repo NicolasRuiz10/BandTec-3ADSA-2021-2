@@ -11,6 +11,8 @@ export default function CadastroProdutos() {
     const [showToast, setShowToast] = useState(false);
     const [img, setImg] = useState('');
     const [file, setFile] = useState('');
+    const [colorToast, setColorToast] = useState('');
+    const [textToast, setTextToast] = useState('');
     function setValueToast(value) {
         setShowToast(value);
     }
@@ -27,17 +29,25 @@ export default function CadastroProdutos() {
         var formData = new FormData();
         formData.append("txt", file);
         formData.append('image', img);
-        axios.post('http://localhost:8080/produtos/txt', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            }
-        }).then((res) => {
+        if (file !== '' || img !== '') {
+            axios.post('http://localhost:8080/produtos/txt', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                }
+            }).then((res) => {
+                setShowToast(true);
+                setColorToast('green');
+                setTextToast('Produto cadastrado com sucesso');
+            })
+        } else {
             setShowToast(true);
-        })
+            setColorToast('red');
+            setTextToast('Necessário anexar todos os arquivos');
+        }
     }
     return (
         <>
-            <Toast text="Produto cadastrado com sucesso" color="green" showToast={showToast} changeValueToast={setValueToast} />
+            <Toast text={textToast} color={colorToast} showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="cadastroTitle">
                 <h1>Cadastro de produto</h1>
