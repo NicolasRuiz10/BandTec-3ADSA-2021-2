@@ -5,13 +5,48 @@ import { Footer } from '../../components/footer/footer';
 import Toast from "../../components/toast/Toast";
 import axios from "axios";
 import { Button } from "../../components/button/Button";
+import { useAuth } from '../../hooks/Context';
 
 export default function CadastroProdutos() {
+    const {idPetshop}= useAuth();
     const [showToast, setShowToast] = useState(false);
     const [img, setImg] = useState('');
     const [file, setFile] = useState('');
     const [colorToast, setColorToast] = useState('');
     const [textToast, setTextToast] = useState('');
+    const [nome, setNome] = useState("");
+    const [marca, setMarca] = useState("");
+    const [valor, setValor] = useState("");
+    const [quantidade, setQuantidade] = useState("");
+    const [tipoProduto, setTipoProduto] = useState("");
+    const [tipoPet, setTipoPet] = useState("");
+    const [descricao, setDescricao] = useState("");
+    
+    function gravar() {
+      axios.post(`http://localhost:8080/produtos/${idPetshop}`, {
+        nome: nome,
+        descricao: descricao,
+        valor: valor,
+        marca: marca,
+        especie: tipoPet,
+        quantidade: quantidade,
+        tipoProduto: tipoProduto
+        }).then((resposta) => {
+          alert("Produto cadastrado com sucesso");
+      }).catch((erro) => {
+        console.log(erro);
+      })
+      var formatImg = new FormData();
+      formatImg.append('foto', img);
+      axios.patch(`http://localhost:8080/produtos/foto/4`, formatImg, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+    
     function setValueToast(value) {
         setShowToast(value);
     }
@@ -49,7 +84,7 @@ export default function CadastroProdutos() {
             <Toast text={textToast} color={colorToast} showToast={showToast} changeValueToast={setValueToast} />
             <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div className="id">
-              <p>ID PetShop: 11</p>  
+              <p>ID PetShop: {idPetshop}</p>  
             </div>
             <div className="cadastroTitleDiv">
                 <h1>Cadastro de produto</h1>
@@ -60,33 +95,22 @@ export default function CadastroProdutos() {
           <h5>Dados do Produto</h5>
           <div className="input-produto-div">
             <p>Nome do produto: </p>
-            <input type="text" placeholder="Digite o nome do produto" />
+            <input type="text" placeholder="Digite o nome do produto" onChange={e => setNome(e.target.value)}/>
             <p>Marca do produto: </p>
-            <input type="text" placeholder="Digite a marca do produto" />
+            <input type="text" placeholder="Digite a marca do produto" onChange={e => setMarca(e.target.value)}/>
             <p>Valor do produto: </p>
-            <input type="number" placeholder="Digite o valor do produto" />
+            <input type="number" placeholder="Digite o valor do produto" onChange={e => setValor(e.target.value)}/>
             <p>Quantidade: </p>
-            <input type="number" placeholder="Digite a quantidade do produto" />
+            <input type="number" placeholder="Digite a quantidade do produto" onChange={e => setQuantidade(e.target.value)}/>
             <p>Tipo do produto: </p>
-            <select name="select">
-              <option value="valor1">Valor 1</option>
-              <option value="valor2" selected>
-                Valor 2
-              </option>
-              <option value="valor3">Valor 3</option>
-            </select>
+            <input type="text" placeholder="Digite o tipo do produto" onChange={e => setTipoProduto(e.target.value)}/>
             <p>Tipo do pet: </p>
-            <select name="select">
-              <option value="valor1">Valor 1</option>
-              <option value="valor2" selected>
-                Valor 2
-              </option>
-              <option value="valor3">Valor 3</option>
-            </select>
+            <input type="text" placeholder="Digite o tipo do pet" onChange={e => setTipoPet(e.target.value)}/>
             <p>Descrição do produto: </p>
-            <textarea type="text" placeholder="Digite a descrição do produto" />
+            <textarea type="text" placeholder="Digite a descrição do produto" onChange={e => setDescricao(e.target.value)}/>
           </div>
         </div>
+
         <div className="anexoImg-div">
           <h5>Escolha a foto do produto</h5>
           <label htmlFor="imagem" className="label">{!img.name ? 'Escolher imagem' : img.name}</label>
@@ -94,7 +118,7 @@ export default function CadastroProdutos() {
         </div>
       </div>
       <div className="buttonsfinal-div">
-        <button id="adicionar-produto">Adicionar Produto</button>
+        <button id="adicionar-produto" onClick={gravar}>Adicionar Produto</button>
       </div>
             <div className="cadastroTitleDiv">
                 <h1>Importação de produtos em lote</h1>
