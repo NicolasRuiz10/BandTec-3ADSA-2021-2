@@ -1,89 +1,93 @@
-import React from 'react'
-import './CadastroProdutos.css';
-// import logo from '../../Assets/logo1.jpeg'
-// import { Link } from "react-router-dom";
-import { Menu } from '../../components/menu/Menu';
-import Line from '../../Assets/Line.png'
-import { Footer } from '../../components/footer/footer';
+import React from "react";
+import "./CadastroProdutos.css";
+
+import { Menu } from "../../components/menu/Menu";
+import { Footer } from "../../components/footer/footer";
 
 export function CadastroProdutos() {
-    return (
-        <>
-            <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
-            <div className="cadastroTitle">
-                <h1>Cadastro de produto</h1>
-                <img className="Line" src={Line} alt="none" />
-            </div>
-            <div className="anexoImg">
-                <div className="anexoImg1">
-
-                </div>
-                <div className="buttonAnexoDiv">
-                    <button>Anexar Imagem</button>
-                </div>
-            </div>
-
-            <h1 className="categoria">Categoria</h1>
-            <h1 className="nome">Nome</h1>
-            <div className="inputs1">
-                <input type="text" size="50" />
-                <input type="text" size="50" />
-            </div>
-
-            <h1 className="marca">Marca</h1>
-            <h1 className="valor">Valor</h1>
-            <div className="inputs1">
-                <input type="text" size="50" />
-                <input type="text" size="50" />
-            </div>
-
-            <h1 className="quantidade">Quantidade</h1>
-            <div className="inputs3">
-                <input type="text" size="20" />
-            </div>
-            <h1 className="descricaoLabel">Descrição</h1>
-            <div className="descricao">
-                <input className="descricaoinput" type="text" size="100" height="400" />
-            </div>
-            <div className="buttonsfinal">
-                <button>Limpar</button>
-                <button>Adicionar Produto</button>
-            </div>
-            <hr></hr>
-            <div className="importacao">
-                <div className="importacaoTitle">
-                    <h1>Importação de produtos em lote</h1>
-                    <img className="Line" src={Line} alt="none" />
-                </div>
-                <div className="importacaoText">
-                    <p>
-                        Baixe nosso arquivo modelo e cadastre seus produtos
-                    </p>
-                </div>
-                <div className="baixarButton">
-                    <button className="botaoBaixar">Baixar arquivo</button>
-                </div>
-                <div className="enviarText">
-                    <p>
-                        Baixe nosso arquivo modelo e cadastre seus produtos
-                    </p>
-                </div>
-                <div className="baixarButton">
-                    <input></input>
-                    &nbsp;&nbsp;&nbsp;
-                    <button className="anexarImagem">Enviar arquivo</button>
-                </div>
-                <div className="baixarButton2">
-                    <input></input>
-                    &nbsp;&nbsp;&nbsp;
-                    <button className="anexarImagem">Anexar imagem</button>
-                </div>
-
-                <div className="adicionarButton">
-                    <button className="adicionarArquivos">Adicionar arquivos</button>
-                </div>
-            </div>
-            <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
-        </>
-    );
+  return (
+    <>
+      <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+      <div className="id">
+        <p>ID PetShop: 11</p>  
+      </div>
+      <div className="cadastroTitle">
+        <h1>Cadastro de produto</h1>
+        <hr />
+      </div>
+      <div className="principal-cadastro">
+        <div className="info-produto">
+          <h5>Dados do Produto</h5>
+          <div className="input-produto">
+            <p>Nome do produto: </p>
+            <input type="text" placeholder="Digite o nome do produto" />
+            <p>Marca do produto: </p>
+            <input type="text" placeholder="Digite a marca do produto" />
+            <p>Valor do produto: </p>
+            <input type="number" placeholder="Digite o valor do produto" />
+            <p>Quantidade: </p>
+            <input type="number" placeholder="Digite a quantidade do produto" />
+            <p>Tipo do produto: </p>
+            <select name="select">
+              <option value="valor1">Valor 1</option>
+              <option value="valor2" selected>
+                Valor 2
+              </option>
+              <option value="valor3">Valor 3</option>
+            </select>
+            <p>Tipo do pet: </p>
+            <select name="select">
+              <option value="valor1">Valor 1</option>
+              <option value="valor2" selected>
+                Valor 2
+              </option>
+              <option value="valor3">Valor 3</option>
+            </select>
+            <p>Descrição do produto: </p>
+            <textarea type="text" placeholder="Digite a descrição do produto" />
+          </div>
+        </div>
+        <div className="anexoImg">
+          <h5>Escolha a foto do produto</h5>
+          <input type="file" />
+        </div>
+      </div>
+      <div className="buttonsfinal">
+        <button id="btn-adicionar-produto">Adicionar Produto</button>
+      </div>
+      <div className="importacao">
+        <div className="importacaoTitle">
+          <h1>Cadastro de produto em lote</h1>
+          <hr />
+        </div>
+        <div className="importacaoText">
+          <h5>Baixe nosso arquivo modelo e cadastre seus produtos</h5>
+        </div>
+        <div className="baixarButton">
+          <button className="botaoBaixar">Baixar arquivo</button>
+        </div>
+        <div className="enviarText">
+          <h5>Envie seu arquivo preenchido e uma imagem</h5>
+        </div>
+        <div className="enviar-arq">
+           <label htmlFor="">Arquivo: </label>
+          <input type="file"></input>
+        </div>
+        <div className="enviar-arq">
+        <label htmlFor="">Imagem: </label>
+          <input type="file"></input>
+        </div>
+        <div className="adicionarButton">
+          <button>Adicionar arquivos</button>
+          <button id="btn-desfazer-cadastro">Desfazer último cadastro</button>
+        </div>
+      </div>
+      <Footer
+        item1="Termos e condições de usos"
+        item2="Políticas e termos"
+        item3="Help desk"
+        item4="Formas de pagamento"
+      />
+    </>
+  );
 }
