@@ -172,7 +172,7 @@ public class ProdutoController {
     }
 
     @CrossOrigin
-    @PostMapping("produto-foto/{fkPetshop}")
+    @PostMapping("/produto-foto/{fkPetshop}")
     public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         novoProduto.setFkPetShop(petshop);
