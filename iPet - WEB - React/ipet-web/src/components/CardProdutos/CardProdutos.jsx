@@ -13,7 +13,7 @@ const CardProdutos = ({ produto }) => {
   return (
     <div className="card">
       <div className="card--imagem">
-        <img src={`http://localhost:8080/produtos/foto/${produto.idProduto}`} alt="" />
+        <img src={`http://localhost:8080/produtos/pegar-foto/${produto.idProduto}`} alt="" />
         <hr />
       </div>
       <div className="card--desc">

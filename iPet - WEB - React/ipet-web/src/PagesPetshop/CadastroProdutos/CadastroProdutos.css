@@ -73,10 +73,13 @@
     opacity: 1;
 }
 
+
+
 .buttonsfinal button:hover{
     cursor: pointer;
     opacity: 0.9;
 }
+
 
 .info-produto-div h5 {
     font-size: 20px;
