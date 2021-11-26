@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class UsuarioLogar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
@@ -27,6 +27,7 @@ public class Usuario {
     @JsonIgnore
     @OneToMany(mappedBy = "fkUsuario")
     private List<Pedido> pedidos = new ArrayList<>();
+
 
     public Boolean autenticar(String login, String senha) {
         if (login.equals(this.email) && senha.equals(this.senha)) {
@@ -123,14 +124,3 @@ public class Usuario {
         this.autenticacao = autenticacao;
     }
 }
-//{
-//"nome": "Felipe Olegario",
-//"email": "felipe.olegario@linx3.com",
-//"telefone": "11963353621",
-//"cpf": "48963818829",
-//"senha": "laurinha",
-//"dataNascimento": "2021-07-07",
-//"endereco": "Rua mario ancona",
-//"cep": "05572100",
-//"numero": 130
-//}

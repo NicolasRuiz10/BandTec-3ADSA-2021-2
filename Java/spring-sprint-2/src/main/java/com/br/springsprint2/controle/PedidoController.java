@@ -1,13 +1,9 @@
 package com.br.springsprint2.controle;
 
-import com.br.springsprint2.dominio.ItensPedido;
 import com.br.springsprint2.dominio.Pedido;
-import com.br.springsprint2.dominio.Usuario;
-import com.br.springsprint2.repositorio.ItensPedidosRepository;
 import com.br.springsprint2.repositorio.PedidoRepository;
-import com.br.springsprint2.repositorio.UsuarioRepository;
+import com.br.springsprint2.repositorio.UsuarioLogarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,25 +14,13 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequestMapping("pedido")
 public class PedidoController {
+
     @Autowired
     private PedidoRepository repository;
 
     @Autowired
-    private ItensPedidosRepository itensRepository;
+    private UsuarioLogarRepository userRepository;
 
-    @Autowired
-    private UsuarioRepository userRepository;
-
-    @CrossOrigin
-    @PostMapping("/{fkIntensPedidos}/{fkUsuario}")
-    public ResponseEntity createPedido(@RequestBody Pedido novoPedido, @PathVariable int fkIntensPedidos, @PathVariable int fkUsuario) {
-        ItensPedido itens = itensRepository.findById(fkIntensPedidos).get();
-        novoPedido.setFkIntensPedidos(itens);
-        Usuario usuario = userRepository.findById(fkUsuario).get();
-        novoPedido.setFkUsuario(usuario);
-        repository.save(novoPedido);
-        return status(HttpStatus.CREATED).build();
-    }
 
     @CrossOrigin
     @GetMapping

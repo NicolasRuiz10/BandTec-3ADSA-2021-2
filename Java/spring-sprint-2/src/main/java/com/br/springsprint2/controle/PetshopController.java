@@ -1,8 +1,6 @@
 package com.br.springsprint2.controle;
 
 import com.br.springsprint2.dominio.Petshop;
-import com.br.springsprint2.dominio.Produto;
-import com.br.springsprint2.dominio.Usuario;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,13 +88,3 @@ public class PetshopController {
         }
     }
 }
-
-//{
-//"nome": "Pets",
-//"cnpj": "78457148000147",
-//"endereco": "Av. Politecnica",
-//"numero": "1400",
-//"delivery": 1,
-//"plano": 1,
-//"veterinario": 0
-//}

@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 public class Produto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduto;
@@ -49,7 +50,8 @@ public class Produto {
 
     @JsonIgnore
     @OneToMany(mappedBy = "fkProduto")
-    private List<ItensPedido> itens = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
+
 
     public byte[] getFoto() {
         return foto;
@@ -123,14 +125,6 @@ public class Produto {
         this.fkPetShop = fkPetShop;
     }
 
-    public List<ItensPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItensPedido> itens) {
-        this.itens = itens;
-    }
-
     public String getTipoProduto() {
         return tipoProduto;
     }
@@ -140,12 +134,3 @@ public class Produto {
     }
 }
 
-//{
-//"nome": "Ração Seca PremieR Pet Golden Special Cães Adultos Frango e Carne",
-//"descricao": "A Ração Seca PremieR Pet Golden Special Cães Adultos Frango",
-//"valor": 152.91,
-//"marca": "Golden, Premier",
-//"especie": "Cachorro",
-//"quantidade": 30,
-//"idPetshop": 1
-//}
