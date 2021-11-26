@@ -34,9 +34,8 @@ export function Cadastro() {
     function confirmarSenha(e) {
         console.log(senha);
         if (senha === e) {
-            setShowToast(true);
+            setvalidacao(true);
         } else {
-            setvalidacao(false);
             setvalidacao(false);
         }
     }
@@ -112,17 +111,15 @@ export function Cadastro() {
                         </div>
                         <ButtonVerde title="Criar conta" clickButton={criarConta} />
                     </div>
-                    <div className="card-login">
-                        <div className="section--login">
-                            <h1>
-                                Já tem cadastro?
-                            </h1>
-                            <ButtonVerde title="Login" clickButton={redirectLogin} />
-                            <h2>Cadastro rápido</h2>
-                            <div className="icones-acessos">
-                                <FcGoogle size={34} />
-                                <FaFacebook size={34} className="icon-face" />
-                            </div>
+                    <div className="card-caraio">
+                        <h1>
+                            Já tem cadastro?
+                        </h1>
+                        <ButtonVerde title="Login" clickButton={redirectLogin} />
+                        <h2>Cadastro rápido</h2>
+                        <div className="icones-acessos">
+                            <FcGoogle size={34} />
+                            <FaFacebook size={34} className="icon-face" />
                         </div>
                     </div>
                 </div>
