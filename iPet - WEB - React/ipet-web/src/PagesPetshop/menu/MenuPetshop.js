@@ -7,7 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 
-export function MenuPetshop(props) {
+export function MenuPetshop() {
 	let history = useHistory();
 	const { autenticadoPetshop, setAutenticadoPetshop, idPetshop, nomePetshop } = useAuth();
 

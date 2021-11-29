@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CadastroProdutos.css";
-import { Menu } from "../../components/menu/Menu";
+import {MenuPetshop} from "../menu/MenuPetshop";
 import { Footer } from "../../components/footer/footer";
 import Toast from "../../components/toast/Toast";
 import axios from "axios";
@@ -102,7 +102,7 @@ export default function CadastroProdutos() {
         showToast={showToast}
         changeValueToast={setValueToast}
       />
-      <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+      <MenuPetshop />
       <div className="id">
         <p>ID PetShop: {idPetshop}</p>
       </div>
