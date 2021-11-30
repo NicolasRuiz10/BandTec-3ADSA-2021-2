@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -47,6 +48,7 @@ public class Produto {
     @JsonIgnore
     @ManyToOne
     private Petshop fkPetShop;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "fkProduto")
@@ -132,5 +134,6 @@ public class Produto {
     public void setTipoProduto(String tipoProduto) {
         this.tipoProduto = tipoProduto;
     }
+
 }
 
