@@ -21,7 +21,6 @@ export default function CadastroProdutos() {
   const [tipoProduto, setTipoProduto] = useState("");
   const [tipoPet, setTipoPet] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [idProduto, setIdProduto] = useState(0);
 
    async function gravar() {
      const response = await axios
@@ -91,7 +90,12 @@ export default function CadastroProdutos() {
 
   function desfazer() {
     axios.delete("http://localhost:8080/produtos/desfazer-cadastro").then(res => {
-      console.log(res);
+      console.log(res , 'resposta');
+      if (res.status === 200) {
+        setShowToast(true);
+        setColorToast("green");
+        setTextToast("último cadastro foi desfeito com sucesso");
+      }
     })
   }
   return (
@@ -200,7 +204,7 @@ export default function CadastroProdutos() {
         </div>
         <div className="baixarButton">
           <Button btnTitle="Cadastrar produto" clickButton={send} />
-          <div  className="btn-desfazer">
+          <div id="btn-desfazer">
             <button onClick={desfazer}>Desfazer</button>
           </div>
         </div>

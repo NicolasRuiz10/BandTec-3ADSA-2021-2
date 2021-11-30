@@ -45,7 +45,7 @@ export function Carrinho() {
               itemsCarrinho.map((item, key) => (
                 <div className="itens" key={key}>
                   <ItemCarrinho
-                    urlImg={`http://localhost:8080/produtos/foto/${item.idProduto}`}
+                    urlImg={`http://localhost:8080/produtos/pegar-foto/${item.idProduto}`}
                     descProduto={item.nome}
                     preco={item.valor}
                   />

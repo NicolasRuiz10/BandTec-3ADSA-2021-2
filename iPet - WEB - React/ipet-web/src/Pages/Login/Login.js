@@ -10,7 +10,7 @@ import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
 import { useAuth } from '../../hooks/Context';
 
-export default () => {
+export default function Login() {
     let history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

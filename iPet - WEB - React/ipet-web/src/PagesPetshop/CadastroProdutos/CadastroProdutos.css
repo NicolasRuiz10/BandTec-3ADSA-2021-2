@@ -1,5 +1,5 @@
 .cadastroTitleDiv {
-    width: 80%;
+    width: 60%;
     margin: 2% auto;
 }
 
@@ -149,6 +149,16 @@
     background-color: #2484EC;
     color: #fff;
     outline: none;
+}
+
+#btn-desfazer button{
+    background: #FF0000;
+    opacity: 1;
+}
+
+#btn-desfazer button:hover{
+    opacity: 0.8;
+    cursor: pointer;
 }
 .anexoImg-div {
     display: flex;

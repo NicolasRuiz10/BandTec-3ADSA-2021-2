@@ -4,9 +4,7 @@ import { Menu } from "../../components/menu/Menu";
 import Input from "../../components/input/Input";
 import { CardProdutos } from "../../components/CardProdutos/CardProdutos";
 import Toast from "../../components/toast/Toast";
-import { useAuth } from "../../hooks/Context";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import ContentLoader from "react-content-loader"
 
 export function Produtos(props) {
@@ -14,7 +12,6 @@ export function Produtos(props) {
   const [showToast, setShowToast] = useState(false);
   const [busca, setBusca] = useState("");
   const [produtosBase, setProdutosBase] = useState("");
-  const {itemsCarrinho} = useAuth();
 
   function setValueToast(value) {
     setShowToast(value);
