@@ -36,10 +36,7 @@ export function Menu(props) {
 						<div className="item-menu">
 							<h3>{props.menuItem2}</h3>
 						</div>
-					</Link>
-					<div className="item-menu">
-						<h3>{props.menuItem3}</h3>
-					</div>
+					</Link>	
 				</div>
 				{!autenticado ?
 					<div className="itens-acesso">
