@@ -30,7 +30,7 @@ export function ItemCarrinho({ urlImg, descProduto, preco }) {
 
     return (
         <>
-            <div className="box-item">
+            <div className="box-item-carinho">
                 <div className="section-itens--img">
                     <img className="imagemProduto" alt="" src={urlImg} />
                 </div>
@@ -49,7 +49,7 @@ export function ItemCarrinho({ urlImg, descProduto, preco }) {
                 <div className="section-itens--qtd">
                     <div className="item-quantity">
                         <button disabled={quantidade < 2} onClick={diminuirQuantidade}>-</button>
-                        <h1>{quantidade}</h1>
+                        <p>{quantidade}</p>
                         <button onClick={aumentarQuantidade}>+</button>
                     </div>
                 </div>
