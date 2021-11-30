@@ -53,6 +53,7 @@ public class Produto {
     private List<Pedido> pedidos = new ArrayList<>();
 
 
+
     public byte[] getFoto() {
         return foto;
     }
