@@ -6,7 +6,6 @@ import com.br.springsprint2.dominio.Petshop;
 import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
-import com.br.springsprint2.resposta.ProdutoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,6 +97,9 @@ public class ProdutoController {
 
     private PilhaObj<Produto> pilha = new PilhaObj<>(1000);
     private FilaObj<Produto> fila = new FilaObj<>(1000);
+
+
+
 
     @CrossOrigin
     @PostMapping("{fkPetshop}")
