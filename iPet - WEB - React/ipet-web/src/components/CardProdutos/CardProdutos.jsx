@@ -1,14 +1,21 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import "./CardProdutos.css";
 import { ButtonVerde } from "../../components/button/Button";
 import { useAuth } from "../../hooks/Context";
 
 
 const CardProdutos = ({ produto }) => {
-  const { itemsCarrinho, setItemsCarrinho, setTotalCarrinho, totalCarrinho  } = useAuth();
+  const history = useHistory();
+  const { itemsCarrinho, setItemsCarrinho, setTotalCarrinho, totalCarrinho, autenticado } = useAuth();
   function adicionarItem() {
-    setItemsCarrinho([...itemsCarrinho, produto])
-    setTotalCarrinho(totalCarrinho + produto.valor);
+    if(autenticado) {
+      setItemsCarrinho([...itemsCarrinho, produto])
+      setTotalCarrinho(totalCarrinho + produto.valor);
+    } else {
+      history.push('/login');
+    }
   }
   return (
     <div className="card">

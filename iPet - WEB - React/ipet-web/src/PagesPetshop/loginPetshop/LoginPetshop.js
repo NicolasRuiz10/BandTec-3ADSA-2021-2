@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { MenuPetshop } from "../menu/MenuPetshop";
+import {MenuPetshop} from "../menu/MenuPetshop";
 import Input from "../../components/input/Input";
 import { ButtonVerde } from "../../components/button/Button";
 import { FaFacebook } from "react-icons/fa";
@@ -50,7 +50,7 @@ export default function LoginPetshop() {
     return (
         <>
             <Toast text="Login ou senha incorretos" color="red" showToast={showToast} changeValueToast={setValueToast} />
-            <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
+            <MenuPetshop />
             <div className="acessaConta">
             <h2>Acesse sua conta</h2>
             </div>
