@@ -1,20 +1,6 @@
-package com.br.springsprint2.dominio;
+package com.br.springsprint2.resposta;
 
-import com.br.springsprint2.repositorio.PetshopRepository;
-import com.br.springsprint2.repositorio.ProdutoRepository;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-@Entity
-public class Produto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProdutoResponse {
     private int idProduto;
     private String nome;
     private String descricao;
@@ -23,12 +9,10 @@ public class Produto {
     private String especie;
     private String tipoProduto;
     private int quantidade;
+    private int fkPetShop;
 
-
-
-
-
-    public Produto(String nome, String descricao, Double valor, String marca, String especie, String tipoProduto, int quantidade) {
+    public ProdutoResponse(int idProduto, String nome, String descricao, Double valor, String marca, String especie, String tipoProduto, int quantidade) {
+        this.idProduto = idProduto;
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
@@ -36,32 +20,6 @@ public class Produto {
         this.especie = especie;
         this.tipoProduto = tipoProduto;
         this.quantidade = quantidade;
-    }
-
-    public Produto() {
-    }
-
-    @JsonIgnore
-    @Column(length = 20_000_000)
-    private byte[] foto;
-
-    @JsonIgnore
-    @ManyToOne
-    private Petshop fkPetShop;
-
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "fkProduto")
-    private List<Pedido> pedidos = new ArrayList<>();
-
-
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 
     public int getIdProduto() {
@@ -112,22 +70,6 @@ public class Produto {
         this.especie = especie;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Petshop getFkPetShop() {
-        return fkPetShop;
-    }
-
-    public void setFkPetShop(Petshop fkPetShop) {
-        this.fkPetShop = fkPetShop;
-    }
-
     public String getTipoProduto() {
         return tipoProduto;
     }
@@ -136,5 +78,19 @@ public class Produto {
         this.tipoProduto = tipoProduto;
     }
 
-}
+    public int getQuantidade() {
+        return quantidade;
+    }
 
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public int getFkPetShop() {
+        return fkPetShop;
+    }
+
+    public void setFkPetShop(int fkPetShop) {
+        this.fkPetShop = fkPetShop;
+    }
+}

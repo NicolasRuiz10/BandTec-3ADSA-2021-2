@@ -6,6 +6,7 @@ import com.br.springsprint2.dominio.Petshop;
 import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
+import com.br.springsprint2.resposta.ProdutoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -113,6 +114,12 @@ public class ProdutoController {
     public ResponseEntity getProdutos() {
         List<Produto> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
+    }
+
+    @CrossOrigin
+    @GetMapping("/simples")
+    public List<ProdutoResponse> getSimples() {
+        return repository.litaProdutosComFkPetshop();
     }
 
     @CrossOrigin

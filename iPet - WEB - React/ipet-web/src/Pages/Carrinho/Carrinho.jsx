@@ -15,6 +15,7 @@ export function Carrinho() {
 
   function rediretPagamento() {
     history.push('/pagamento')
+    console.log(itemsCarrinho);
   }
   return (
     <>
