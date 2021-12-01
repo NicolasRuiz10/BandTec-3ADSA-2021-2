@@ -119,12 +119,6 @@ public class ProdutoController {
     }
 
     @CrossOrigin
-    @GetMapping("/simples")
-    public List<ProdutoResponse> getSimples() {
-        return repository.litaProdutosComFkPetshop();
-    }
-
-    @CrossOrigin
     @PostMapping("/produto-foto/{fkPetshop}")
     public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
         Petshop petshop = petRepository.findById(fkPetshop).get();
