@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import "./PedidoPetshop.css";
 import { MenuPetshop } from "../menu/MenuPetshop";
-import { ButtonVerde } from "../../components/button/Button";
 import axios from "axios";
-import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
 import { Footer } from "../../components/footer/footer";
+import { ItemCarrinho } from "../../components/carrinho/ItemCarrinho";
 import { useAuth } from '../../hooks/Context';
 
 export default function PedidoPetshop() {
     let history = useHistory();
-    const { setIdPetshop, setNomePetshop, setAutenticadoPetshop } = useAuth();
-    function redirectCadastro() {
-        history.push("/petshop/cadastro");
-    }
+    const { idPetshop, itemsCarrinho } = useAuth();
     return (
         <>
             <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -35,6 +31,17 @@ export default function PedidoPetshop() {
                         </div>
                     </div>
                 </div>
+                {
+                    itemsCarrinho.map((item, key) => (
+                        <div className="itens" key={key}>
+                        <ItemCarrinho
+                            urlImg={`http://localhost:8080/produtos/pegar-foto/${item.idProduto}`}
+                            descProduto={item.nome}
+                            preco={item.valor}
+                        />
+                        </div>
+                    ))
+                }
             </div>
             <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
         </>

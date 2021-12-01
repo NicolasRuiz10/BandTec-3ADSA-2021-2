@@ -14,13 +14,17 @@ export function StatusPedido(props) {
     const { totalCarrinho } = useAuth();
     const [idPedido, setIdPedido] = useState(0);
     const [pedido, setPedido] = useState([]);
+    const [petshop, setPetshop] = useState('');
     
     useEffect(() => {
         setIdPedido(props.match.params.idPedido);
         axios.get(`http://localhost:8080/itens/pedido/id/${idPedido}`).then((res) => {
             setPedido(pedido, res.data);
         });
-      }, [])
+        axios.get(`http://localhost:8080/ipet/${itemsCarrinho[0].idPetshop}`).then((res) => {
+            setPetshop(res.data.nome);
+        });
+    }, [])
 
     function redirectProdutos() {
         history.push('/produtos');
@@ -51,7 +55,7 @@ export function StatusPedido(props) {
                 </div>
                 <div className="informacoes-pet">
                     <h1>Informações da entrega</h1>
-                    <p>PetShop: NobrePet</p>
+                    <p>PetShop: {petshop}</p>
                     <p>Tempo estimado: 2 horas</p>
                     <span className="color-gren">Pedido aprovado</span>
                 </div>
