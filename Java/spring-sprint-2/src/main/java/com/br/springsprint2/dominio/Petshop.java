@@ -10,7 +10,9 @@ public class Petshop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPetshop;
+
     private String nome;
+
     private String cnpj;
     private String endereco;
     private int numero;
