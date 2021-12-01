@@ -181,12 +181,6 @@ export default function CadastroProdutos() {
         <hr />
       </div>
       <div className="importacao">
-        <div className="importacaoText">
-          <p>Baixe nosso arquivo modelo e cadastre seus produtos</p>
-        </div>
-        <div className="baixarButton">
-          <button className="botaoBaixar">Baixar arquivo</button>
-        </div>
         <div className="enviarText">
           <p>Baixe nosso arquivo modelo e cadastre seus produtos</p>
         </div>

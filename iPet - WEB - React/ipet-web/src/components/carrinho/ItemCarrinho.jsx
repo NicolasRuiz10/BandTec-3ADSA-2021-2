@@ -48,9 +48,9 @@ export function ItemCarrinho({ urlImg, descProduto, preco }) {
 
                 <div className="section-itens--qtd">
                     <div className="item-quantity">
-                        <button disabled={quantidade < 2} onClick={diminuirQuantidade}>-</button>
+                        <button className="button-add" disabled={quantidade < 2} onClick={diminuirQuantidade}>-</button>
                         <p>{quantidade}</p>
-                        <button onClick={aumentarQuantidade}>+</button>
+                        <button className="button-add" onClick={aumentarQuantidade}>+</button>
                     </div>
                 </div>
 

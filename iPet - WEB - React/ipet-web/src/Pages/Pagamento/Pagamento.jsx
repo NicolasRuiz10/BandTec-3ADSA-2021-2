@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "../../components/menu/Menu";
+import Input from "../../components/input/Input";
 import Progress from "../../components/progress/Progress";
 import "./Pagamento.css";
 import { Link, useHistory } from "react-router-dom";
@@ -7,21 +8,20 @@ import { ButtonVerde } from "../../components/button/Button";
 import { Footer } from "../../components/footer/footer";
 import { useAuth } from "../../hooks/Context";
 
-
-
 export function Pagamento() {
   const history = useHistory();
   const [formaPagamento, setFormaPagamento] = useState("");
-  const { totalCarrinho } = useAuth();
-
-
+  const [troco, setTroco] = useState(0);
+  const { totalCarrinho, itemsCarrinho, idUsuario } = useAuth();
 
   function redirectStatus() {
+    console.log(troco);
     history.push('/status-pedido');
   }
 
   function contextPagamento() {
     var formaPagChecked = document.getElementsByName("FormaPagamento");
+
     for (var i = 0; i < formaPagChecked.length; i++) {
       if (formaPagChecked[i].checked) {
         if (formaPagChecked[i].value === "pix") {
@@ -55,15 +55,13 @@ export function Pagamento() {
               <label for="cartao">Cartão</label>
             </div>
           </div>
-          <p>*Pagamento em Dinheiro e Cartão deve ser realizado no ato da entrega</p>
+          <p>Pagamento em Dinheiro e Cartão deve ser realizado no ato da entrega!</p>
         </div>
         { formaPagamento === 'pix' ?
 										<div className="pagamento">
                       <h3>Chave Pix para o pagamento: A5YYYTWW28882JJJ27712</h3>
-                      <p>Chave Aleatória : iPet</p>
                       <img src="https://logopng.com.br/logos/pix-106.png" alt="" />
                         <p>Valor total da compra: R$ {totalCarrinho}</p>
-                      <span>Comprovante</span>
                       <input type="file" />
                     </div>
 										: formaPagamento === 'dinheiro' ?
@@ -71,10 +69,8 @@ export function Pagamento() {
                       <div className="pagamento-dinheiro">
                         <h3>Pagamento Dinheiro</h3>
                           <p>Valor total da compra: R$ {totalCarrinho}</p>
-                        <div className="input-troco">
                           <label htmlFor="">Troco para: </label>
-                          <input type="text" placeholder="Troco para R$"/>
-                        </div>
+                          <input className="input-troco" placeholder="R$ 0,0" onChange={(e) => setTroco(e.target.value)}/>
                       </div>
                     </div>
                     : formaPagamento === 'cartao' ?
