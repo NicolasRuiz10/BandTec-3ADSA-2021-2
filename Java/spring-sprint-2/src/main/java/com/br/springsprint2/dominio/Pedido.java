@@ -1,27 +1,52 @@
 package com.br.springsprint2.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
     private int idPedido;
 
     private String pagamento;
 
     private Double valorTotal;
 
-    private Double troco;
-
     @ManyToOne
     @JoinColumn(name = "fkUsuario")
     private UsuarioLogar fkUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "fkProduto")
-    private Produto fkProduto;
+    @JsonIgnore
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
+    private Set<ItensPedido> itensPedido;
 
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public UsuarioLogar getFkUsuario() {
+        return fkUsuario;
+    }
+
+    public void setFkUsuario(UsuarioLogar fkUsuario) {
+        this.fkUsuario = fkUsuario;
+    }
+
+    public Set<ItensPedido> getItensPedido() {
+        return itensPedido;
+    }
+
+    public void setItensPedido(Set<ItensPedido> itensPedido) {
+        this.itensPedido = itensPedido;
+    }
 
     public String getPagamento() {
         return pagamento;
@@ -39,35 +64,6 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-    public Double getTroco() {
-        return troco;
-    }
 
-    public void setTroco(Double troco) {
-        this.troco = troco;
-    }
 
-    public Produto getFkProduto() {
-        return fkProduto;
-    }
-
-    public void setFkProduto(Produto fkProduto) {
-        this.fkProduto = fkProduto;
-    }
-
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
-
-    public UsuarioLogar getFkUsuario() {
-        return fkUsuario;
-    }
-
-    public void setFkUsuario(UsuarioLogar fkUsuario) {
-        this.fkUsuario = fkUsuario;
-    }
 }

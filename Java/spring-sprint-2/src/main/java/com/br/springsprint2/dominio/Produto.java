@@ -50,11 +50,6 @@ public class Produto {
     private Petshop fkPetShop;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "fkProduto")
-    private List<Pedido> pedidos = new ArrayList<>();
-
-
 
     public byte[] getFoto() {
         return foto;

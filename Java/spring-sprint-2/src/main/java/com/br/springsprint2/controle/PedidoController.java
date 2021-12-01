@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -30,15 +31,17 @@ public class PedidoController {
     private ProdutoRepository produtoRepository;
 
     @CrossOrigin
-    @PostMapping("/{idProduto}/{idUsuario}")
-    public ResponseEntity createPedido(@RequestBody Pedido novoPedido, @PathVariable int idProduto,@PathVariable int idUsuario) {
-
-        Produto produto = produtoRepository.findById(idProduto).get();
-        novoPedido.setFkProduto(produto);
-        UsuarioLogar usuarioLogar = userRepository.findById(idUsuario).get();
-        novoPedido.setFkUsuario(usuarioLogar);
-        repository.save(novoPedido);
-        return status(HttpStatus.CREATED).build();
+    @PostMapping("/usuario/id/{id}")
+    public ResponseEntity postPedidoByUsuarioId(
+            @PathVariable Integer id,
+            @RequestBody Pedido pedido
+    ) {
+        Optional<UsuarioLogar> usuario = userRepository.findById(id);
+        if (usuario.isPresent()) {
+            pedido.setFkUsuario(usuario.get());
+            return ResponseEntity.status(201).body(repository.save(pedido));
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @CrossOrigin
