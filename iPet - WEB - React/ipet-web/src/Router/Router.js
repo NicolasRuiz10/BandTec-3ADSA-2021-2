@@ -24,7 +24,7 @@ const Routes = () => {
             <Route component={Carrinho} path="/carrinho" />
             <Route component={Pagamento} path="/pagamento" />
             <Route component={Produtos} path="/produtos" />
-            <Route component={StatusPedido} path="/status-pedido" />
+            <Route component={StatusPedido} path="/status-pedido/:idPedido" />
         </BrowserRouter>
     )
 }
