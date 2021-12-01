@@ -5,6 +5,7 @@ import com.br.springsprint2.dominio.Pedido;
 import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.ItensPedidoRepository;
 import com.br.springsprint2.repositorio.PedidoRepository;
+import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,9 @@ public class ItensPedidoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private PetshopRepository petshopRepository;
 
     @GetMapping
     public ResponseEntity getAllItensPedido() {
@@ -74,6 +78,18 @@ public class ItensPedidoController {
     public ResponseEntity getAllItensProdutoByPedidoId(@PathVariable Integer id) {
         if (pedidoRepository.existsById(id)) {
             List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByPedidoIdPedido(id);
+            if (listaItensPedido.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(listaItensPedido);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/pedido/petshop/{id}")
+    public ResponseEntity getAllItensProdutoByPetshopId(@PathVariable Integer idPetshop) {
+        if (petshopRepository.existsById(idPetshop)) {
+            List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByPetshopIdPetshop(idPetshop);
             if (listaItensPedido.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
