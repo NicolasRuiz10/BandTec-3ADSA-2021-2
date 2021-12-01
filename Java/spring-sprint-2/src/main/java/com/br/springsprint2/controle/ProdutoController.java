@@ -105,6 +105,7 @@ public class ProdutoController {
     @PostMapping("{fkPetshop}")
     public ResponseEntity createProdutosSemFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
+        novoProduto.setIdPetshop(fkPetshop);
         novoProduto.setFkPetShop(petshop);
         repository.save(novoProduto);
         return status(HttpStatus.CREATED).body(novoProduto.getIdProduto());

@@ -45,11 +45,20 @@ public class Produto {
     @Column(length = 20_000_000)
     private byte[] foto;
 
+
     @JsonIgnore
     @ManyToOne
     private Petshop fkPetShop;
 
+    private int idPetshop;
 
+    public int getIdPetshop() {
+        return idPetshop;
+    }
+
+    public void setIdPetshop(int idPetshop) {
+        this.idPetshop = idPetshop;
+    }
 
     public byte[] getFoto() {
         return foto;
