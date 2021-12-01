@@ -30,7 +30,7 @@ public class PedidoController {
     private ProdutoRepository produtoRepository;
 
     @CrossOrigin
-    @PostMapping("/{listProduto}/{idUsuario}")
+    @PostMapping("/{idProduto}/{idUsuario}")
     public ResponseEntity createPedido(@RequestBody Pedido novoPedido, @PathVariable int idProduto,@PathVariable int idUsuario) {
 
         Produto produto = produtoRepository.findById(idProduto).get();
