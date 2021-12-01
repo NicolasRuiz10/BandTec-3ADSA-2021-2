@@ -23,6 +23,7 @@ export default function CadastroProdutos() {
   const [descricao, setDescricao] = useState("");
 
    async function gravar() {
+     console.log('idPet', idPetshop);
      const response = await axios
       .post(`http://localhost:8080/produtos/${idPetshop}`, {
         nome: nome,

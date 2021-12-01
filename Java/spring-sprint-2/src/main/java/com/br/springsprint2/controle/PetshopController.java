@@ -67,6 +67,7 @@ public class PetshopController {
     public ResponseEntity getPetshop(@PathVariable int id) {
         return ResponseEntity.of(repository.findById(id));
     }
+
     @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity deletePetshop(@PathVariable int id) {

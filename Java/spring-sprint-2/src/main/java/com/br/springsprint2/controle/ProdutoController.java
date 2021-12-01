@@ -105,9 +105,13 @@ public class ProdutoController {
     @PostMapping("{fkPetshop}")
     public ResponseEntity createProdutosSemFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
-        novoProduto.setFkPetShop(petshop);
-        repository.save(novoProduto);
-        return status(HttpStatus.CREATED).body(novoProduto.getIdProduto());
+        if ( petRepository.existsById(fkPetshop) ) {
+            novoProduto.setIdPetshop(fkPetshop);
+            novoProduto.setFkPetShop(petshop);
+            repository.save(novoProduto);
+            return status(HttpStatus.CREATED).body(novoProduto.getIdProduto());
+        }
+        return ResponseEntity.status(404).build();
     }
 
 
@@ -122,11 +126,15 @@ public class ProdutoController {
     @PostMapping("/produto-foto/{fkPetshop}")
     public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
         Petshop petshop = petRepository.findById(fkPetshop).get();
+        if ( petRepository.existsById(fkPetshop) ){
         novoProduto.setFkPetShop(petshop);
+        novoProduto.setIdPetshop(fkPetshop);
         byte[] novaFoto = foto.getBytes();
         novoProduto.setFoto(novaFoto);
         repository.save(novoProduto);
         return status(HttpStatus.CREATED).build();
+        }
+        return ResponseEntity.status(404).build();
     }
 
 

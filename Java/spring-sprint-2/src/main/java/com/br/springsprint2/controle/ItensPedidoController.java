@@ -5,6 +5,7 @@ import com.br.springsprint2.dominio.Pedido;
 import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.ItensPedidoRepository;
 import com.br.springsprint2.repositorio.PedidoRepository;
+import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ public class ItensPedidoController {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private PetshopRepository petshopRepository;
+
     @GetMapping
     public ResponseEntity getAllItensPedido() {
         List<ItensPedido> listaItensPedido = itensPedidoRepository.findAll();
@@ -40,7 +44,7 @@ public class ItensPedidoController {
         ItensPedido itensPedido1 = itensPedidoRepository.findOneById(itensPedido.getId());
         if (itensPedido == null) {
             Produto produto = produtoRepository.getById(idProduto);
-            itensPedido.setFkProduto(produto);
+            itensPedido.setProduto(produto);
             return ResponseEntity.status(201).body(itensPedidoRepository.save(itensPedido));
         }
         return ResponseEntity.ok(itensPedido);
@@ -55,7 +59,7 @@ public class ItensPedidoController {
         if (itensPedidoRepository.existsById(idItens)) {
             itensPedido.setId(idItens);
             Produto produto = produtoRepository.getById(idProduto);
-            itensPedido.setFkProduto(produto);
+            itensPedido.setProduto(produto);
             return ResponseEntity.ok(itensPedidoRepository.save(itensPedido));
         }
         return ResponseEntity.notFound().build();
@@ -74,6 +78,18 @@ public class ItensPedidoController {
     public ResponseEntity getAllItensProdutoByPedidoId(@PathVariable Integer id) {
         if (pedidoRepository.existsById(id)) {
             List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByPedidoIdPedido(id);
+            if (listaItensPedido.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(listaItensPedido);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/pedido/petshop/{idPetshop}")
+    public ResponseEntity getAllItensProdutoByPetshopId(@PathVariable Integer idPetshop) {
+        if (petshopRepository.existsById(idPetshop)) {
+            List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByProdutoIdPetShop(idPetshop);
             if (listaItensPedido.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
@@ -105,7 +121,7 @@ public class ItensPedidoController {
         Optional<Produto> produtos = produtoRepository.findById(idProduto);
         if (pedido.isPresent()) {
             itensPedido.setPedido(pedido.get());
-            itensPedido.setFkProduto(produtos.get());
+            itensPedido.setProduto(produtos.get());
             itensPedidoRepository.save(itensPedido);
             return ResponseEntity.status(201).body(itensPedido);
         }
