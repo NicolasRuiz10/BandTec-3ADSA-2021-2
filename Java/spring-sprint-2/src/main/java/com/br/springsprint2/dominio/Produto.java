@@ -16,7 +16,6 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduto;
-
     private String nome;
     private String descricao;
     private Double valor;
@@ -46,21 +45,11 @@ public class Produto {
     @Column(length = 20_000_000)
     private byte[] foto;
 
-
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "fkPetShop")
     private Petshop fkPetShop;
 
-    private Integer idPetShop;
 
-    public int getIdPetshop() {
-        return idPetShop;
-    }
-
-    public void setIdPetshop(int idPetshop) {
-        this.idPetShop = idPetShop;
-    }
 
     public byte[] getFoto() {
         return foto;
