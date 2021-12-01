@@ -124,6 +124,7 @@ public class ProdutoController {
     public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         novoProduto.setFkPetShop(petshop);
+        novoProduto.setIdPetshop(fkPetshop);
         byte[] novaFoto = foto.getBytes();
         novoProduto.setFoto(novaFoto);
         repository.save(novoProduto);
