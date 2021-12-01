@@ -13,5 +13,5 @@ public interface ItensPedidoRepository extends JpaRepository<ItensPedido, Intege
 
     List<ItensPedido> findAllByPedidoIdPedido(Integer id);
 
-    List<ItensPedido> findAllByPetshopIdPetshop(Integer id);
+    List<ItensPedido> findAllByProdutoIdPetShop(Integer id);
 }

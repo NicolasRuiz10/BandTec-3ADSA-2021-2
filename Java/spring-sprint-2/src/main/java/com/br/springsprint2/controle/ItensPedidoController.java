@@ -44,7 +44,7 @@ public class ItensPedidoController {
         ItensPedido itensPedido1 = itensPedidoRepository.findOneById(itensPedido.getId());
         if (itensPedido == null) {
             Produto produto = produtoRepository.getById(idProduto);
-            itensPedido.setFkProduto(produto);
+            itensPedido.setProduto(produto);
             return ResponseEntity.status(201).body(itensPedidoRepository.save(itensPedido));
         }
         return ResponseEntity.ok(itensPedido);
@@ -59,7 +59,7 @@ public class ItensPedidoController {
         if (itensPedidoRepository.existsById(idItens)) {
             itensPedido.setId(idItens);
             Produto produto = produtoRepository.getById(idProduto);
-            itensPedido.setFkProduto(produto);
+            itensPedido.setProduto(produto);
             return ResponseEntity.ok(itensPedidoRepository.save(itensPedido));
         }
         return ResponseEntity.notFound().build();
@@ -86,10 +86,10 @@ public class ItensPedidoController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/pedido/petshop/{id}")
+    @GetMapping("/pedido/petshop/{idPetshop}")
     public ResponseEntity getAllItensProdutoByPetshopId(@PathVariable Integer idPetshop) {
         if (petshopRepository.existsById(idPetshop)) {
-            List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByPetshopIdPetshop(idPetshop);
+            List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByProdutoIdPetShop(idPetshop);
             if (listaItensPedido.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
@@ -121,7 +121,7 @@ public class ItensPedidoController {
         Optional<Produto> produtos = produtoRepository.findById(idProduto);
         if (pedido.isPresent()) {
             itensPedido.setPedido(pedido.get());
-            itensPedido.setFkProduto(produtos.get());
+            itensPedido.setProduto(produtos.get());
             itensPedidoRepository.save(itensPedido);
             return ResponseEntity.status(201).body(itensPedido);
         }
