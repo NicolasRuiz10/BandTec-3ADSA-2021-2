@@ -37,9 +37,7 @@ export function Pagamento() {
 
         for (var i = 0; i < formaPagChecked.length; i++) {
             if (formaPagChecked[i].checked) {
-                if (formaPagChecked[i].value === "pix") {
-                    setFormaPagamento("pix");
-                } else if (formaPagChecked[i].value === "dinheiro") {
+                if (formaPagChecked[i].value === "dinheiro") {
                     setFormaPagamento("dinheiro");
                 } else if (formaPagChecked[i].value === "cartao") {
                     setFormaPagamento("cartao");
@@ -60,15 +58,12 @@ export function Pagamento() {
                     <h3>Escolha a forma de pagamento</h3>
                     <div className="radios">
                         <div className="radio-pag">
-                            <input type="radio" name="FormaPagamento" onClick={contextPagamento} value="pix" />
-                            <label for="pix">Pix</label>
                             <input type="radio" name="FormaPagamento" onClick={contextPagamento} value="dinheiro" />
                             <label for="dinheiro">Dinheiro</label>
                             <input type="radio" name="FormaPagamento" onClick={contextPagamento} value="cartao" />
                             <label for="cartao">Cartão</label>
                         </div>
                     </div>
-                    <p>Pagamento em Dinheiro e Cartão deve ser realizado no ato da entrega!</p>
                 </div>
                 {formaPagamento === 'pix' ?
                     <div className="pagamento">
@@ -82,8 +77,6 @@ export function Pagamento() {
                             <div className="pagamento-dinheiro">
                                 <h3>Pagamento Dinheiro</h3>
                                 <p>Valor total da compra: R$ {totalCarrinho}</p>
-                                <label htmlFor="">Troco para: </label>
-                                <input className="input-troco" placeholder="R$ 0,0" onChange={(e) => setTroco(e.target.value)} />
                             </div>
                         </div>
                         : formaPagamento === 'cartao' ?
