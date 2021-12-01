@@ -50,7 +50,7 @@ export function StatusPedido() {
         </div>
       </div>
       <div className="section-botoes">
-        <Button btnTitle="Realizar nova compra" clickButton={redirectProdutos} />
+        <button className="btn-nova-compra" onClick={redirectProdutos}>Realizar nova compra</button>
       </div>
       <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
     </>

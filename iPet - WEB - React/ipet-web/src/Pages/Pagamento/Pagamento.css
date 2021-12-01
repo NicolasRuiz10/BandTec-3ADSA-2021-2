@@ -1,11 +1,13 @@
 .principal--pagamento {
   width: 70%;
-  border: 1px solid #ccc;
+  border: 1px solid #cbd5e0;
+  background-color: white;
   margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 .pagamento-radios{
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #cbd5e0;
   text-align: center;
   padding: 20px;
 }
@@ -33,7 +35,7 @@
 .pagamento-radios p{
   color: #ff0000;
   font-weight: bold;
-  font-size: 8px;
+  font-size: 12px;
   font-family: Montserrat;
   text-align: center;
 }
@@ -106,6 +108,7 @@ th, td {
 .pagamento {
   text-align: center;
   padding: 10px;
+  background-color: white;
 }
 
 
@@ -147,10 +150,15 @@ th, td {
   color: rgba(0, 0, 0, 0.651);
 }
 
-.input-troco input{
-  padding: 5px;
-}
-
-.input-troco label{
-  padding: 10px;
+.input-troco{
+  width: 50%;
+  height: 2.25rem;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  border: 1px solid #cbd5e0;
+  outline: none;
+  margin-bottom: 10px;
+  color: black;
+  font-family: Montserrat;
+  margin-top: 1rem;
 }

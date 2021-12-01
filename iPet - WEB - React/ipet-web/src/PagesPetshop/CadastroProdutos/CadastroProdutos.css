@@ -39,7 +39,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid rgb(168, 166, 166);
+    border: 1px solid #CBD5E0;
 }
 
 .buttonsfinal-div button{
@@ -374,10 +374,10 @@ input[type="file"] {
     border: 1px solid #CBD5E0;
     padding: calc((2.25rem - 1.5rem) / 2) 0.75rem;
     font-size: 0.875rem;
-    width: 400px;
     cursor: pointer;
     border-radius: .25rem;
     margin-top: 1rem;
+    background-color: white;
 }
 
 .label::after {
