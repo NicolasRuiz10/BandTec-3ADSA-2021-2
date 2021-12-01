@@ -1,9 +1,14 @@
 package com.br.springsprint2.controle;
 
 import com.br.springsprint2.dominio.Pedido;
+import com.br.springsprint2.dominio.Petshop;
+import com.br.springsprint2.dominio.Produto;
+import com.br.springsprint2.dominio.UsuarioLogar;
 import com.br.springsprint2.repositorio.PedidoRepository;
+import com.br.springsprint2.repositorio.ProdutoRepository;
 import com.br.springsprint2.repositorio.UsuarioLogarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +26,20 @@ public class PedidoController {
     @Autowired
     private UsuarioLogarRepository userRepository;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @CrossOrigin
+    @PostMapping("/{listProduto}/{idUsuario}")
+    public ResponseEntity createPedido(@RequestBody Pedido novoPedido, @PathVariable int idProduto,@PathVariable int idUsuario) {
+
+        Produto produto = produtoRepository.findById(idProduto).get();
+        novoPedido.setFkProduto(produto);
+        UsuarioLogar usuarioLogar = userRepository.findById(idUsuario).get();
+        novoPedido.setFkUsuario(usuarioLogar);
+        repository.save(novoPedido);
+        return status(HttpStatus.CREATED).build();
+    }
 
     @CrossOrigin
     @GetMapping
