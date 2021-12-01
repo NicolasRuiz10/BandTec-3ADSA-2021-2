@@ -50,7 +50,7 @@ public class Produto {
     @ManyToOne
     private Petshop fkPetShop;
 
-    private int idPetshop;
+    private Integer idPetshop;
 
     public int getIdPetshop() {
         return idPetshop;
