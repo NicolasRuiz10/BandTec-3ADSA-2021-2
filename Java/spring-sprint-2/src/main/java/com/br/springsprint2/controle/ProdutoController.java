@@ -117,7 +117,7 @@ public class ProdutoController {
         List<Produto> lista = repository.findAll();
         return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
     }
-
+    
     @CrossOrigin
     @PostMapping("/produto-foto/{fkPetshop}")
     public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
