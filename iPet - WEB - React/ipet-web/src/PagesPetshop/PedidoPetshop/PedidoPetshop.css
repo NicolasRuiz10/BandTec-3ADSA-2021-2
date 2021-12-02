@@ -1,0 +1,43 @@
+.card-pedido {
+  border-radius: .25rem;
+  width: 100%;
+  padding: 1.5rem;
+  border: 1px solid #cbd5e0;
+  background-color: #fff;
+  margin-top: 1.5rem;
+  
+}
+
+.card-produto {
+    border-radius: .25rem;
+    width: 400px;
+    padding: 1.5rem;
+    border: 1px solid #cbd5e0;
+    background-color: #fff;
+    margin-top: 1.5rem;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.div-labels {
+    font-size: 17px;
+}
+
+.div-label {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.p {
+    margin-left: 1rem;
+}
