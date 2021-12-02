@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 public class Petshop {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPetshop;

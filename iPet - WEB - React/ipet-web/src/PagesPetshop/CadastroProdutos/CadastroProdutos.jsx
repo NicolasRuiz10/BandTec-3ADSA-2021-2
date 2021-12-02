@@ -33,6 +33,7 @@ export default function CadastroProdutos() {
         especie: tipoPet,
         quantidade: quantidade,
         tipoProduto: tipoProduto,
+        IdPet: idPetshop
       })
     console.log("meu id", response.data);
     var formatImg = new FormData();

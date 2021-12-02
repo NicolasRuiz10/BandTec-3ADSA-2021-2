@@ -5,8 +5,6 @@ import javax.persistence.*;
 @Entity
 public class ItensPedido {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

@@ -106,7 +106,7 @@ public class ProdutoController {
     public ResponseEntity createProdutosSemFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         if ( petRepository.existsById(fkPetshop) ) {
-            novoProduto.setIdPetshop(fkPetshop);
+            novoProduto.setIdPet(fkPetshop);
             novoProduto.setFkPetShop(petshop);
             repository.save(novoProduto);
             return status(HttpStatus.CREATED).body(novoProduto.getIdProduto());
@@ -127,8 +127,8 @@ public class ProdutoController {
     public ResponseEntity createProdutosFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop, @RequestBody MultipartFile foto) throws IOException {
         Petshop petshop = petRepository.findById(fkPetshop).get();
         if ( petRepository.existsById(fkPetshop) ){
+            novoProduto.setIdPet(fkPetshop);
         novoProduto.setFkPetShop(petshop);
-        novoProduto.setIdPetshop(fkPetshop);
         byte[] novaFoto = foto.getBytes();
         novoProduto.setFoto(novaFoto);
         repository.save(novoProduto);
@@ -276,6 +276,7 @@ public class ProdutoController {
 
                     Produto produtoTxt = new Produto(nome,descricao,valor,marca,especie,tipoProduto,quantidade);
                     byte[] foto2 = image.getBytes();
+                    produtoTxt.setIdPet(petshop);
                     produtoTxt.setFoto(foto2);
                     createProdutosSemFoto(produtoTxt,petshop);
                     pilha.push(produtoTxt);

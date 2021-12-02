@@ -34,7 +34,7 @@ public class PetshopController {
         for (Petshop petshop1 : petshops) {
             if (petshop1.autenticar(petshop.getEmail(), petshop.getSenha())) {
                 petshop1.setAutenticacao(true);
-                repository.save(petshop);
+                putPetshop(petshop1.getIdPetshop(),petshop1);
                 return status(200).body(petshop1);
             } else {
                 petshop1.setAutenticacao(false);
@@ -49,7 +49,7 @@ public class PetshopController {
         Petshop p = repository.findById(id).get();
         if (repository.existsById(id)) {
             p.setAutenticacao(false);
-            repository.save(p);
+            putPetshop(id,p);
             return ResponseEntity.status(200).build();
         }
         return ResponseEntity.status(404).build();

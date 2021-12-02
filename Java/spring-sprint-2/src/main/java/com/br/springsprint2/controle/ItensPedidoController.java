@@ -89,7 +89,7 @@ public class ItensPedidoController {
     @GetMapping("/pedido/petshop/{idPetshop}")
     public ResponseEntity getAllItensProdutoByPetshopId(@PathVariable Integer idPetshop) {
         if (petshopRepository.existsById(idPetshop)) {
-            List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByProdutoIdPetShop(idPetshop);
+            List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByProdutoIdPet(idPetshop);
             if (listaItensPedido.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
