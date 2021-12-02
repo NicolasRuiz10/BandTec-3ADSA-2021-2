@@ -21,6 +21,21 @@ hr {
   padding: 1rem;
 }
 
+.informacao-compra {
+  float:right;
+  margin-right: 10%;
+}
+
+.informacao-compra span{
+  font-size: 12px;
+  color: #ff0000;
+}
+.produtosPetShop{
+  float: right;
+  margin-top: -3%;
+  margin-right: 10%;
+}
+
 .filtro--produtos h3 {
   font-size: 35px;
   padding-top: 30px;

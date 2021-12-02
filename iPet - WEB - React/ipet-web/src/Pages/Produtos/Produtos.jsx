@@ -12,6 +12,7 @@ export function Produtos(props) {
   const [showToast, setShowToast] = useState(false);
   const [busca, setBusca] = useState("");
   const [produtosBase, setProdutosBase] = useState("");
+  const [petshopProduto, setPetshopProduto] = useState("");
 
   function setValueToast(value) {
     setShowToast(value);
@@ -32,9 +33,20 @@ export function Produtos(props) {
     const filtroMarca = [];
     const filtroPet = [];
     const filtroProduto = [];
+    const filtroPetShop = [];
     var marcaCheck = document.getElementsByName("marcaCheck");
     for (var i = 0; i < marcaCheck.length; i++) {
       if (marcaCheck[i].checked) {
+        if (marcaCheck[i].value === "9") {
+          var lojapet2 = 2;
+          setPetshopProduto(2);
+          filtroPetShop.push(lojapet2);
+        }
+        if (marcaCheck[i].value === "8") {
+          var lojapet1 = 1;
+          setPetshopProduto(1);
+          filtroPetShop.push(lojapet1);
+        }
         if (marcaCheck[i].value === "7") {
           var marca_1 = "Golden";
           filtroMarca.push(marca_1);
@@ -82,11 +94,11 @@ export function Produtos(props) {
           filtroProduto.push(tipoProduto_5);
         }
       }
-      filtoPesquisa(filtroMarca, filtroPet, filtroProduto);
+      filtoPesquisa(filtroMarca, filtroPet, filtroProduto, filtroPetShop);
     }
   };
 
-  async function filtoPesquisa(filtroMarca, filtroTipoPet, filtroProduto) {
+  async function filtoPesquisa(filtroMarca, filtroTipoPet, filtroProduto, filtroPetShop) {
     var novosProdutos = [];
     produtos.map((p) => {
       if (filtroMarca.length > 0) {
@@ -99,6 +111,13 @@ export function Produtos(props) {
       if (filtroTipoPet.length > 0) {
         filtroTipoPet.forEach((f) => {
           if (p.especie === f) {
+            novosProdutos.push(p);
+          }
+        });
+      }
+      if (filtroPetShop.length > 0) {
+        filtroPetShop.forEach((f) => {
+          if (p.idPet === f) {
             novosProdutos.push(p);
           }
         });
@@ -125,18 +144,32 @@ export function Produtos(props) {
   //   console.log("entrou aqui 2", foto);
   //   return foto;
   // }
-
-  const servicos = ["Saúde", "Banho e Tosa"];
-
   return (
     <>
       <Toast text="Login ou senha incorretos" color="green" showToast={showToast} changeValueToast={setValueToast}/>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
       <div className="produto">
       <h2>Produtos</h2>
-
+      {
+        petshopProduto === 1 ? 
+          <div className="produtosPetShop">
+            <span>Produtos do PetShop: Cobasi</span>
+          </div>
+          :
+          petshopProduto === 2 ?
+          <div className="produtosPetShop">
+            <span>Produtos do PetShop: Petz</span>
+          </div>
+          :
+          <div className="produtosPetShop">
+            <span>Produtos do PetShop: Todos</span>
+          </div>
+      }
       </div> 
       <hr />
+      <div className="informacao-compra">
+        <span>* Favor comprar produtos de um único PetShop</span>
+      </div>
       <div className="principal">
         <div className="filtro--produtos">
           <h3>Filtrar Produtos</h3>
@@ -290,15 +323,27 @@ export function Produtos(props) {
             />
             <label for="marcaCheck">Snacks</label>
           </div>
-          <h3>Serviços</h3>
+          <h3>PetShop</h3>
           <hr />
           
-          {servicos.map((servico, key) => (
-            <div className="checkBox">
-              <input type="checkbox" />
-              <label key={key}>{servico}</label>
-            </div>
-          ))}
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="8"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Cobasi</label>
+          </div>
+          <div className="checkBox">
+            <input
+              type="checkbox"
+              name="marcaCheck"
+              value="9"
+              onClick={filtroMarca}
+            />
+            <label for="marcaCheck">Petz</label>
+          </div>
         </div>
         <div className="card--principal">
           {
