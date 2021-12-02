@@ -21,11 +21,7 @@ public class ItensPedido {
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 
-    public ItensPedido(Integer qtdProduto, Produto produto, Pedido pedido) {
-        this.qtdProduto = qtdProduto;
-        this.produto = produto;
-        this.pedido = pedido;
-    }
+
 
     public ItensPedido() {
     }

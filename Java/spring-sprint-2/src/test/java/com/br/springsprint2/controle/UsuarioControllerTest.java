@@ -22,8 +22,7 @@ class UsuarioControllerTest {
     @MockBean
     UsuarioLogarRepository repository;
 
-    UsuarioLogar usuarioLogar = new UsuarioLogar("nicolas","nicolas","1185445224","18568548654","nicolas","r cbivas tiboias", "08275340","casa",14);
-
+    UsuarioLogar usuarioLogar;
 
     @Test
     void autenticar() {

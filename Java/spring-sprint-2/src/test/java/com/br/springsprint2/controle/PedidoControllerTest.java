@@ -26,10 +26,9 @@ class PedidoControllerTest {
     @MockBean
     PedidoRepository repository;
 
-    UsuarioLogar usuarioLogar = new UsuarioLogar("nicolas","nicolas","1185445224","18568548654","nicolas","r cbivas tiboias", "08275340","casa",14);
+    UsuarioLogar usuarioLogar ;
 
-    Pedido pedido = new Pedido("cartao", 300.0);
-
+    Pedido pedido ;
 
     @Test
     void postPedidoByUsuarioId() {

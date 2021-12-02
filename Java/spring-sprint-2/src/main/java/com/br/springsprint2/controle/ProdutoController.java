@@ -229,15 +229,15 @@ public class ProdutoController {
     @CrossOrigin
     @DeleteMapping("/desfazerPrimeirocadastro/{idPetshop}")
     public ResponseEntity desfazerPrimeiroCadastro(@PathVariable int idPetshop){
-        if( pilha.isEmpty()){
+        if( fila.isEmpty()){
             return ResponseEntity.status(204).build();
         }
         for (int i = 0 ; i <= fila.contaTodos(); i++ ){
             fila.peek();
-            if ( pilha.peek().getIdPet() == idPetshop ) {
-                Integer idProduto = pilha.peek().getIdProduto();
+            if ( fila.peek().getIdPet() == idPetshop ) {
+                Integer idProduto = fila.peek().getIdProduto();
                 deleteProdutos(idProduto);
-                pilha.pop();
+                fila.poll();
                 return ResponseEntity.status(200).build();
             } else {
                 return ResponseEntity.status(404).build();

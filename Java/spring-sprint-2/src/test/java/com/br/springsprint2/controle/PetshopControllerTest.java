@@ -22,8 +22,7 @@ class PetshopControllerTest {
     @Autowired
     PetshopController controller;
 
-    Petshop petshop = new Petshop("cobasi", "168135183","R. marcondes avai",67, "cobasi", "cobasi", "08275340", "casa", "1813515158");
-
+   Petshop petshop ;
 
     @Test
     void createPetshop() {

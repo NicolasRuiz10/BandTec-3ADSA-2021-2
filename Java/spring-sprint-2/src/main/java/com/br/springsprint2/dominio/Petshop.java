@@ -34,17 +34,7 @@ public class Petshop {
     @OneToMany(mappedBy = "fkPetShop")
     private List<Produto> produtos;
 
-    public Petshop(String nome, String cnpj, String endereco, int numero, String email, String senha, String cep, String complemento, String telefone) {
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.email = email;
-        this.senha = senha;
-        this.cep = cep;
-        this.complemento = complemento;
-        this.telefone = telefone;
-    }
+
 
     public int getIdPetshop() {
         return idPetshop;

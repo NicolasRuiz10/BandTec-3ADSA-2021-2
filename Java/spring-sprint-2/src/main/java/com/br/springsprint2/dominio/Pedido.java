@@ -24,10 +24,7 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
     private Set<ItensPedido> itensPedido;
 
-    public Pedido(String pagamento, Double valorTotal) {
-        this.pagamento = pagamento;
-        this.valorTotal = valorTotal;
-    }
+
 
     public int getIdPedido() {
         return idPedido;
