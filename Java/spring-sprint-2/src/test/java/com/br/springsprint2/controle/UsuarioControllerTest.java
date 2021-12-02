@@ -9,8 +9,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = {UsuarioController.class, UsuarioLogarRepository.class})
@@ -23,6 +25,24 @@ class UsuarioControllerTest {
     UsuarioLogarRepository repository;
 
     UsuarioLogar usuarioLogar;
+
+    @Test
+    void getUsuarios200() {
+        List<UsuarioLogar> usuarios = List.of(mock(UsuarioLogar.class));
+        when(this.repository.findAll()).thenReturn(usuarios);
+
+        ResponseEntity resposta = this.usuarioController.getUsuarios();
+        assertEquals(200, resposta.getStatusCodeValue());
+    }
+
+    @Test
+    void getUsuario() {
+        when(repository.findAll()).thenReturn(new ArrayList<>());
+
+        ResponseEntity resposta = usuarioController.getUsuario(10);
+        assertEquals(404, resposta.getStatusCodeValue());
+
+    }
 
     @Test
     void autenticar() {
@@ -50,14 +70,6 @@ class UsuarioControllerTest {
 
     }
 
-    @Test
-    void getUsuario() {
-        when(repository.findAll()).thenReturn(new ArrayList<>());
-
-        ResponseEntity resposta = usuarioController.getUsuario(10);
-        assertEquals(404, resposta.getStatusCodeValue());
-
-    }
 
     @Test
     void deleteUsuario() {
@@ -67,6 +79,7 @@ class UsuarioControllerTest {
         assertEquals(404, resposta.getStatusCodeValue());
 
     }
+
 
 
     @Test
@@ -83,7 +96,7 @@ class UsuarioControllerTest {
     void putUsuario() {
         when(repository.findAll()).thenReturn(new ArrayList<>());
 
-        ResponseEntity resposta = usuarioController.putUsuario(1,usuarioLogar);
+        ResponseEntity resposta = usuarioController.putUsuario(1, usuarioLogar);
         assertEquals(404, resposta.getStatusCodeValue());
 
     }

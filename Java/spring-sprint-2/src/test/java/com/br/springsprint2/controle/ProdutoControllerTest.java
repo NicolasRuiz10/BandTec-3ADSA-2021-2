@@ -56,14 +56,6 @@ class ProdutoControllerTest {
     }
 
     @Test
-    void getLayout() {
-        when(repository.findAll()).thenReturn(new ArrayList<>());
-
-        ResponseEntity resposta = controller.getLayout("txt");
-        assertEquals(200, resposta.getStatusCodeValue());
-    }
-
-    @Test
     void getPetshop() {
         when(repository.findAll()).thenReturn(new ArrayList<>());
 

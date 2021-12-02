@@ -7,7 +7,9 @@ import com.br.springsprint2.dominio.Produto;
 import com.br.springsprint2.repositorio.PetshopRepository;
 import com.br.springsprint2.repositorio.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -174,11 +178,26 @@ public class ProdutoController {
 
 
     @CrossOrigin
-    @GetMapping("/arqTxt/{nmArq}")
-    public ResponseEntity getLayout(@PathVariable String nmArq) {
+    @GetMapping(value = "/arqTxt/{nmArq}", produces = "text/plain")
+    public ResponseEntity<?> getLayout(@PathVariable String nmArq) throws IOException {
         List<Produto> produtos = repository.findAll();
         gravaArquivoTxt(produtos, nmArq);
-        return ResponseEntity.status(200).build();
+
+        var filename = String.format(nmArq);
+
+        try {
+            var file = new File(filename);
+            var path = Paths.get(file.getAbsolutePath());
+            var resource = new ByteArrayResource(Files.readAllBytes(path));
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.parseMediaType("text/plain"))
+                    .contentLength(file.length())
+                    .body(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
