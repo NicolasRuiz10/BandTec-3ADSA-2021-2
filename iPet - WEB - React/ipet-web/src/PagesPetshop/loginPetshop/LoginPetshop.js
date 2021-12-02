@@ -6,14 +6,16 @@ import { ButtonVerde } from "../../components/button/Button";
 import axios from "axios";
 import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
+import ContentLoader from "react-content-loader"
 import { useAuth } from '../../hooks/Context';
 
-export default function LoginPetshop() {
+export default function LoginPetshop(props) {
     let history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
     const { setIdPetshop, setNomePetshop, setAutenticadoPetshop } = useAuth();
+    const [activeGif, setActiveGif] = useState(false);
 
     function setValueEmail(value) {
         setEmail(value);
@@ -28,6 +30,7 @@ export default function LoginPetshop() {
     }
 
     function verificarLogin() {
+        setActiveGif(true);
         axios.post("http://localhost:8080/ipet/autenticar", {
             email: email,
             senha: password,
@@ -38,6 +41,7 @@ export default function LoginPetshop() {
                 setNomePetshop(res.data.nome);
                 history.push("/petshop/cadastro-produtos");
             } else {
+                setActiveGif(false);
                 setShowToast(true);
             }
         });
@@ -67,6 +71,24 @@ export default function LoginPetshop() {
                     </h1>
                     <ButtonVerde title="Crie sua conta" clickButton={redirectCadastro} />
                 </div>
+            </div>
+            <div className="gif">
+                {
+                    !activeGif ? '' :
+                    <ContentLoader
+                        speed={2}
+                        width={400}
+                        height={150}
+                        viewBox="0 0 400 150"
+                        backgroundColor="#2484ec"
+                        foregroundColor="#fec302"
+                        {...props}
+                    >
+                        <circle cx="265" cy="77" r="63" /> 
+                        <circle cx="141" cy="82" r="36" /> 
+                        <circle cx="51" cy="88" r="22" />
+                    </ContentLoader>
+                }
             </div>
         </>
     );

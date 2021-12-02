@@ -42,6 +42,10 @@
     border: 1px solid #CBD5E0;
 }
 
+.mt-1 {
+    margin-top: 5rem;
+}
+
 .section-btn-adicionar button{
     width: 250px;
     height: 35px;
@@ -53,6 +57,7 @@
     border: none;
     opacity: 1;
     background-color: #2484EC;
+    font-family: Montserrat;
     margin-bottom: 50px;
 }
 
@@ -138,6 +143,7 @@
     margin-bottom: 10px;
     color: black;
     border: 1px solid #ccc;
+    font-weight: bold;
     font-family: Montserrat;
 }
 
@@ -159,6 +165,8 @@
 #btn-desfazer button{
     background: #FF0000;
     opacity: 1;
+    font-family: Montserrat;
+    font-weight: bold;
 }
 
 #btn-desfazer button:hover{

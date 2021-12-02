@@ -40,7 +40,7 @@ public class PetshopController {
                 petshop1.setAutenticacao(false);
                 repository.save(petshop1);
             }
-        } return status(304).build();
+        } return status(201).build();
     }
 
     @CrossOrigin
