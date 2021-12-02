@@ -10,9 +10,19 @@ import WhiskasLogo from '../../Assets/whiskas-logo.png'
 import banhoTosa from '../../Assets/banhoTosa.png'
 import saude from '../../Assets/saude.png'
 import {Button} from "../../components/button/Button";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
+
 
 function HomePage() {
-  
+  let history = useHistory();
+  function redirectLoginPet() {
+    history.push("/petshop/login");
+  }
+  function redirectLoginCliente() {
+    history.push("/login");
+  }
   return (
     <>
       <Menu menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
@@ -49,42 +59,54 @@ function HomePage() {
         <div className="categorias">
           <div className="categorias-text">
             <h3>Vestuario</h3>
-            <button>Compre</button>
+            <Link to="/produtos">
+              <button>Compre</button>
+            </Link>
           </div>
           <img src="https://lojadogu.vteximg.com.br/arquivos/ids/157484-400-400/Roupa-para-Cachorro-Corta-Vento-Verde.png?v=637594420928300000" alt="" />
         </div>
         <div className="categorias">
         <div className="categorias-text">
             <h3>Acessórios</h3>
-            <button>Compre</button>
+            <Link to="/produtos">
+              <button>Compre</button>
+            </Link>  
           </div>
           <img src="https://www.vippng.com/png/full/131-1317350_todos-os-tipos-de-acessorios-para-caes-e.png" alt="" />
         </div>
         <div className="categorias">
         <div className="categorias-text">
             <h3>Brinquedos</h3>
-            <button>Compre</button>
+            <Link to="/produtos">
+              <button>Compre</button>
+            </Link>  
           </div>
           <img src="https://lh3.googleusercontent.com/proxy/VPbaTZLr_70fQlLWycvjXovOp5IbBrbU-QIm6p94pfS07xrqxE90fkWhn70cP0DX9jbZCZNwGASPtZl5VBGWDkFlrg2PSHO0ICoFyNqPzRY0bL0SjklFqza5Bgo0Owb30zaRqWlrPaQRsxqUc2iEoUn9YWCh" alt="" />
         </div>
         <div className="categorias">
         <div className="categorias-text">
             <h3>Rações</h3>
-            <button>Compre</button>
+            <Link to="/produtos"> 
+              <button>Compre</button>
+            </Link>  
           </div>
           <img src="https://img.freepik.com/fotos-gratis/alimentos-para-animais-de-estimacao-secos-em-uma-tigela-de-ceramica-branca-isolada-na-superficie-branca_128711-2795.jpg?size=626&ext=jpg" alt="" />
         </div>
         <div className="categorias">
         <div className="categorias-text">
             <h3>Higiene</h3>
-            <button>Compre</button>
+            <Link to="/produtos">
+              <button>Compre</button>
+            </Link>  
           </div>
           <img src="https://saude.abril.com.br/wp-content/uploads/2020/06/banho-do-pet-em-casa.png" alt="" />
         </div>
         <div className="categorias">
         <div className="categorias-text">
             <h3>Pestiscos</h3>
-            <button>Compre</button>
+            <Link to="/produtos">
+              <button>Compre</button>
+            </Link>  
           </div>
           <img src="https://www.bichosaudavel.com/wp-content/uploads/2013/08/biscoito-cachorro.jpg" alt="" />
         </div>
@@ -97,7 +119,7 @@ function HomePage() {
             Aqui você pode marcar o exame do seu pet com veterinarios profissionais.
             A saúde e bem estar do seu pet em dia só na IPET
           </p>
-            <Button btnTitle="Faça parte" />
+            <Button btnTitle="Faça parte" clickButton={redirectLoginPet}/>
         </div>
         <div className="healthImg box-shadow-image">
           <img clasName="" src={saude} height="400px" width="580px" alt="none" />
@@ -115,7 +137,7 @@ function HomePage() {
               Todos os cuidados higienicos com os melhores produtos!<br />
               Encontre agora o petshop mais próximo do seu lar<br />
             </p>
-            <Button btnTitle="Faça parte" />
+            <Button btnTitle="Faça parte" clickButton={redirectLoginCliente}/>
           </div>
         </div>
       </section>

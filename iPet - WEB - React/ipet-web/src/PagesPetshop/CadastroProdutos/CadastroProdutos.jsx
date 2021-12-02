@@ -50,7 +50,9 @@ export default function CadastroProdutos() {
           }
         )
         .then((res) => {
-          console.log(res);
+          setShowToast(true);
+          setColorToast("green");
+          setTextToast("Produto cadastrado com sucesso");
         });
     }
   }

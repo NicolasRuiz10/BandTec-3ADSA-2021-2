@@ -4,8 +4,6 @@ import { useHistory } from "react-router-dom";
 import { Menu } from "../../components/menu/Menu";
 import Input from "../../components/input/Input"
 import { ButtonVerde } from "../../components/button/Button"
-import { FaFacebook } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
 import axios from "axios";
 import Toast from "../../components/toast/Toast";
 
@@ -116,11 +114,6 @@ export function Cadastro() {
                             Já tem cadastro?
                         </h1>
                         <ButtonVerde title="Login" clickButton={redirectLogin} />
-                        <h2>Cadastro rápido</h2>
-                        <div className="icones-acessos">
-                            <FcGoogle size={34} />
-                            <FaFacebook size={34} className="icon-face" />
-                        </div>
                     </div>
                 </div>
             </div>

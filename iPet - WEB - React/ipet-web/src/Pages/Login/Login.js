@@ -3,8 +3,6 @@ import "./Login.css";
 import { Menu } from "../../components/menu/Menu";
 import Input from "../../components/input/Input";
 import { ButtonVerde } from "../../components/button/Button";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Toast from "../../components/toast/Toast";
 import { useHistory } from "react-router-dom";
@@ -59,16 +57,10 @@ export default function Login() {
             <div className="principal-container">
                 <div className="principal-login">
                     <h1>Faça o Login</h1>
-                    <Input txt="CPF ou Email" placeholder="Digite seu email ou CPF" value={email} enviarDados={setValueEmail} />
+                    <Input txt="Email" placeholder="Digite seu email" value={email} enviarDados={setValueEmail} />
                     <Input txt="Senha" placeholder="Digite sua senha" value={password} enviarDados={setValuePasssword} />
-                    <p className="esqueceuSenha">Esqueceu sua senha?</p>
-                    <ButtonVerde title="Entrar" clickButton={verificarLogin} />
-                    <hr />
-                    <h2>Acesso rápido</h2>
-                    <div className="icones-acessos">
-                        <FcGoogle size={34} />
-                        <FaFacebook size={34} className="icon-face" />
-                    </div>
+                    <div class="gambiarra"><span></span></div>
+                    <ButtonVerde title="Entrar" clickButton={verificarLogin}/>
                 </div>
                 <div className="section-login">
                     <h1>

@@ -53,11 +53,17 @@ hr {
 
 .principal-login {
   margin-top: 20px;
-  padding: 20px 60px;
+  padding: 20px 40px;
   width: 525px;
   background-color: #fff;
   border-radius: .25rem;
   border: 1px solid #cbd5e0;
+  height: 300px;
+}
+
+.gambiarra{
+  height: 30px;
+  width: 100px;
 }
 
 .section-login {

@@ -26,11 +26,24 @@ export function MenuPetshop() {
 						<img src={logo} alt="Logo iPet" />
 					</Link>
 				</div>
+				{ autenticadoPetshop ?
 				<Link to="/petshop/pedidos">
 					<div className="item-menu">
 						<h3>Pedidos</h3>
 					</div>
 				</Link>
+				:
+				<div></div>
+				}
+				{autenticadoPetshop ?
+				<Link to="/petshop/cadastro-produtos">
+					<div className="item-menu">
+						<h3>Cadastro Produtos</h3>
+					</div>	
+				</Link>
+				:
+				<div></div>
+				}
 			</div>
 				{!autenticadoPetshop ?
 					<div className="itens-acesso">
