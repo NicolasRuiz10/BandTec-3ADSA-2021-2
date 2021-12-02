@@ -30,6 +30,7 @@ public class ItensPedidoController {
     @Autowired
     private PetshopRepository petshopRepository;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity getAllItensPedido() {
         List<ItensPedido> listaItensPedido = itensPedidoRepository.findAll();
@@ -39,6 +40,7 @@ public class ItensPedidoController {
         return ResponseEntity.status(200).body(listaItensPedido);
     }
 
+    @CrossOrigin
     @PostMapping("/{idProduto}")
     public ResponseEntity postItensPedido(@PathVariable Integer idProduto,@RequestBody ItensPedido itensPedido) {
         ItensPedido itensPedido1 = itensPedidoRepository.findOneById(itensPedido.getId());
@@ -50,6 +52,7 @@ public class ItensPedidoController {
         return ResponseEntity.status(404).body(itensPedido);
     }
 
+    @CrossOrigin
     @PutMapping("/id/{id}")
     public ResponseEntity putItensPedido(
             @PathVariable Integer idItens,
@@ -65,6 +68,7 @@ public class ItensPedidoController {
         return ResponseEntity.status(404).build();
     }
 
+    @CrossOrigin
     @DeleteMapping("/id/{id}")
     public ResponseEntity deleteItensPedido(@PathVariable Integer id) {
         if (itensPedidoRepository.existsById(id)) {
@@ -74,6 +78,7 @@ public class ItensPedidoController {
         return ResponseEntity.status(404).build();
     }
 
+    @CrossOrigin
     @GetMapping("/pedido/id/{id}")
     public ResponseEntity getAllItensProdutoByPedidoId(@PathVariable Integer id) {
         if (pedidoRepository.existsById(id)) {
@@ -87,6 +92,7 @@ public class ItensPedidoController {
     }
 
 
+    @CrossOrigin
     @GetMapping("/pedido/petshop/{idPetshop}")
     public ResponseEntity getAllItensProdutoByPetshopId(@PathVariable Integer idPetshop) {
         if (petshopRepository.existsById(idPetshop)) {
@@ -99,6 +105,7 @@ public class ItensPedidoController {
         return ResponseEntity.status(404).build();
     }
 
+    @CrossOrigin
     @GetMapping("/pedido/numero/{numero}")
     public ResponseEntity getAllItensPedidoByPedidoId(@PathVariable Integer id) {
         if (pedidoRepository.existsById(id)) {
