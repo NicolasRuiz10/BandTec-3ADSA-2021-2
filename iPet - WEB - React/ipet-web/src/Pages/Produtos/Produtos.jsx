@@ -137,18 +137,6 @@ export function Produtos(props) {
       setProdutos(produtosBase)
     }
   }
-
-<<<<<<< Updated upstream
-  // async function pegarImagem(id) {
-  //   console.log("entrou aqui", id);
-  //   let foto = await api.get(`/produtos/foto/${id}`);
-  //   console.log("entrou aqui 2", foto);
-  //   return foto;
-  // }
-=======
-  const servicos = ["Saúde", "Banho e Tosa"];
-
->>>>>>> Stashed changes
   return (
     <>
       <Toast text="Login ou senha incorretos" color="green" showToast={showToast} changeValueToast={setValueToast}/>
