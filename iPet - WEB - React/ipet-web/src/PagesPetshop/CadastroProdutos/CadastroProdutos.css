@@ -42,21 +42,21 @@
     border: 1px solid #CBD5E0;
 }
 
-.buttonsfinal-div button{
+.section-btn-adicionar button{
     width: 250px;
     height: 35px;
     float: left;
     color: #fff;
     font-weight: bold;
-    margin: 20px 470px;
     border-radius: 10px;
+    margin-top: 5%;
     border: none;
     opacity: 1;
     background-color: #2484EC;
     margin-bottom: 50px;
 }
 
-.buttonsfinal-div button:hover{
+.section-btn-adicionar button:hover{
     cursor: pointer;
     opacity: 0.9;
 }
@@ -149,6 +149,11 @@
     background-color: #2484EC;
     color: #fff;
     outline: none;
+    margin-right: 10%;
+}
+
+#desfazer-primeiro-produto{
+    background: #FF0000;
 }
 
 #btn-desfazer button{
@@ -304,6 +309,14 @@
 
 .importacao {
     width: 100%;
+}
+
+.section-btn-adicionar{
+    display: flex;
+    width:50%;
+    margin: auto;
+    justify-content: center;
+    align-items:center
 }
 
 .importacaoTitle {

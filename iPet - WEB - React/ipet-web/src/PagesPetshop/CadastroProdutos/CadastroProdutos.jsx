@@ -22,6 +22,27 @@ export default function CadastroProdutos() {
   const [tipoPet, setTipoPet] = useState("");
   const [descricao, setDescricao] = useState("");
 
+  async function desfazePrimeiroCadastro() {
+    axios.delete(`http://localhost:8080/produtos/desfazerPrimeirocadastro/${idPetshop}`)
+    .then((resp) => {
+      console.log(resp.status);
+      if (resp.status === 200) {
+        setShowToast(true);
+        setColorToast("green");
+        setTextToast("Primeiro produto excluido com sucesso");
+      } else if (resp.status === 204){
+        setShowToast(true);
+        setColorToast("red");
+        setTextToast("Não há produto para ser excluido");
+      } else {
+        setShowToast(true);
+        setColorToast("red");
+        setTextToast("Erro inesperado");
+      }
+    })
+
+  }
+
    async function gravar() {
      console.log('idPet', idPetshop);
      const response = await axios
@@ -35,7 +56,6 @@ export default function CadastroProdutos() {
         tipoProduto: tipoProduto,
         IdPet: idPetshop
       })
-    console.log("meu id", response.data);
     var formatImg = new FormData();
     formatImg.append("foto", img);
     if (response.data) {
@@ -175,10 +195,13 @@ export default function CadastroProdutos() {
           <input id="imagem" type="file" onChange={setValueImg} />
         </div>
       </div>
-      <div className="buttonsfinal-div">
-        <button id="adicionar-produto" onClick={gravar}>
-          Adicionar Produto
-        </button>
+      <div className="section-btn-adicionar">
+          <button id="adicionar-produto" onClick={gravar}>
+            Adicionar Produto
+          </button>
+          <button id="desfazer-primeiro-produto" onClick={desfazePrimeiroCadastro}>
+            Desfazer Primeiro Cadastro
+          </button>
       </div>
       <div className="cadastroTitleDiv">
         <h1>Importação de produtos em lote</h1>
