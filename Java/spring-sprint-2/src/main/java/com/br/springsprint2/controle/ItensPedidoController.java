@@ -34,9 +34,9 @@ public class ItensPedidoController {
     public ResponseEntity getAllItensPedido() {
         List<ItensPedido> listaItensPedido = itensPedidoRepository.findAll();
         if (listaItensPedido.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(204).build();
         }
-        return ResponseEntity.ok(listaItensPedido);
+        return ResponseEntity.status(200).body(listaItensPedido);
     }
 
     @PostMapping("/{idProduto}")
@@ -47,7 +47,7 @@ public class ItensPedidoController {
             itensPedido.setProduto(produto);
             return ResponseEntity.status(201).body(itensPedidoRepository.save(itensPedido));
         }
-        return ResponseEntity.ok(itensPedido);
+        return ResponseEntity.status(404).body(itensPedido);
     }
 
     @PutMapping("/id/{id}")
@@ -60,18 +60,18 @@ public class ItensPedidoController {
             itensPedido.setId(idItens);
             Produto produto = produtoRepository.getById(idProduto);
             itensPedido.setProduto(produto);
-            return ResponseEntity.ok(itensPedidoRepository.save(itensPedido));
+            return ResponseEntity.status(200).body(itensPedidoRepository.save(itensPedido));
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
 
     @DeleteMapping("/id/{id}")
     public ResponseEntity deleteItensPedido(@PathVariable Integer id) {
         if (itensPedidoRepository.existsById(id)) {
             itensPedidoRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(200).build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
 
     @GetMapping("/pedido/id/{id}")
@@ -79,12 +79,13 @@ public class ItensPedidoController {
         if (pedidoRepository.existsById(id)) {
             List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByPedidoIdPedido(id);
             if (listaItensPedido.isEmpty()) {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(204).build();
             }
-            return ResponseEntity.ok(listaItensPedido);
+            return ResponseEntity.status(200).body(listaItensPedido);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
+
 
     @GetMapping("/pedido/petshop/{idPetshop}")
     public ResponseEntity getAllItensProdutoByPetshopId(@PathVariable Integer idPetshop) {
@@ -93,9 +94,9 @@ public class ItensPedidoController {
             if (listaItensPedido.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
-            return ResponseEntity.ok(listaItensPedido);
+            return ResponseEntity.status(200).body(listaItensPedido);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
 
     @GetMapping("/pedido/numero/{numero}")
@@ -103,11 +104,11 @@ public class ItensPedidoController {
         if (pedidoRepository.existsById(id)) {
             List<ItensPedido> listaItensPedido = itensPedidoRepository.findAllByPedidoIdPedido(id);
             if (listaItensPedido.isEmpty()) {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(204).build();
             }
-            return ResponseEntity.ok(listaItensPedido);
+            return ResponseEntity.status(200).body(listaItensPedido);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
 
     @CrossOrigin
@@ -125,6 +126,6 @@ public class ItensPedidoController {
             itensPedidoRepository.save(itensPedido);
             return ResponseEntity.status(201).body(itensPedido);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
 }

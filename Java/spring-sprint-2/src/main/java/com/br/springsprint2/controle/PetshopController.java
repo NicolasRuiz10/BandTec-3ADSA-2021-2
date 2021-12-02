@@ -24,7 +24,7 @@ public class PetshopController {
     @PostMapping
     public ResponseEntity createPetshop(@RequestBody Petshop novoPetshop) {
         repository.save(novoPetshop);
-        return status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(200).build();
     }
 
     @CrossOrigin
@@ -46,8 +46,8 @@ public class PetshopController {
     @CrossOrigin
     @PostMapping("/logoff/{id}")
     public ResponseEntity logoff(@PathVariable int id) {
-        Petshop p = repository.findById(id).get();
         if (repository.existsById(id)) {
+        Petshop p = repository.findById(id).get();
             p.setAutenticacao(false);
             putPetshop(id,p);
             return ResponseEntity.status(200).build();
@@ -59,7 +59,7 @@ public class PetshopController {
     @GetMapping
     public ResponseEntity getPetshops() {
         List<Petshop> lista = repository.findAll();
-        return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
+        return lista.isEmpty() ? ResponseEntity.status(204).build() : ResponseEntity.status(200).body(lista);
     }
 
     @CrossOrigin

@@ -69,4 +69,19 @@ public class FilaObj<T> {
                 }
             }
         }
+
+    public Integer contaTodos() {
+            Integer qtd = 0;
+        if (isEmpty()) {
+          return 0;
+        }
+        else {
+            for (int i = 0; i < tamanho; i++) {
+                System.out.println(fila[i]);
+                qtd++;
+            }
+            return qtd;
+        }
+    }
+
     }

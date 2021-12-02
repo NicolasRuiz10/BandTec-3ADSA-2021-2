@@ -28,7 +28,7 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity getUsuarios() {
         List<UsuarioLogar> lista = repository.findAll();
-        return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
+        return lista.isEmpty() ? ResponseEntity.status(204).build() : ResponseEntity.status(200).body(lista);
     }
 
     @CrossOrigin
@@ -67,8 +67,8 @@ public class UsuarioController {
     @CrossOrigin
     @PostMapping("/logoff/{id}")
     public ResponseEntity logoff(@PathVariable int id) {
-        UsuarioLogar u = repository.findById(id).get();
         if (repository.existsById(id)) {
+            UsuarioLogar u = repository.findById(id).get();
             u.setAutenticacao(false);
             repository.save(u);
             return ResponseEntity.status(200).build();

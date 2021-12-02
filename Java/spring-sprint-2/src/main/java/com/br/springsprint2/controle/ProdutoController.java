@@ -95,8 +95,8 @@ public class ProdutoController {
     @Autowired
     private PetshopRepository petRepository;
 
-    private PilhaObj<Produto> pilha = new PilhaObj<>(1000);
-    private FilaObj<Produto> fila = new FilaObj<>(1000);
+    private PilhaObj<Produto> pilha = new PilhaObj<>(1000000);
+    private FilaObj<Produto> fila = new FilaObj<>(1000000);
 
 
 
@@ -104,11 +104,12 @@ public class ProdutoController {
     @CrossOrigin
     @PostMapping("{fkPetshop}")
     public ResponseEntity createProdutosSemFoto(@RequestBody Produto novoProduto, @PathVariable int fkPetshop) {
-        Petshop petshop = petRepository.findById(fkPetshop).get();
         if ( petRepository.existsById(fkPetshop) ) {
+            Petshop petshop = petRepository.findById(fkPetshop).get();
             novoProduto.setIdPet(fkPetshop);
             novoProduto.setFkPetShop(petshop);
             repository.save(novoProduto);
+            fila.insert(novoProduto);
             return status(HttpStatus.CREATED).body(novoProduto.getIdProduto());
         }
         return ResponseEntity.status(404).build();
@@ -119,7 +120,7 @@ public class ProdutoController {
     @GetMapping
     public ResponseEntity getProdutos() {
         List<Produto> lista = repository.findAll();
-        return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
+        return lista.isEmpty() ? ResponseEntity.status(204).build() : ResponseEntity.status(200).body(lista);
     }
     
     @CrossOrigin
@@ -132,6 +133,7 @@ public class ProdutoController {
         byte[] novaFoto = foto.getBytes();
         novoProduto.setFoto(novaFoto);
         repository.save(novoProduto);
+            fila.insert(novoProduto);
         return status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.status(404).build();
@@ -145,9 +147,7 @@ public class ProdutoController {
                                     @RequestParam MultipartFile foto) throws IOException {
         if (repository.existsById(id)) {
             Produto produto = repository.findById(id).get();
-
             byte[] novaFoto = foto.getBytes();
-
             produto.setFoto(novaFoto);
             repository.save(produto);
             return ResponseEntity.status(200).build();
@@ -218,13 +218,35 @@ public class ProdutoController {
     @DeleteMapping("/desfazer-cadastro")
     public ResponseEntity desfazerCadastro(){
         if( pilha.isEmpty()){
-            ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         Integer id = pilha.peek().getIdProduto();
         deleteProdutos(id);
         pilha.pop();
         return ResponseEntity.status(200).build();
     }
+
+    @CrossOrigin
+    @DeleteMapping("/desfazerPrimeirocadastro/{idPetshop}")
+    public ResponseEntity desfazerPrimeiroCadastro(@PathVariable int idPetshop){
+        if( pilha.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
+        for (int i = 0 ; i <= fila.contaTodos(); i++ ){
+            fila.peek();
+            if ( pilha.peek().getIdPet() == idPetshop ) {
+                Integer idProduto = pilha.peek().getIdProduto();
+                deleteProdutos(idProduto);
+                pilha.pop();
+                return ResponseEntity.status(200).build();
+            } else {
+                return ResponseEntity.status(404).build();
+            }
+        }
+        return ResponseEntity.status(404).build();
+    }
+
+
 
     @CrossOrigin
     @PostMapping("/txt")

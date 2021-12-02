@@ -19,7 +19,7 @@ public class UsuarioLogar {
     private String senha;
     private String endereco;
     private String cep;
-    private String complemento;
+    private String complement;
     private int numero;
     private Boolean autenticacao = false;
 
@@ -28,12 +28,31 @@ public class UsuarioLogar {
     @OneToMany(mappedBy = "fkUsuario")
     private List<Pedido> pedidos = new ArrayList<>();
 
+    public UsuarioLogar( String nome, String email, String telefone, String cpf, String senha, String endereco, String cep, String complement, int numero) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.endereco = endereco;
+        this.cep = cep;
+        this.complement = complement;
+        this.numero = numero;;
+    }
 
     public Boolean autenticar(String login, String senha) {
         if (login.equals(this.email) && senha.equals(this.senha)) {
             return true;
         }
         return false;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
     }
 
     public List<Pedido> getPedidos() {

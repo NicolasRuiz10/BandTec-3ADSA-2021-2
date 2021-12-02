@@ -41,14 +41,14 @@ public class PedidoController {
             pedido.setFkUsuario(usuario.get());
             return ResponseEntity.status(201).body(repository.save(pedido));
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).build();
     }
 
     @CrossOrigin
     @GetMapping
     public ResponseEntity getPedidos() {
         List<Pedido> lista = repository.findAll();
-        return lista.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok().body(lista);
+        return lista.isEmpty() ? ResponseEntity.status(204).build() : ResponseEntity.status(200).body(lista);
     }
 
     @CrossOrigin
