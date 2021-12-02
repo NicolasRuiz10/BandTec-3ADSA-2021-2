@@ -32,9 +32,8 @@ export function Cadastro() {
     function confirmarSenha(e) {
         console.log(senha);
         if (senha === e) {
-            setShowToast(true);
+            setvalidacao(true);
         } else {
-            setvalidacao(false);
             setvalidacao(false);
         }
     }
@@ -48,7 +47,7 @@ export function Cadastro() {
         })
     }
     function criarConta() {
-        if (email === '' || nome === '' || senha === '' || cnpj === '') {
+        if (email === '' || nome === '') {
             setShowToast(true);
         } else {
             axios.post(`http://localhost:8080/ipet`, {
@@ -62,7 +61,7 @@ export function Cadastro() {
                 complemento: complemento,
                 numero: numero,
             }).then((res) => {
-                if (res.status === 201) {
+                if (res.status === 200) {
                     history.push("/petshop/login");
                 } else {
                     setShowToast(true);
