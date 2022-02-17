@@ -56,9 +56,30 @@ export default function PedidoPetshop() {
                             </div>
                         </div>                      
                 </div>
-                <div className="d-flex">
+                <table className="content-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pedido.map((item) => {
+                            return (
+                                <tr>
+                                    <td>{item.produto.nome}</td>
+                                    <td>{`R$ ${item.produto.valor},00`}</td>
+                                    <td>{item.produto.quantidade}</td>
+                                    <td>{`R$ ${item.produto.valor * item.produto.quantidade},00`}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
 
-                    {pedido.map((item) => {
+                    {/* {pedido.map((item) => {
                         return (
                             <div className="card-produto">
                                 <h1>Informações do produto</h1>
@@ -82,8 +103,7 @@ export default function PedidoPetshop() {
                                 </div>                      
                             </div>
                         )
-                    })}
-                </div>
+                    })} */}
             </div>
             <Footer item1="Termos e condições de usos" item2="Políticas e termos" item3="Help desk" item4="Formas de pagamento" />
         </>
