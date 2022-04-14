@@ -48,8 +48,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail"
+                android:textColorHint="#A1A1A1"
                 android:textSize="25sp"
                 android:id="@+id/et_email"
+                android:textColor="@color/black"
             />
             <TextView
                 android:layout_width="wrap_content"
@@ -63,6 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nome completo"
+                android:textColorHint="#A1A1A1"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:id="@+id/et_nome"
                 />
@@ -78,6 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="************"
+                android:textColorHint="#A1A1A1"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:id="@+id/et_senha"
                 />
@@ -89,6 +95,7 @@
                 android:text="Cadastrar"
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"
+                android:onClick="cadastrar"
                 />
             <TextView
                 android:layout_width="wrap_content"
