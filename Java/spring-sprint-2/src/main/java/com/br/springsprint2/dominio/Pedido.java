@@ -16,6 +16,8 @@ public class Pedido {
 
     private Double valorTotal;
 
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "fkUsuario")
     private UsuarioLogar fkUsuario;
@@ -24,7 +26,13 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
     private Set<ItensPedido> itensPedido;
 
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getIdPedido() {
         return idPedido;
