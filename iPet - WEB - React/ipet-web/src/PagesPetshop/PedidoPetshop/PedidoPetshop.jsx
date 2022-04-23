@@ -24,7 +24,7 @@ export default function PedidoPetshop() {
     useEffect(() => {
         const fetchPedido = async () => {
             const { data } = await axios.get(
-              "http://34.226.239.106:8080/itens"
+              "http://ec2-34-226-239-106.compute-1.amazonaws.com:8080/itens"
             );
             setPedido(data);
         };
