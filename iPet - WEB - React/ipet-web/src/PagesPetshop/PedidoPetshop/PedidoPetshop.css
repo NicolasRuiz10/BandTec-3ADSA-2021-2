@@ -162,6 +162,7 @@ hr {
     display: flex;
 }
 
+
 #title-ped {
     font-size: 22px;
     margin-top: 30px;
@@ -240,12 +241,56 @@ hr {
 }
 
 .input-pedidos-modal{
-    margin-left: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
 }
-.input-pedidos-modal input {
-    background-color: #fff;
-    overflow: none;
-    width: 300px;
-    margin-top: 15px;
-    padding: 5px;
+
+.modal-pedido-card-info {
+    width: 200px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border-right: 1px solid gray;
+}
+
+.input-pedidos-modal-cliente{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.modal-pedido-card-info-cliente {
+    width: 400px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border-right: 1px solid gray;
+}
+.modal-pedido-card-info-cliente span,
+.modal-pedido-card-info span{
+    font-size: 16px;
+    font-weight: 500;
+}    
+.modal-pedido-card-info-cliente h6,
+.modal-pedido-card-info h6{
+    font-size: 18px;
+    font-weight: 600;
+}    
+
+#status-modal {
+    float: right;
+    margin-top: 40px;
+}
+
+#status-modal span {
+    color: #3bb54a;
+    font-weight: bold;
 }

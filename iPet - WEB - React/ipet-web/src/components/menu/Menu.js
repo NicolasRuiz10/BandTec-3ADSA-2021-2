@@ -50,6 +50,8 @@ export function Menu(props) {
 								<button className="btn-cadastro">Cadastro</button>
 							</Link>
 						</div>
+						<div id="bolinha-verde">
+						</div>
 						
 					</div>
 					:
