@@ -39,6 +39,7 @@ public class PedidoController {
         Optional<UsuarioLogar> usuario = userRepository.findById(id);
         if (usuario.isPresent()) {
             pedido.setFkUsuario(usuario.get());
+            pedido.setStatus("aberto");
             return ResponseEntity.status(201).body(repository.save(pedido));
         }
         return ResponseEntity.status(404).build();
