@@ -12,6 +12,9 @@ interface ApiIpet {
     @GET("usuarios")
     fun get() : Call<List<Usuario>>
 
+    @GET("ipet")
+    fun getPetshop() : Call<List<Petshop>>
+
     @GET("usuarios/{id}")
     fun get(@Path("id") id:Int) : Call<Usuario>
 

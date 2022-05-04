@@ -27,7 +27,7 @@ class Login : AppCompatActivity() {
         val novoUsuario = UsuarioLogin(etemail.text.toString(), etsenha.text.toString())
 
         val postAutenticar = ApiIpet.criar().autenticar(novoUsuario)
-        val telaCadastro = Intent(this, Cadastro::class.java)
+        val telaBusca = Intent(this, Petshops::class.java)
 
         postAutenticar.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -39,7 +39,7 @@ class Login : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    startActivity(telaCadastro)
+                    startActivity(telaBusca)
                 } else {
                     Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
                 }
