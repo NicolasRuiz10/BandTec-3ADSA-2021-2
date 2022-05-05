@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Petshops">
 
-        <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -21,7 +21,7 @@
             android:orientation="horizontal"
             android:background="#EDEDED"
             app:shapeAppearanceOverlay="@style/input_border_radius"
-        >
+            >
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -53,56 +53,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                >
+            >
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ll_petshop"
                     android:orientation="vertical"
-                >
-                    <LinearLayout
+                    android:id="@+id/ll_linha_petshop"
+                    >
+                    <androidx.fragment.app.FragmentContainerView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@mipmap/close_icon"
-                            android:id="@+id/im_petshop"
-                        />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Outback"
-                                android:layout_marginLeft="10dp"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                            />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="20-60 min"
-                                android:textSize="12sp"
-                                android:layout_marginLeft="10dp"
-                                android:textColor="#959595"
-                            />
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Entrega grátis"
-                            android:textSize="12sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:textColor="#1C7C20"
-                        />
-
-                    </LinearLayout>
-
+                        android:id="@+id/fragment_lista_petshops"
+                    />
                 </LinearLayout>
             </ScrollView>
     </LinearLayout>
