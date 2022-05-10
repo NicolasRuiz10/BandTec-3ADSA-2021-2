@@ -24,24 +24,27 @@ class Petshops : AppCompatActivity() {
     fun listartPeshop() {
         val getPetshops = ApiIpet.criar().getPetshop()
 
-        val argumentos = Bundle()
-        val fragmento = FragmentContainerView(this)
 
-        val transaction = supportFragmentManager.beginTransaction()
+
 
         getPetshops.enqueue(object : Callback<List<Petshop>> {
             override fun onResponse(call: Call<List<Petshop>>, response: Response<List<Petshop>>) {
 
 
-                fragmento.id = View.generateViewId()
-                fragmento.removeAllViews()
-                val teste = findViewById<LinearLayout>(R.id.ll_linha_petshop)
-                teste.removeAllViews()
-                teste.addView(fragmento)
+
+                val petshops = findViewById<LinearLayout>(R.id.ll_linha_petshop)
+                petshops.removeAllViews()
+
 
                 if (response.isSuccessful) {
+                    val transaction = supportFragmentManager.beginTransaction()
                     response.body()?.forEach { petshop ->
+                        val argumentos = Bundle()
+                        val fragmento = FragmentContainerView(baseContext)
+                        fragmento.id = View.generateViewId()
+                        petshops.addView(fragmento)
                         argumentos.putString("nome", petshop.nome)
+                        argumentos.putString("enderecoImagem", getString(R.string.imagem_cobasi))
                         transaction.add(fragmento.id, LinhaPetshop::class.java, argumentos)
                     }
                     transaction.commit()
