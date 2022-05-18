@@ -11,111 +11,112 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-
+        android:gravity="center_vertical"
         >
+
         <LinearLayout
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:background="@color/white"
+            android:layout_marginTop="35dp"
             android:orientation="vertical"
-            android:layout_marginTop="100dp"
+
             >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cadastre-se"
-                android:textSize="40sp"
                 android:textColor="#2484EC"
-                android:textStyle="bold"
-            />
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Crie uma conta para acessar todos os recursos do Ipet!"
-                android:textSize="20sp"
                 android:textColor="@color/black"
-            />
+                android:textSize="20sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="E-mail"
-                android:textSize="15sp"
                 android:layout_marginTop="20dp"
+                android:text="E-mail"
                 android:textColor="@color/black"
-                />
+                android:textSize="15sp" />
+
             <EditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail"
-                android:textColorHint="#A1A1A1"
-                android:textSize="25sp"
-                android:id="@+id/et_email"
                 android:textColor="@color/black"
-            />
+                android:textColorHint="#A1A1A1"
+                android:textSize="25sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome completo"
-                android:textSize="15sp"
                 android:layout_marginTop="20dp"
+                android:text="Nome completo"
                 android:textColor="@color/black"
-                />
+                android:textSize="15sp" />
+
             <EditText
+                android:id="@+id/et_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nome completo"
-                android:textColorHint="#A1A1A1"
                 android:textColor="@color/black"
-                android:textSize="25sp"
-                android:id="@+id/et_nome"
-                />
+                android:textColorHint="#A1A1A1"
+                android:textSize="25sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Senha"
-                android:textSize="15sp"
                 android:layout_marginTop="20dp"
+                android:text="Senha"
                 android:textColor="@color/black"
-                />
+                android:textSize="15sp" />
+
             <EditText
+                android:id="@+id/et_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="************"
-                android:textColorHint="#A1A1A1"
-                android:textColor="@color/black"
                 android:inputType="textPassword"
-                android:textSize="25sp"
-                android:id="@+id/et_senha"
-                />
+                android:textColor="@color/black"
+                android:textColorHint="#A1A1A1"
+                android:textSize="25sp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/white"
-                android:text="Cadastrar"
-                android:textColor="@color/black"
                 android:layout_marginTop="15dp"
+                android:backgroundTint="@color/white"
                 android:onClick="cadastrar"
-                />
+                android:text="Cadastrar"
+                android:textColor="@color/black" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Já tem conta?"
-                android:textSize="15sp"
                 android:layout_marginTop="10dp"
+                android:text="Já tem conta?"
                 android:textColor="@color/black"
-                />
+                android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
-                android:textColor="#2484EC"
-                android:textStyle="bold"
                 android:onClick="irTelaLogin"
-                />
+                android:text="Login"
+                android:textColor="#2484EC"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
