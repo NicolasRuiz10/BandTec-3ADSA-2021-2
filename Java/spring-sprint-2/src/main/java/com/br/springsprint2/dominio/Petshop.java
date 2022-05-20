@@ -22,6 +22,10 @@ public class Petshop {
     private String cep;
     private String complemento;
     private String telefone;
+    private String categoria;
+    private Double precoEntrega;
+    private String tempoEstimado;
+    private String urlFoto;
     private Boolean autenticacao = false;
 
     public Boolean autenticar(String login, String senha) {
@@ -34,7 +38,37 @@ public class Petshop {
     @OneToMany(mappedBy = "fkPetShop")
     private List<Produto> produtos;
 
+    public String getCategoria() {
+        return categoria;
+    }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Double getPrecoEntrega() {
+        return precoEntrega;
+    }
+
+    public void setPrecoEntrega(Double precoEntrega) {
+        this.precoEntrega = precoEntrega;
+    }
+
+    public String getTempoEstimado() {
+        return tempoEstimado;
+    }
+
+    public void setTempoEstimado(String tempoEstimado) {
+        this.tempoEstimado = tempoEstimado;
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
 
     public int getIdPetshop() {
         return idPetshop;

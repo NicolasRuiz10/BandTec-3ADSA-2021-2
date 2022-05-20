@@ -3,45 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LinhaPetshop">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+        android:orientation="vertical">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:id="@+id/iv_petshop"
             android:src="@mipmap/close_icon"
+            app:shapeAppearanceOverlay="@style/rounded_shop"
+            android:padding="4dp"
+            app:strokeWidth="3dp"
             />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:id="@+id/tv_nome"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20-60 min"
-                android:textSize="12sp"
-                android:layout_marginLeft="10dp"
-                android:textColor="#959595"
-                />
-        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Entrega grátis"
+            android:text="Teste"
             android:textSize="12sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="23dp"
+            android:id="@+id/tv_nome"
             android:textColor="#1C7C20"
             />
 

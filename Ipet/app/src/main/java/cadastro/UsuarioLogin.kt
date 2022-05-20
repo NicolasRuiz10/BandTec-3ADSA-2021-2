@@ -1,4 +1,4 @@
-package com.example.ipet
+package cadastro
 
 class UsuarioLogin (
     val email: String,

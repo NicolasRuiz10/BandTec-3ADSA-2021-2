@@ -61,7 +61,7 @@ public class UsuarioController {
                 usuario.setAutenticacao(false);
                 repository.save(usuario);
             }
-        } return ResponseEntity.status(201).build();
+        } return ResponseEntity.status(201).body(usuarios);
     }
 
     @CrossOrigin

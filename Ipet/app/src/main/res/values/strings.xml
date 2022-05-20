@@ -3,4 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imagem_cobasi">http://pudim.com.br/pudim.jpg</string>
+    <string name="dotted">&#8226;</string>
+
+    <string name="shop_category">%1$s \u2022 %2$.1f km</string>
+    <string name="shop_price">%1$s min \u2022 R$ %2$.2f</string>
 </resources>

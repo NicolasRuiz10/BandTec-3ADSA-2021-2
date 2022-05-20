@@ -1,5 +1,8 @@
-package com.example.ipet
+package API
 
+import com.example.ipet.Petshop
+import com.example.ipet.Usuario
+import cadastro.UsuarioLogin
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

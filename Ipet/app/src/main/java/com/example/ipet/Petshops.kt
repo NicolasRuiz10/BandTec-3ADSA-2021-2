@@ -1,14 +1,11 @@
 package com.example.ipet
 
-import android.graphics.Color
+import API.ApiIpet
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.marginLeft
 import androidx.fragment.app.FragmentContainerView
 import retrofit2.Call
 import retrofit2.Callback
