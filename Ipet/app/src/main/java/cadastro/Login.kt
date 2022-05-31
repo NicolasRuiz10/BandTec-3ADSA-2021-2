@@ -31,7 +31,6 @@ class Login : AppCompatActivity() {
         val novoUsuario = UsuarioLogin(etemail.text.toString(), etsenha.text.toString())
 
         val postAutenticar = ApiIpet.criar().autenticar(novoUsuario)
-        val telaBusca = Intent(this, Petshops::class.java)
 
         val telaHome = Intent(this, Home::class.java)
 

@@ -3,6 +3,7 @@ package API
 import com.example.ipet.Petshop
 import com.example.ipet.Usuario
 import cadastro.UsuarioLogin
+import com.example.ipet.Produto
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,6 +18,12 @@ interface ApiIpet {
 
     @GET("ipet")
     fun getPetshop() : Call<List<Petshop>>
+
+    @GET("produtos")
+    fun getProdutosPorPetshops() : Call<List<Produto>>
+
+    @GET("produtos/teste/{id}")
+    fun getDetalheProduto(@Path("id") id:Int): Call<Produto>
 
     @GET("usuarios/{id}")
     fun get(@Path("id") id:Int) : Call<Usuario>

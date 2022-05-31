@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Ipet"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetalheProduto"
+            android:exported="false" />
+        <activity
+            android:name=".ProdutosPetshop"
+            android:exported="false" />
+        <activity
             android:name="home.BarraNavegacao"
             android:exported="false" />
         <activity

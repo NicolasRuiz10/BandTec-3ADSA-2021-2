@@ -53,7 +53,8 @@
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+        >
 
             <LinearLayout
                 android:id="@+id/ll_linha_petshop"
@@ -64,7 +65,9 @@
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragment_lista_petshops"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:onClick="irTelaProutosPetshop"
+                />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -9,31 +9,29 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-class LinhaPetshop : Fragment() {
+class detail_product : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {}
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_linha_petshop, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_detail_product, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tvNome:TextView = view.findViewById(R.id.tv_nome)
-        val ivPetShop:ImageView = view.findViewById(R.id.iv_petshop)
+        val tvNome: TextView = view.findViewById(R.id.tv_nome)
+        val tvValor: TextView = view.findViewById(R.id.tv_valor)
         val nome = arguments?.getString("nome")
-        val endereco = arguments?.getString("enderecoImagem")
-        val idPetshop = arguments?.getString("idPetshop")
+        val valor = arguments?.getDouble("valor")
         tvNome.text = nome
+        tvValor.text = valor.toString()
 
-       // Picasso.with(view.context).load(endereco).into(ivPetShop)
+        // Picasso.with(view.context).load(endereco).into(ivPetShop)
     }
-
-
 }

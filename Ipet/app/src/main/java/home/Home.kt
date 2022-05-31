@@ -1,5 +1,6 @@
 package home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentContainerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import cadastro.Cadastro
+import com.example.ipet.Petshops
 import com.example.ipet.R
 import com.example.ipet.databinding.ActivityHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -26,6 +29,11 @@ class Home : AppCompatActivity() {
 
         setupViews()
 
+    }
+
+    fun irTelaPetshops(v: View) {
+        val telaPetshops = Intent(this, Petshops::class.java)
+        startActivity(telaPetshops)
     }
     private fun setupViews(){
         val tabLayout = binding.addTab
