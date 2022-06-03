@@ -27,10 +27,12 @@ class detail_product : Fragment() {
         super.onCreate(savedInstanceState)
         val tvNome: TextView = view.findViewById(R.id.tv_nome)
         val tvValor: TextView = view.findViewById(R.id.tv_valor)
+        val tvText: TextView = view.findViewById(R.id.txt_subtitle)
         val nome = arguments?.getString("nome")
         val valor = arguments?.getDouble("valor")
         tvNome.text = nome
-        tvValor.text = valor.toString()
+        tvValor.text = "R$ " + valor.toString()
+        tvText.text = "A partir de:"
 
         // Picasso.with(view.context).load(endereco).into(ivPetShop)
     }

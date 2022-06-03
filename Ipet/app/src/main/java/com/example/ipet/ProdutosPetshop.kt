@@ -8,17 +8,29 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentContainerView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.ipet.databinding.ActivityHomeBinding
+import com.example.ipet.databinding.ActivityProdutosPetshopBinding
+import com.google.android.material.tabs.TabLayoutMediator
+import home.Ipet
+import home.TabViewPageAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ProdutosPetshop : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_produtos_petshop)
         listarProdutos()
     }
+
+
     var idProdutoGlobal = 0
 
     fun listarProdutos() {
@@ -64,4 +76,7 @@ class ProdutosPetshop : AppCompatActivity() {
         telaProdutosPetshop.putExtra("idPetshop", idProdutoGlobal)
         startActivity(telaProdutosPetshop)
     }
+
+
 }
+

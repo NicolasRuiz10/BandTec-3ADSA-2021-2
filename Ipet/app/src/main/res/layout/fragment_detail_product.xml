@@ -1,41 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".detail_product">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="vertical"
-            >
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:src="@mipmap/close_icon"
-                android:layout_gravity="center_horizontal"
-            />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:text="Ração Seca Nutrilus Pro Frango e Car..."
-                android:id="@+id/tv_nome"
-                android:layout_gravity="center_horizontal"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#4CAF50"
-                android:layout_marginTop="5dp"
-                android:text="R$ 30,00"
-                android:id="@+id/tv_valor"
-                android:layout_gravity="center_horizontal"
-            />
-        </LinearLayout>
+    android:orientation="vertical"
+    android:layout_marginHorizontal="2dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp"
+    android:gravity="center">
 
-</FrameLayout>
+    <com.google.android.material.imageview.ShapeableImageView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/img_shop"
+        android:scaleType="centerCrop"
+        android:padding="4dp"
+        app:shapeAppearanceOverlay="@style/rounded_shop"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:strokeWidth="3dp"
+        app:strokeColor="@color/it_gray"
+        />
+
+    <TextView
+        android:id="@+id/tv_nome"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/img_shop"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text = "Teste de produto"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:layout_marginStart="10dp"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txt_subtitle"
+        app:layout_constraintStart_toStartOf="@id/tv_nome"
+        app:layout_constraintTop_toBottomOf="@id/tv_nome"
+        tools:text = "A partir de:"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_valor"
+        app:layout_constraintStart_toStartOf="@id/tv_nome"
+        app:layout_constraintTop_toBottomOf="@id/tv_nome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text = "R$22,00"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
