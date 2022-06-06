@@ -15,28 +15,34 @@
         android:theme="@style/Theme.Ipet"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ProdutoPetshop"
+            android:exported="false" />
+        <activity
+            android:name=".PetShop"
+            android:exported="false" />
+        <activity
             android:name=".DetalheProduto"
             android:exported="false" />
         <activity
             android:name=".ProdutosPetshop"
             android:exported="false" />
         <activity
-            android:name="home.BarraNavegacao"
+            android:name=".BarraNavegacao"
             android:exported="false" />
         <activity
-            android:name="home.ShopView"
+            android:name=".ShopView"
             android:exported="false" />
         <activity
-            android:name="home.BannerView"
+            android:name=".BannerView"
             android:exported="false" />
         <activity
-            android:name="home.CategoryView"
+            android:name=".CategoryView"
             android:exported="false" />
         <activity
-            android:name="home.Category"
+            android:name=".Category"
             android:exported="false" />
         <activity
-            android:name="home.Home"
+            android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".Petshops"

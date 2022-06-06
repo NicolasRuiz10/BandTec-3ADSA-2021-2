@@ -1,8 +1,8 @@
-package com.example.ipet
+package Model
 
-class Petshop (
+data class PetShopModel (
     val idPetshop: Int,
     val nome: String,
     val cnpj: String,
-) {
-}
+
+) {}

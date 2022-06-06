@@ -10,13 +10,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ipet.Petshop
 import com.example.ipet.R
 import com.example.ipet.databinding.FragmentIpetBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
 
 
 class Ipet : Fragment(R.layout.fragment_ipet) {
@@ -56,24 +54,8 @@ class Ipet : Fragment(R.layout.fragment_ipet) {
 
 
 
-     moreShopAdapter.items = arrayListOf(
-         MoreShop(1,"https://static-images.ifood.com.br/image/upload/t_thumbnail/logosgde/1536640b-aa6e-4eea-88c1-919ca21b89fe/202202021101_JzhS_.jpeg","Formosão Pet Shop","Pets",5.0,"20-30",3.0))
 
 
-     val getPetshops = ApiIpet.criar().getPetshop()
-     getPetshops.enqueue(object : Callback<List<Petshop>> {
-         override fun onResponse(call: Call<List<Petshop>>, response: Response<List<Petshop>>) {
-             if (response.isSuccessful) {
-                 response.body()?.forEach { petshop ->
-                     moreShopAdapter.items.add(MoreShop(petshop.idPetshop,"https://miro.medium.com/max/640/0*i1v1In2Tn4Stnwnl.jpg",petshop.nome,"Pets",5.0,"20-30",3.0))
-
-                 }
-
-             }
-         }
-         override fun onFailure(call: Call<List<Petshop>>, t: Throwable) {
-         }
-     })
 
 
         binding = FragmentIpetBinding.bind(view)

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.ipet.Petshops
 import com.example.ipet.R
 import home.Home
 import retrofit2.Call
