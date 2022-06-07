@@ -20,12 +20,13 @@
             android:id="@+id/tt_title_page_produto"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@color/it_gray"
             android:hint="Produtos"
-            android:textColorHint="@android:color/black"
             android:textAlignment="center"
             android:gravity="center"
-            android:textSize="20sp"
+            android:background="#122484EC"
+            android:textSize="25sp"
+            android:textColorHint="#2484EC"
+            android:textStyle="bold"
             />
 
         <LinearLayout
@@ -92,7 +93,7 @@
                 />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_produtos_petshop"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 tools:listitem="@layout/produto_item"

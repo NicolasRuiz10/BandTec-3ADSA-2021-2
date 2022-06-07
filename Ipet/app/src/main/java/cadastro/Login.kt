@@ -29,7 +29,7 @@ class Login : AppCompatActivity() {
     fun logar(v:View) {
         val telaHome = Intent(this, Home::class.java)
         val telaCadastro = Intent(this, Cadastro::class.java)
-        val telaPedido = Intent(this, Carrinho::class.java)
+        val telaCarrinho = Intent(this, Carrinho::class.java)
 
         val novoUsuario = UsuarioLogin(etemail.text.toString(), etsenha.text.toString())
         val postAutenticar = ApiIpet.criar().autenticar(novoUsuario)
@@ -65,10 +65,11 @@ class Login : AppCompatActivity() {
                                     telaCadastro.putExtra("emailUsuario", usuarioLogado.email)
                                     telaCadastro.putExtra("senhaUsuario", usuarioLogado.senha)
 
-                                    telaPedido.putExtra("idUsuario", usuarioLogado.idUsuario)
-                                    telaPedido.putExtra("nomeUsuario", usuarioLogado.nome)
-                                    telaPedido.putExtra("emailUsuario", usuarioLogado.email)
-                                    telaPedido.putExtra("senhaUsuario", usuarioLogado.senha)
+                                    println("ID USUARIO"+ usuarioLogado.idUsuario)
+                                    telaCarrinho.putExtra("idUsuario", usuarioLogado.idUsuario)
+                                    telaCarrinho.putExtra("nomeUsuario", usuarioLogado.nome)
+                                    telaCarrinho.putExtra("emailUsuario", usuarioLogado.email)
+                                    telaCarrinho.putExtra("senhaUsuario", usuarioLogado.senha)
 
                                     Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
                                     startActivity(telaHome)

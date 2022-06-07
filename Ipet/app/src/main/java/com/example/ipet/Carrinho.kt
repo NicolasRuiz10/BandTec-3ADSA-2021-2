@@ -28,6 +28,13 @@ class Carrinho: AppCompatActivity() {
 
         val recyclerView_produtosCarrinho = findViewById<RecyclerView>(R.id.rv_produtos_carriho)
 
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+
+        println("ID DO NOIA"+ idUsuario)
+        println("ID DO NOIA"+ idUsuario.toString().toInt())
+        println("ID DO NOIA"+ nomeUsuario)
 
         val dadosProduto = intent.extras
         var nomeProduto = dadosProduto?.getString("nomeProduto")
@@ -43,7 +50,7 @@ class Carrinho: AppCompatActivity() {
 
         var p1 = ProdutosModel(idProduto, nomeProduto, idPetshop, descricao,valorTotal)
         listaProdutosCarrinho.add(p1)
-        recyclerView_produtosCarrinho.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView_produtosCarrinho.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView_produtosCarrinho.setHasFixedSize(true)
         val adapterProduto = AdapterProdutos(this, listaProdutosCarrinho)
         adapterProduto.onClickListener = { produto ->
@@ -58,16 +65,17 @@ class Carrinho: AppCompatActivity() {
         startActivity(telaProdutos)
     }
     fun irTelaPedidos(view: View) {
-        val telaPedidos = Intent(this, Home::class.java)
+        val telaPedidos = Intent(this, Pedidos::class.java)
         val dadosProduto = intent.extras
         var valor = dadosProduto?.getInt("valor")
         var idProduto = dadosProduto?.getInt("idProduto")
         var quantidade = dadosProduto?.getInt("quantidade")
         var valorTotal = valor.toString().toInt() * quantidade.toString().toInt()
 
-
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+
         println("ID DO NOIA"+ idUsuario)
         println("ID DO NOIA"+ idUsuario.toString().toInt())
 
@@ -99,7 +107,6 @@ class Carrinho: AppCompatActivity() {
                                     itensPedidos.enqueue(object : Callback<Void> {
                                         override fun onResponse(call: Call<Void>, response: Response<Void>) {
                                             Toast.makeText(baseContext, "Pedido Realizado", Toast.LENGTH_SHORT).show()
-                                            startActivity(telaPedidos)
                                         }
                                         override fun onFailure(call: Call<Void>, t: Throwable) {
                                             Toast.makeText(baseContext, "Erro na API 2", Toast.LENGTH_SHORT).show()

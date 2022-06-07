@@ -14,12 +14,13 @@
         android:id="@+id/tt_title_page_pedidos"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/gray_1"
         android:hint="Petshop"
-        android:textColorHint="@android:color/black"
         android:textAlignment="center"
         android:gravity="center"
-        android:textSize="20sp"
+        android:background="#122484EC"
+        android:textSize="25sp"
+        android:textColorHint="#2484EC"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -34,6 +35,7 @@
 
         >
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
             android:id="@+id/lista_petshops"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

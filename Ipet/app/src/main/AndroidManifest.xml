@@ -42,6 +42,9 @@
             android:name=".Carrinho"
             android:exported="false" />
         <activity
+            android:name=".Pedidos"
+            android:exported="false" />
+        <activity
             android:name="home.Home"
             android:exported="false" />
         <activity

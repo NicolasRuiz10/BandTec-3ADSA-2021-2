@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cadastro.Cadastro
 import cadastro.Login
+import com.example.ipet.Pedidos
 import com.example.ipet.PetShop
 import com.example.ipet.R
 import com.example.ipet.Usuario
@@ -94,6 +95,11 @@ class Home : AppCompatActivity() {
 
     fun onBackPressed(view: View) {
         // não chame o super desse método
+    }
+
+    fun irTelaPedidos(view: View) {
+        val telaPedidos = Intent(this, Pedidos::class.java)
+        startActivity(telaPedidos)
     }
 
 }

@@ -139,7 +139,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_marginLeft="50dp">
+                    android:layout_marginLeft="50dp"
+                    android:onClick="irTelaPedidos"
+                    >
 
                     <ImageView
                         android:layout_width="wrap_content"

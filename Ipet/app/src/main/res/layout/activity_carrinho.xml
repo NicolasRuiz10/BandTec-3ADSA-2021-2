@@ -5,6 +5,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/gray_1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,18 +15,22 @@
         android:orientation="vertical"
         android:background="@color/gray_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tt_title_page_produto"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@color/gray_1"
-            android:hint="Carrinho"
-            android:textColorHint="@android:color/black"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="20sp"
-            />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+            <TextView
+                android:id="@+id/tt_title_page_produto"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="#122484EC"
+                android:hint="Carrinho"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textColorHint="#2484EC"
+                android:textStyle="bold"
+                />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,14 +42,16 @@
             android:layout_marginTop="20dp"
 
             />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_produtos_carriho"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            tools:listitem="@layout/pedidos_item"
-            android:visibility="visible"
-            />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_produtos_carriho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:listitem="@layout/pedidos_item"
+                android:visibility="visible"
+                />
+
 
         <LinearLayout
             android:id="@+id/ll_acoes_btn_produto"
