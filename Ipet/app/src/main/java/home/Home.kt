@@ -18,13 +18,9 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //buscar o Layout e jogando(Semelhante ao : val tablayout: TabLayout = findViewById(R.id.add_tab) )
         binding = ActivityHomeBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-
         setupViews()
-
     }
 
 

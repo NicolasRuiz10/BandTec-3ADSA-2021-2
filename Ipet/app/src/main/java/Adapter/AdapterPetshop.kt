@@ -28,9 +28,9 @@ class AdapterPetshop  (private val context: Context,
         fun bind(item: PetShopModel, onClickListener: (petshop: PetShopModel) -> Unit) {
             with(biding) {
                 nomePetshop.text = item.nome
-                statusPetshop.text = "item.status"
-             kmPetshop.text = "item.km"
-             numeroPetshop.text = "item.telefone.toString()"
+                emailPetshop.text = item.email
+                numeroPetshop.text = item.telefone
+                idPet.text = item.idPetshop.toString()
                 llItemPetshop.setOnClickListener{
                     onClickListener(item)
                 }

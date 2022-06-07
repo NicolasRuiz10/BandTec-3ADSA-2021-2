@@ -42,7 +42,7 @@
             android:name=".Category"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name="home.Home"
             android:exported="false" />
         <activity
             android:name=".Petshops"

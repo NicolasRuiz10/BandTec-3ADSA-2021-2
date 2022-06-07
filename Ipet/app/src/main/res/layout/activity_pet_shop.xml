@@ -8,13 +8,13 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/gray">
+    android:background="@color/gray_1">
 
     <TextView
         android:id="@+id/tt_title_page_pedidos"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/gray"
+        android:background="@color/gray_1"
         android:hint="Petshop"
         android:textColorHint="@android:color/black"
         android:textAlignment="center"
@@ -41,6 +41,4 @@
             android:visibility="visible"
             />
     </LinearLayout>
-
-
 </LinearLayout>

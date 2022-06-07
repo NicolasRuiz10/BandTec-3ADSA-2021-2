@@ -38,7 +38,9 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3564356435643564" />
+        <entry key="app/src/main/res/layout/activity_pet_shop.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/activity_petshops.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/activity_produto_petshop.xml" value="0.17118226600985223" />
         <entry key="app/src/main/res/layout/activity_produtos_petshop.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/banner_item.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.18177083333333333" />
@@ -47,6 +49,8 @@
         <entry key="app/src/main/res/layout/fragment_ipet.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_linha_petshop.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/more_shop.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/petshop_item.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/produto_item.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/shop_item.xml" value="0.35625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19" />
       </map>
