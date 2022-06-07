@@ -1,5 +1,7 @@
 package API
 
+import Model.ItensPedidos
+import Model.PedidosModel
 import Model.PetShopModel
 import Model.ProdutosModel
 import com.example.ipet.Usuario
@@ -24,6 +26,15 @@ interface ApiIpet {
 
     @GET("usuarios/{id}")
     fun get(@Path("id") id:Int) : Call<Usuario>
+
+    @POST("pedido/usuario/id/{id}")
+    fun postPedidos(@Body novoPedido: PedidosModel, @Path("id") id:Int) : Call<Void>
+
+    @POST("itens/pedido/id/{idPedido}/{idProduto}")
+    fun postItensPedidos(@Body novoPedido: ItensPedidos, @Path("idPedido") idPedido:Int, @Path("idProduto") idProduto: Int?) : Call<Void>
+
+    @GET("pedido")
+    fun getPedido(): Call<List<PedidosModel>>
 
     @POST("usuarios")
     fun post(@Body novoIpet: Usuario) : Call<Void>

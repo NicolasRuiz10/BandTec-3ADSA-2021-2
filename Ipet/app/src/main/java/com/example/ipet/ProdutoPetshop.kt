@@ -1,10 +1,9 @@
 package com.example.ipet
 
 import API.ApiIpet
-import Adapter.AdapterPetshop
 import Adapter.AdapterProdutos
-import Model.PetShopModel
 import Model.ProdutosModel
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -71,7 +70,7 @@ class ProdutoPetshop : AppCompatActivity() {
                         println("ID2."+ idPetshop)
                         if (produto.idPet == idPetshop) {
                             println("ENTROU PORRA")
-                            listaProdutoPetshop.add(ProdutosModel(produto.idProduto, produto.nome, produto.idPet))
+                            listaProdutoPetshop.add(ProdutosModel(produto.idProduto, produto.nome, produto.idPet, produto.descricao, produto.valor))
                         }
                     }
                     val adapterProduto = AdapterProdutos(baseContext, listaProdutoPetshop)
@@ -118,16 +117,12 @@ class ProdutoPetshop : AppCompatActivity() {
     }
 
     private fun clickbtn(produtos: ProdutosModel) {
-//        val telaProdutoDatalhe = Intent(this, Produto::class.java)
-//
-//        telaProdutoDatalhe.putExtra("idProduto", produtos.idProduto)
-//        telaProdutoDatalhe.putExtra("nomeProduto", produtos.nomeProduto)
-//        telaProdutoDatalhe.putExtra("preco", produtos.preco)
-//        telaProdutoDatalhe.putExtra("descricao", produtos.descricao)
-//        telaProdutoDatalhe.putExtra("marca", produtos.marca)
-//        telaProdutoDatalhe.putExtra("categoria", produtos.categoria)
-//        telaProdutoDatalhe.putExtra("fotoProduto", produtos.fotoProduto)
-//        telaProdutoDatalhe.putExtra("idPetshop", produtos.idPetshop)
-//        startActivity(telaProdutoDatalhe)
+        val telaProdutoDatalhe = Intent(this, Produto::class.java)
+        telaProdutoDatalhe.putExtra("idProduto", produtos.idProduto)
+        telaProdutoDatalhe.putExtra("nomeProduto", produtos.nome)
+        telaProdutoDatalhe.putExtra("valor", produtos.valor)
+        telaProdutoDatalhe.putExtra("descricao", produtos.descricao)
+        telaProdutoDatalhe.putExtra("idpet", produtos.idPet)
+        startActivity(telaProdutoDatalhe)
     }
 }

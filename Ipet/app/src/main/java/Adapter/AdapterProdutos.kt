@@ -26,8 +26,8 @@ class AdapterProdutos (private val context: Context,
         fun bind(item: ProdutosModel, onClickListener: (produtos: ProdutosModel) -> Unit) {
             with(biding) {
                 nomeProduto.text = item.nome
-                precoProduto.text = "199"
-                descProduto.text = "teste"
+                precoProduto.text = item.valor.toString()
+                descProduto.text = item.descricao
                 llItemProdutos.setOnClickListener{
                     onClickListener(item)
                 }

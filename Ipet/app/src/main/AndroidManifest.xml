@@ -39,13 +39,13 @@
             android:name=".CategoryView"
             android:exported="false" />
         <activity
-            android:name=".Category"
+            android:name=".Carrinho"
             android:exported="false" />
         <activity
             android:name="home.Home"
             android:exported="false" />
         <activity
-            android:name=".Petshops"
+            android:name=".Produto"
             android:exported="false" />
         <activity
             android:name="cadastro.Cadastro"
