@@ -18,15 +18,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="ExtraText">
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 style="@style/MyFoodButtonStyle"
+                android:id="@+id/nomeUsuario"
                 android:text="R. Fabriciano Habrinul"
                 android:textColor="@color/black"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:textSize="14sp"
                 android:layout_height="wrap_content"
                 tools:ignore="HardcodedText" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                style="@style/MyFoodButtonStyle"
+                android:layout_gravity="end"
+                android:layout_marginEnd="25dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText"
+                android:text="Sair"
+                android:onClick="voltarTelaLogin"
+                />
 
 
         </androidx.appcompat.widget.Toolbar>

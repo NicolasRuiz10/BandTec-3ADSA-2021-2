@@ -7,8 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.ipet.PetShop
-import com.example.ipet.R
+import com.example.ipet.*
 import home.Home
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,28 +27,64 @@ class Login : AppCompatActivity() {
         startActivity(telaCadastro)
     }
     fun logar(v:View) {
-        val novoUsuario = UsuarioLogin(etemail.text.toString(), etsenha.text.toString())
-
-        val postAutenticar = ApiIpet.criar().autenticar(novoUsuario)
-
         val telaHome = Intent(this, Home::class.java)
+        val telaCadastro = Intent(this, Cadastro::class.java)
+        val telaPedido = Intent(this, Carrinho::class.java)
+
+        val novoUsuario = UsuarioLogin(etemail.text.toString(), etsenha.text.toString())
+        val postAutenticar = ApiIpet.criar().autenticar(novoUsuario)
 
         postAutenticar.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                println("AQUI")
-                t.printStackTrace()
                 Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    println( "AQUI********************" + response.body())
-                    Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                    startActivity(telaHome)
+                    println( "AQUI********" + response.body())
+
+                    val getUsuarios = ApiIpet.criar().get()
+                    getUsuarios.enqueue(object : Callback<List<Usuario>>{
+                        override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>
+                        ) {
+                            Toast.makeText(baseContext, "Funcionou", Toast.LENGTH_SHORT).show()
+                            response.body()?.forEach { usuario ->
+                                if (usuario.senha.equals(novoUsuario.senha, ignoreCase = true) &&
+                                    usuario.email.equals(novoUsuario.email, ignoreCase = true)
+                                ) {
+                                    val usuarioLogado = Usuario(usuario.idUsuario, usuario.nome, usuario.email, usuario.senha)
+
+                                    println("AQUI O ID do LOGIN"+ usuarioLogado.idUsuario)
+                                    telaHome.putExtra("idUsuario", usuarioLogado.idUsuario)
+                                    telaHome.putExtra("nomeUsuario", usuarioLogado.nome)
+                                    telaHome.putExtra("emailUsuario", usuarioLogado.email)
+                                    telaHome.putExtra("senhaUsuario", usuarioLogado.senha)
+
+                                    telaCadastro.putExtra("idUsuario", usuarioLogado.idUsuario)
+                                    telaCadastro.putExtra("nomeUsuario", usuarioLogado.nome)
+                                    telaCadastro.putExtra("emailUsuario", usuarioLogado.email)
+                                    telaCadastro.putExtra("senhaUsuario", usuarioLogado.senha)
+
+                                    telaPedido.putExtra("idUsuario", usuarioLogado.idUsuario)
+                                    telaPedido.putExtra("nomeUsuario", usuarioLogado.nome)
+                                    telaPedido.putExtra("emailUsuario", usuarioLogado.email)
+                                    telaPedido.putExtra("senhaUsuario", usuarioLogado.senha)
+
+                                    Toast.makeText(baseContext, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                                    startActivity(telaHome)
+                                }
+                            }
+                        }
+                        override fun onFailure(call: Call<List<Usuario>>, t: Throwable) {
+                            Toast.makeText(baseContext, "Erro", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
                 } else {
                     Toast.makeText(baseContext, "Erro: ${response.errorBody()}", Toast.LENGTH_SHORT).show()
                 }
             }
         })
+
     }
 }

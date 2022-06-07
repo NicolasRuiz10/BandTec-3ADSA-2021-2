@@ -1,7 +1,7 @@
 package com.example.ipet
 
 class Usuario (
-    val id: Int,
+    val idUsuario: Int,
     val nome: String,
     val email: String,
     val senha: String

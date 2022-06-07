@@ -28,6 +28,7 @@ class Carrinho: AppCompatActivity() {
 
         val recyclerView_produtosCarrinho = findViewById<RecyclerView>(R.id.rv_produtos_carriho)
 
+
         val dadosProduto = intent.extras
         var nomeProduto = dadosProduto?.getString("nomeProduto")
         var valor = dadosProduto?.getInt("valor")
@@ -64,8 +65,19 @@ class Carrinho: AppCompatActivity() {
         var quantidade = dadosProduto?.getInt("quantidade")
         var valorTotal = valor.toString().toInt() * quantidade.toString().toInt()
 
-        val novoPedido = PedidosModel(99, "teste2HBMJBJBBJJU22UUddd", valorTotal.toDouble(), "aberto")
-        val postPedido = ApiIpet.criar().postPedidos(novoPedido, 1)
+
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        println("ID DO NOIA"+ idUsuario)
+        println("ID DO NOIA"+ idUsuario.toString().toInt())
+
+
+//        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+//        var emailUsuario = dadosUsuario?.getString("emailUsuario")
+//        var senhaUsuario = dadosUsuario?.getString("senhaUsuario")
+
+        val novoPedido = PedidosModel(350, "teste", valorTotal.toDouble(), "aberto")
+        val postPedido = ApiIpet.criar().postPedidos(novoPedido, idUsuario.toString().toInt())
         postPedido.enqueue(object : Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 val getPedidos = ApiIpet.criar().getPedido()
@@ -75,17 +87,11 @@ class Carrinho: AppCompatActivity() {
                         response: Response<List<PedidosModel>>
                     ) {
                         if (response.isSuccessful) {
-                            println("Entrou sucesso")
                             response.body()?.forEach { pedido ->
-                                println("STATUS1"+ pedido.status)
-                                println("STATUS2"+ novoPedido.status)
-                                println("PAG1"+ pedido.pagamento)
-                                println("PAG2"+ novoPedido.pagamento)
                                 if (
-                                    pedido.status == novoPedido.status &&
-                                    pedido.pagamento == novoPedido.pagamento
+                                    pedido.status.equals(novoPedido.status, ignoreCase = true) &&
+                                    pedido.pagamento.equals(novoPedido.pagamento, ignoreCase = true)
                                 ) {
-                                    println("Entrou if")
                                     val pedidoRealizado = PedidosModel(pedido.idPedido, pedido.pagamento, pedido.valorTotal, pedido.status)
                                     val itemPedido = ItensPedidos(quantidade)
                                     println("pedido realizado"+ pedidoRealizado.idPedido)
@@ -114,7 +120,6 @@ class Carrinho: AppCompatActivity() {
                 Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
             }
         })
-
 
 
     }

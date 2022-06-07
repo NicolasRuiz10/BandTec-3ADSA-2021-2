@@ -42,6 +42,9 @@ interface ApiIpet {
     @POST("usuarios/autenticar")
     fun autenticar(@Body novoIpet: UsuarioLogin) : Call<Void>
 
+    @POST("usuarios/logoff/{id}")
+    fun deslogar( @Path("id") idUsuario:Int) : Call<Void>
+
     companion object {
         var BASE_URL = "http://34.226.239.106:8080/"
         fun criar() : ApiIpet {
