@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import home.Home
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +34,7 @@ class ProdutoPetshop : AppCompatActivity() {
         val dadosPetshop = intent.extras
         var nomePetshop = dadosPetshop?.getString("nomePet")
         var imagemPetshop = dadosPetshop?.getInt("fotoPet")
+        var complemento = dadosPetshop?.getString("complemento")
         var kmPetshop = dadosPetshop?.getString("cnpj")
         var telPetshop = dadosPetshop?.getString("telefone")
         var idPetshop = dadosPetshop?.getInt("idPetshop")
@@ -50,7 +52,7 @@ class ProdutoPetshop : AppCompatActivity() {
         TvTelPetshop.setText("(11) ${telPetshop.toString()}")
 
         val imagemPet = findViewById<ImageView>(R.id.iv_imagem_petshop)
-        imagemPet.setImageResource(imagemPetshop!!)
+        Picasso.get().load(complemento).into(imagemPet)
 
 
         val recyclerView_produtos_petshop = findViewById<RecyclerView>(R.id.rc_produtos_petshop)
