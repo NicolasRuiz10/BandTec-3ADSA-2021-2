@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ipet.databinding.ProdutoItemBinding
+import com.squareup.picasso.Picasso
 
 class AdapterProdutos (private val context: Context,
                        private val ProdutosList: MutableList<ProdutosModel>,
@@ -28,6 +29,7 @@ class AdapterProdutos (private val context: Context,
                 nomeProduto.text = item.nome
                 precoProduto.text = item.valor.toString()
                 descProduto.text = item.descricao
+                Picasso.get().load(item.especie).into(imagemProduto)
                 llItemProdutos.setOnClickListener{
                     onClickListener(item)
                 }

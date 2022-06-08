@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.squareup.picasso.Picasso
 import home.Home
 
 class Produto: AppCompatActivity() {
@@ -19,9 +20,9 @@ class Produto: AppCompatActivity() {
         val dadosProduto = intent.extras
         var nomeProduto = dadosProduto?.getString("nomeProduto")
         var descricao = dadosProduto?.getString("descricao")
-        var valor = dadosProduto?.getInt("valor")
+        var valor = dadosProduto?.getDouble("valor")
+        var especie = dadosProduto?.getString("especie")
 
-        println("VALLLLOR"+ valor)
         var idPetshop = dadosProduto?.getInt("idPetshop")
         var idProduto = dadosProduto?.getInt("idProduto")
 
@@ -29,11 +30,14 @@ class Produto: AppCompatActivity() {
         val tv_nomeProduto = findViewById<TextView>(R.id.tv_nome_produto)
         tv_nomeProduto.text = nomeProduto
 
+        val img_foto = findViewById<ImageView>(R.id.iv_imagem_produto)
+        Picasso.get().load(especie).into(img_foto)
+
         val tv_descProduto = findViewById<TextView>(R.id.tv_desc_produto)
         tv_descProduto.text = descricao
 
         val tv_preco_produto = findViewById<TextView>(R.id.tv_preco_produto)
-        tv_preco_produto.text = "$valor,00"
+        tv_preco_produto.text = "$valor"
     }
 
     fun adicionarProduto(view: View) {
@@ -42,9 +46,9 @@ class Produto: AppCompatActivity() {
         val qtd = Integer.parseInt(quantidade.text.toString()) + 1
         quantidade.text = qtd.toString()
         val dadosProduto = intent.extras
-        var preco = dadosProduto?.getInt("valor")
-        var somaValorTotal = preco.toString().toInt() * quantidade.text.toString().toInt()
-        valorProduto.text = "$somaValorTotal,00"
+        var preco = dadosProduto?.getDouble("valor")
+        var somaValorTotal = preco.toString().toDouble() * quantidade.text.toString().toDouble()
+        valorProduto.text = "$somaValorTotal"
     }
 
     fun subtrairProduto(view: View) {
@@ -57,9 +61,9 @@ class Produto: AppCompatActivity() {
         quantidade.text = qtd.toString()
 
         val dadosProduto = intent.extras
-        var preco = dadosProduto?.getInt("valor")
-        var somaValorTotal = preco.toString().toInt() * quantidade.text.toString().toInt()
-        valorProduto.text = "$somaValorTotal,00"
+        var preco = dadosProduto?.getDouble("valor")
+        var somaValorTotal = preco.toString().toDouble() * quantidade.text.toString().toDouble()
+        valorProduto.text = "$somaValorTotal"
     }
 
     fun irTelaCarrinho(v: View) {
@@ -71,10 +75,11 @@ class Produto: AppCompatActivity() {
         val dadosProduto = intent.extras
 
         var nomeProduto = dadosProduto?.getString("nomeProduto")
-        var valor = dadosProduto?.getInt("valor")
+        var valor = dadosProduto?.getDouble("valor")
         var descricao = dadosProduto?.getString("descricao")
         var idPetshop = dadosProduto?.getInt("idpet")
         var idProduto = dadosProduto?.getInt("idProduto")
+        var especie = dadosProduto?.getString("especie")
         telaCarrinho.putExtra("nomeUsuario",nomeUsuario)
         telaCarrinho.putExtra("idUsuario", idUsuario)
         telaCarrinho.putExtra("nomeProduto", nomeProduto)
@@ -82,6 +87,7 @@ class Produto: AppCompatActivity() {
         telaCarrinho.putExtra("descricao", descricao)
         telaCarrinho.putExtra("idpet", idPetshop)
         telaCarrinho.putExtra("idProduto", idProduto)
+        telaCarrinho.putExtra("especie", especie)
         telaCarrinho.putExtra("quantidade", quantidade.text.toString().toInt())
         startActivity(telaCarrinho)
     }

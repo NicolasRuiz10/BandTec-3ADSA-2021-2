@@ -30,17 +30,18 @@ class Carrinho: AppCompatActivity() {
 
         val dadosProduto = intent.extras
         var nomeProduto = dadosProduto?.getString("nomeProduto")
-        var valor = dadosProduto?.getInt("valor")
+        var valor = dadosProduto?.getDouble("valor")
         var descricao = dadosProduto?.getString("descricao")
         var idPetshop = dadosProduto?.getInt("idPetshop")
         var idProduto = dadosProduto?.getInt("idProduto")
         var quantidade = dadosProduto?.getInt("quantidade")
+        var especie = dadosProduto?.getString("especie")
 
         println("Qtd"+ quantidade)
         println("Valor"+ valor)
-        var valorTotal = valor.toString().toInt() * quantidade.toString().toInt()
+        var valorTotal = valor.toString().toDouble() * quantidade.toString().toDouble()
 
-        var p1 = ProdutosModel(idProduto, nomeProduto, idPetshop, descricao,valorTotal.toDouble())
+        var p1 = ProdutosModel(idProduto, nomeProduto, idPetshop, descricao,valorTotal,especie.toString())
         listaProdutosCarrinho.add(p1)
         recyclerView_produtosCarrinho.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView_produtosCarrinho.setHasFixedSize(true)
@@ -60,10 +61,10 @@ class Carrinho: AppCompatActivity() {
 
         val telaPedidos = Intent(this, Pedidos::class.java)
         val dadosProduto = intent.extras
-        var valor = dadosProduto?.getInt("valor")
+        var valor = dadosProduto?.getDouble("valor")
         var idProduto = dadosProduto?.getInt("idProduto")
         var quantidade = dadosProduto?.getInt("quantidade")
-        var valorTotal = valor.toString().toInt() * quantidade.toString().toInt()
+        var valorTotal = valor.toString().toDouble() * quantidade.toString().toDouble()
 
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")

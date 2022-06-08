@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ipet.databinding.PedidosItemBinding
+import com.squareup.picasso.Picasso
 
 class AdapterPedido(
     private val context: Context,
@@ -27,10 +28,10 @@ class AdapterPedido(
     class PedidoViewHolder(val biding: PedidosItemBinding) : RecyclerView.ViewHolder(biding.root) {
         fun bind(item: PedidosModel, onClickListener: (pedido: PedidosModel) -> Unit) {
             with(biding) {
-                idPedido.text = item.idPedido.toString()
-                pagamento.text = item.pagamento
-                valorTotal.text = item.valorTotal.toString()
-                status.text = item.status
+                idPedido.text = ("Id pedido: "+item.idPedido.toString())
+                pagamento.text = "Pagamento: "+item.pagamento
+                valorTotal.text = "Valor: R$"+item.valorTotal.toString()
+                status.text = "Status: "+item.status
                 llItemPedido.setOnClickListener{
                     onClickListener(item)
                 }
