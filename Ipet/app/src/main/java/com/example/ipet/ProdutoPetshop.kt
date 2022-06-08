@@ -117,7 +117,10 @@ class ProdutoPetshop : AppCompatActivity() {
     }
 
     private fun clickbtn(produtos: ProdutosModel) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
         val telaProdutoDatalhe = Intent(this, Produto::class.java)
+        telaProdutoDatalhe.putExtra("idUsuario", idUsuario)
         telaProdutoDatalhe.putExtra("idProduto", produtos.idProduto)
         telaProdutoDatalhe.putExtra("nomeProduto", produtos.nome)
         telaProdutoDatalhe.putExtra("valor", produtos.valor)

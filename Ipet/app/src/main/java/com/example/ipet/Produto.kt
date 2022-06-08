@@ -62,6 +62,8 @@ class Produto: AppCompatActivity() {
     }
 
     fun irTelaCarrinho(v: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
         val telaCarrinho = Intent(this, Carrinho::class.java)
         val quantidade = findViewById<TextView>(R.id.tv_quantidade_produto)
         val dadosProduto = intent.extras
@@ -71,6 +73,7 @@ class Produto: AppCompatActivity() {
         var descricao = dadosProduto?.getString("descricao")
         var idPetshop = dadosProduto?.getInt("idpet")
         var idProduto = dadosProduto?.getInt("idProduto")
+        telaCarrinho.putExtra("idUsuario", idUsuario)
         telaCarrinho.putExtra("nomeProduto", nomeProduto)
         telaCarrinho.putExtra("valor", valor)
         telaCarrinho.putExtra("descricao", descricao)

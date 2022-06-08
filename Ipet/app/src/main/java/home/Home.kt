@@ -88,17 +88,23 @@ class Home : AppCompatActivity() {
     }
 
     fun irTelaPetshops(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
         val telaPetshop = Intent(this, PetShop::class.java)
+        telaPetshop.putExtra("idUsuario", idUsuario)
         startActivity(telaPetshop)
 
     }
 
-    fun onBackPressed(view: View) {
+    override fun onBackPressed() {
         // não chame o super desse método
     }
 
     fun irTelaPedidos(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
         val telaPedidos = Intent(this, Pedidos::class.java)
+        telaPedidos.putExtra("idUsuario", idUsuario)
         startActivity(telaPedidos)
     }
 

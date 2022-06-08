@@ -1,9 +1,6 @@
 package API
 
-import Model.ItensPedidos
-import Model.PedidosModel
-import Model.PetShopModel
-import Model.ProdutosModel
+import Model.*
 import com.example.ipet.Usuario
 import cadastro.UsuarioLogin
 import retrofit2.Call
@@ -35,6 +32,9 @@ interface ApiIpet {
 
     @GET("pedido")
     fun getPedido(): Call<List<PedidosModel>>
+
+    @GET("itens")
+    fun getItem(): Call<List<PedidoRealizado>>
 
     @POST("usuarios")
     fun post(@Body novoIpet: Usuario) : Call<Void>

@@ -28,14 +28,6 @@ class Carrinho: AppCompatActivity() {
 
         val recyclerView_produtosCarrinho = findViewById<RecyclerView>(R.id.rv_produtos_carriho)
 
-        val dadosUsuario = intent.extras
-        var idUsuario = dadosUsuario?.getInt("idUsuario")
-        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
-
-        println("ID DO NOIA"+ idUsuario)
-        println("ID DO NOIA"+ idUsuario.toString().toInt())
-        println("ID DO NOIA"+ nomeUsuario)
-
         val dadosProduto = intent.extras
         var nomeProduto = dadosProduto?.getString("nomeProduto")
         var valor = dadosProduto?.getInt("valor")
@@ -50,7 +42,7 @@ class Carrinho: AppCompatActivity() {
 
         var p1 = ProdutosModel(idProduto, nomeProduto, idPetshop, descricao,valorTotal)
         listaProdutosCarrinho.add(p1)
-        recyclerView_produtosCarrinho.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView_produtosCarrinho.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView_produtosCarrinho.setHasFixedSize(true)
         val adapterProduto = AdapterProdutos(this, listaProdutosCarrinho)
         adapterProduto.onClickListener = { produto ->
@@ -65,6 +57,7 @@ class Carrinho: AppCompatActivity() {
         startActivity(telaProdutos)
     }
     fun irTelaPedidos(view: View) {
+
         val telaPedidos = Intent(this, Pedidos::class.java)
         val dadosProduto = intent.extras
         var valor = dadosProduto?.getInt("valor")
@@ -74,10 +67,6 @@ class Carrinho: AppCompatActivity() {
 
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
-        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
-
-        println("ID DO NOIA"+ idUsuario)
-        println("ID DO NOIA"+ idUsuario.toString().toInt())
 
 
 //        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
@@ -102,10 +91,11 @@ class Carrinho: AppCompatActivity() {
                                 ) {
                                     val pedidoRealizado = PedidosModel(pedido.idPedido, pedido.pagamento, pedido.valorTotal, pedido.status)
                                     val itemPedido = ItensPedidos(quantidade)
-                                    println("pedido realizado"+ pedidoRealizado.idPedido)
                                     val itensPedidos = ApiIpet.criar().postItensPedidos(itemPedido, pedido.idPedido, idProduto)
                                     itensPedidos.enqueue(object : Callback<Void> {
                                         override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                                            telaPedidos.putExtra("idUsuario", idUsuario)
+                                            startActivity(telaPedidos)
                                             Toast.makeText(baseContext, "Pedido Realizado", Toast.LENGTH_SHORT).show()
                                         }
                                         override fun onFailure(call: Call<Void>, t: Throwable) {

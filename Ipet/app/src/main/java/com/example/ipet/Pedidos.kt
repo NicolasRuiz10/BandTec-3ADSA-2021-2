@@ -1,151 +1,74 @@
 package com.example.ipet
 
+import API.ApiIpet
 import Adapter.AdapterPedido
-import Model.PedidosModel
+import Model.*
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Pedidos : AppCompatActivity()  {
+    val listaPedidoAberto: MutableList<PedidosModel> = mutableListOf()
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pedidos)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        //      Recuperando recycleView da Activity
-        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos_aberto)
-        val recyclerView_pedidos_andamento = findViewById<RecyclerView>(R.id.lista_pedidos_andamento)
-        val recyclerView_pedidos_finalizados = findViewById<RecyclerView>(R.id.lista_pedidos_finalizado)
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
 
-        //      Listando Horizontalmente
+        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos)
+
         recyclerView_pedidos_abertos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        //      Melhora o desempenho da RecycleView
         recyclerView_pedidos_abertos.setHasFixedSize(true)
-        //     Configurar Adpater
-        val listaPedidoAberto: MutableList<PedidosModel> = mutableListOf()
-        val adapterPedidoAberto = AdapterPedido(this, listaPedidoAberto)
-        adapterPedidoAberto.onClickListener = { pedido ->
-            clickbtn(pedido)
-        }
-        recyclerView_pedidos_abertos.adapter = adapterPedidoAberto
 
 
+        val getPedidos = ApiIpet.criar().getItem()
+        getPedidos.enqueue(object : Callback<List<PedidoRealizado>>{
+            override fun onResponse(
+                call: Call<List<PedidoRealizado>>,
+                response: Response<List<PedidoRealizado>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.forEach{ pedido ->
+                        val usuario = Usuario(pedido.pedido.fkUsuario.idUsuario, pedido.pedido.fkUsuario.nome, pedido.pedido.fkUsuario.email, pedido.pedido.fkUsuario.senha)
+                        val Pedido = PedidoModel(pedido.pedido.idPedido, pedido.pedido.pagamento, pedido.pedido.valorTotal, pedido.pedido.status, usuario)
+                        val Produto = ProdutosModel(pedido.produto.idProduto, pedido.produto.nome, pedido.produto.idPet, pedido.produto.descricao, pedido.produto.valor)
+                        println("PEDIDO VINDO 1"+ pedido)
+                        println("USUARIO VINDO"+ usuario.idUsuario)
+                        println("PRODUTO VINDO"+ Produto.idProduto)
+                        println("PEDIDO VINDO"+ Pedido.idPedido)
+                        if (usuario.idUsuario == idUsuario) {
+                            val pedido1 = PedidosModel(Pedido.idPedido, Pedido.pagamento, Pedido.valorTotal, Pedido.status)
+                            println("ID PEDIDO VINDO"+ Pedido.idPedido)
+                                listaPedidoAberto.add(pedido1)
+                                val adapterPedidoAberto = AdapterPedido(baseContext, listaPedidoAberto)
+                                adapterPedidoAberto.onClickListener = { pedido ->
+                                    clickbtn(pedido)
+                                }
+                                recyclerView_pedidos_abertos.adapter = adapterPedidoAberto
+                        }
+                    }
+                }
+            }
 
+            override fun onFailure(call: Call<List<PedidoRealizado>>, t: Throwable) {
+                Toast.makeText(baseContext, "NÂO LISTOU OTARIO", Toast.LENGTH_SHORT).show()
+            }
 
-        //      Listando Horizontalmente
-        recyclerView_pedidos_andamento.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        //      Melhora o desempenho da RecycleView
-        recyclerView_pedidos_andamento.setHasFixedSize(true)
-        //     Configurar Adpater
-        val listaPedidoAndamento: MutableList<PedidosModel> = mutableListOf()
-        val adapterPedidoAndamento = AdapterPedido(this, listaPedidoAndamento)
-        adapterPedidoAndamento.onClickListener = { pedido ->
-            clickbtn(pedido)
-        }
-        recyclerView_pedidos_andamento.adapter = adapterPedidoAndamento
-
-        //      Listando Horizontalmente
-        recyclerView_pedidos_finalizados.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        //      Melhora o desempenho da RecycleView
-        recyclerView_pedidos_finalizados.setHasFixedSize(true)
-//     Configurar Adpater
-        val listaPedidoFinalizado: MutableList<PedidosModel> = mutableListOf()
-        val adapterProdutoFinalizado = AdapterPedido(this, listaPedidoFinalizado)
-        adapterProdutoFinalizado.onClickListener = { pedido ->
-            clickbtn(pedido)
-        }
-        recyclerView_pedidos_finalizados.adapter = adapterProdutoFinalizado
-
-//      Pedidos com status Aberto
-        val pedido1 = PedidosModel(
-            6,
-            "Cartão1",
-            120.00,
-            "andamento"
-        )
-
-        val pedido2 = PedidosModel(
-            5,
-            "Cartão2",
-            120.00,
-            "andamento"
-        )
-
-        val pedido3 = PedidosModel(
-            4,
-            "Cartão3",
-            120.00,
-            "andamento"
-        )
-
-        //      Pedidos com status Andamento
-        val pedido4 = PedidosModel(
-            3,
-            "Cartão4",
-            120.00,
-            "andamento"
-        )
-
-        //      Pedidos com status Finalizado
-        val pedido5 = PedidosModel(
-            2,
-            "Cartão5",
-            120.00,
-            "andamento"
-        )
-        val pedido6 = PedidosModel(
-            1,
-            "Cartão6",
-            120.00,
-            "andamento"
-        )
-
-
-        listaPedidoAberto.add(pedido1)
-        listaPedidoAberto.add(pedido2)
-        listaPedidoAberto.add(pedido3)
-        listaPedidoAndamento.add(pedido4)
-        listaPedidoFinalizado.add(pedido5)
-        listaPedidoFinalizado.add(pedido6)
+        })
     }
-    fun irStatusAberto(v: View) {
-        //      Recuperando recycleView da Activity
-        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos_aberto)
-        val recyclerView_pedidos_andamento = findViewById<RecyclerView>(R.id.lista_pedidos_andamento)
-        val recyclerView_pedidos_finalizados = findViewById<RecyclerView>(R.id.lista_pedidos_finalizado)
-
-        recyclerView_pedidos_abertos.visibility = View.VISIBLE
-        recyclerView_pedidos_andamento.visibility = View.INVISIBLE
-        recyclerView_pedidos_finalizados.visibility = View.INVISIBLE
-    }
-
-    fun irStatusAndamento(v: View) {
-        //      Recuperando recycleView da Activity
-        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos_aberto)
-        val recyclerView_pedidos_andamento = findViewById<RecyclerView>(R.id.lista_pedidos_andamento)
-        val recyclerView_pedidos_finalizados = findViewById<RecyclerView>(R.id.lista_pedidos_finalizado)
-
-        recyclerView_pedidos_abertos.visibility = View.INVISIBLE
-        recyclerView_pedidos_andamento.visibility = View.VISIBLE
-        recyclerView_pedidos_finalizados.visibility = View.INVISIBLE
-    }
-
-    fun irStatusFinalizado(v: View) {
-        //      Recuperando recycleView da Activity
-        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos_aberto)
-        val recyclerView_pedidos_andamento = findViewById<RecyclerView>(R.id.lista_pedidos_andamento)
-        val recyclerView_pedidos_finalizados = findViewById<RecyclerView>(R.id.lista_pedidos_finalizado)
-
-        recyclerView_pedidos_abertos.visibility = View.INVISIBLE
-        recyclerView_pedidos_andamento.visibility = View.INVISIBLE
-        recyclerView_pedidos_finalizados.visibility = View.VISIBLE
-    }
-
     fun clickbtn(pedido: PedidosModel) {
         println("Cliquei aqui"+ pedido.toString())
     }
-
 }
