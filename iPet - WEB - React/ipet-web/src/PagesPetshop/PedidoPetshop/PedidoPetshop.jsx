@@ -5,6 +5,9 @@ import axios from "axios";
 import { FaOpencart } from "react-icons/fa";
 import { MdDeliveryDining } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
+import { useAuth } from '../../hooks/Context';
+import Toast from "../../components/toast/Toast";
+
 import Modal from "react-modal"
 
 Modal.setAppElement("#root")
@@ -17,6 +20,13 @@ export default function PedidoPetshop() {
     const [statusAndamento, setStatusAndamento] = useState(0);
     const [statusFinalizado, setStatusFinalizado] = useState(0);
     const [status, setStatus] = useState();
+    const [showToast, setShowToast] = useState(false);
+
+    const { idPetshop } = useAuth();
+
+    function setValueToast(value) {
+        setShowToast(value);
+    }
 
     function openModal() {
         setIsOpen(true);
@@ -28,6 +38,31 @@ export default function PedidoPetshop() {
 
     function mudarStatus(status) {
         setStatus(status)
+    }
+
+    function mudarStatusPedido(status, idpedido) {
+        console.log('status', status);
+        console.log('idpedido', idpedido);
+        if (status == "aberto") {
+            axios.put(`http://34.226.239.106:8080/pedido/update/${idpedido}/andamento`).then((res) => {
+                if (res.status === 200) {
+                    setShowToast(true);
+                } else {
+                    alert("Erro ao atualizar o pedido")
+                }
+            })
+        } else if (status == "andamento") {
+            axios.put(`http://34.226.239.106:8080/pedido/update/${idpedido}/finalizado`).then((res) => {
+                if (res.status === 200) {
+                    setShowToast(true);
+                } else {
+                    alert("Erro ao atualizar o pedido")
+                }
+            })
+        }
+    
+       
+
     }
 
     
@@ -51,8 +86,9 @@ export default function PedidoPetshop() {
     }
     useEffect(() => {
         const fetchPedido = async () => {
+            console.log('ID: '+ idPetshop);
             const { data } = await axios.get(
-              "http://34.226.239.106:8080/itens/pedido/petshop/1"
+              `http://34.226.239.106:8080/itens/pedido/petshop/${idPetshop}`
             );
             // const { data } = await axios.get(
             //     "http://localhost:8081/itens/pedido/petshop/1"
@@ -64,11 +100,12 @@ export default function PedidoPetshop() {
     }, [])
     return (
         <>
+            <Toast text="Pedido Atualizado com sucesso" color="green" showToast={showToast} changeValueToast={setValueToast} />
             <MenuPetshop menuItem1="PetShop" menuItem2="Produtos" menuItem3="Serviços" />
             <div id="principal-pedido">
                 <div id="pedidos">
                     <div id="pedidos-card">
-                        <div className="card-pedidos-status" id="card-yellow" onClick={() => mudarStatus(null)}>
+                        <div className="card-pedidos-status" id="card-yellow" onClick={() => mudarStatus('aberto')}>
                             <h2>Abertos</h2>
                             <h2>{statusAberto}</h2>
                             <FaOpencart size={30} />
@@ -93,7 +130,7 @@ export default function PedidoPetshop() {
                             <div className="pedido-card">
                                 <div className="pedido-card-info">
                                     <span>ID Pedido</span>
-                                    <p>{p.id}</p>
+                                    <p>{p.pedido.idPedido}</p>
                                 </div>
                                 <div className="pedido-card-info">
                                     <span>Produto</span>
@@ -117,12 +154,11 @@ export default function PedidoPetshop() {
                                 </div>
                                 <div className="pedido-card-info">
                                     <span>Status</span>
-                                    <p>Aberto</p>
+                                    <p>{p.pedido.status}</p>
                                 </div>
                             </div>
                             <div id="btn-pedidos">
-                                <button id="btn-detalhes-pedido" onClick={openModal}>Detalhe do pedido</button>
-                                <button id="btn-detalhes-entrega">Entregar Pedido</button>
+                                <button id="btn-detalhes-entrega" onClick={() => mudarStatusPedido(p.pedido.status, p.pedido.idPedido)}>Receber Pedido</button>
                             </div>
                     </div>
                         )
