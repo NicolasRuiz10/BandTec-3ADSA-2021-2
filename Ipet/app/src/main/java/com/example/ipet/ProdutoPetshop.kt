@@ -70,7 +70,7 @@ class ProdutoPetshop : AppCompatActivity() {
                         println("ID1."+ produto.idPet)
                         println("ID2."+ idPetshop)
                         if (produto.idPet == idPetshop) {
-                            listaProdutoPetshop.add(ProdutosModel(produto.idProduto, produto.nome, produto.idPet, produto.descricao, produto.valor))
+                            listaProdutoPetshop.add(ProdutosModel(produto.idProduto, produto.nome, produto.idPet, produto.descricao, produto.valor, produto.especie))
                         }
                     }
                     val adapterProduto = AdapterProdutos(baseContext, listaProdutoPetshop)
@@ -128,6 +128,7 @@ class ProdutoPetshop : AppCompatActivity() {
         telaProdutoDatalhe.putExtra("valor", produtos.valor)
         telaProdutoDatalhe.putExtra("descricao", produtos.descricao)
         telaProdutoDatalhe.putExtra("idpet", produtos.idPet)
+        telaProdutoDatalhe.putExtra("especie", produtos.especie)
         startActivity(telaProdutoDatalhe)
     }
     fun irTelaPetshops(view: View) {

@@ -70,6 +70,7 @@ class PetShop : AppCompatActivity() {
         telaProdutosPetshop.putExtra("telefone", petshop.telefone)
         telaProdutosPetshop.putExtra("email", petshop.email)
         telaProdutosPetshop.putExtra("fotoPet", R.drawable.petlove)
+        telaProdutosPetshop.putExtra("complemento", petshop.complemento)
         startActivity(telaProdutosPetshop)
     }
 

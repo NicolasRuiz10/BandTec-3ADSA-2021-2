@@ -18,6 +18,8 @@ import retrofit2.Response
 
 class Pedidos : AppCompatActivity()  {
     val listaPedidoAberto: MutableList<PedidosModel> = mutableListOf()
+    val listaPedidoAndamento: MutableList<PedidosModel> = mutableListOf()
+    val listaPedidoFinalizado: MutableList<PedidosModel> = mutableListOf()
 
 
 
@@ -51,11 +53,17 @@ class Pedidos : AppCompatActivity()  {
                     response.body()?.forEach{ pedido ->
                         val usuario = Usuario(pedido.pedido.fkUsuario.idUsuario, pedido.pedido.fkUsuario.nome, pedido.pedido.fkUsuario.email, pedido.pedido.fkUsuario.senha)
                         val Pedido = PedidoModel(pedido.pedido.idPedido, pedido.pedido.pagamento, pedido.pedido.valorTotal, pedido.pedido.status, usuario)
-                        val Produto = ProdutosModel(pedido.produto.idProduto, pedido.produto.nome, pedido.produto.idPet, pedido.produto.descricao, pedido.produto.valor)
+                        val Produto = ProdutosModel(pedido.produto.idProduto, pedido.produto.nome, pedido.produto.idPet, pedido.produto.descricao, pedido.produto.valor,pedido.produto.especie)
 
                         if (usuario.idUsuario == idUsuario) {
                             val pedido1 = PedidosModel(Pedido.idPedido, Pedido.pagamento, Pedido.valorTotal, Pedido.status)
-                                listaPedidoAberto.add(pedido1)
+                                if(pedido1.status.equals("andamento", ignoreCase = true)){
+                                    listaPedidoAndamento.add(pedido1)
+                                } else if(pedido1.status.equals("finalizado", ignoreCase = true)){
+                                    listaPedidoFinalizado.add(pedido1)
+                                } else {
+                                    listaPedidoAberto.add(pedido1)
+                                }
                                 val adapterPedidoAberto = AdapterPedido(baseContext, listaPedidoAberto)
                                 adapterPedidoAberto.onClickListener = { pedido ->
                                     clickbtn(pedido)
@@ -85,6 +93,7 @@ class Pedidos : AppCompatActivity()  {
         startActivity(telaPetshop)
 
     }
+
     fun irTelaHome(view: View){
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
@@ -107,6 +116,33 @@ class Pedidos : AppCompatActivity()  {
         telaPedidos.putExtra("idUsuario", idUsuario)
         telaPedidos.putExtra("nomeUsuario", nomeUsuario)
         startActivity(telaPedidos)
+    }
+
+    fun irStatusAberto(view: View) {
+        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos)
+        val adapterPedidoAberto = AdapterPedido(baseContext, listaPedidoAberto)
+        adapterPedidoAberto.onClickListener = { pedido ->
+            clickbtn(pedido)
+        }
+        recyclerView_pedidos_abertos.adapter = adapterPedidoAberto
+    }
+
+    fun irStatusAndamento(view: View) {
+        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos)
+        val adapterPedidoAndamento = AdapterPedido(baseContext, listaPedidoAndamento)
+        adapterPedidoAndamento.onClickListener = { pedido ->
+            clickbtn(pedido)
+        }
+        recyclerView_pedidos_abertos.adapter = adapterPedidoAndamento
+    }
+
+    fun irStatusFinalizado(view: View) {
+        val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos)
+        val adapterPedidoFinalizado = AdapterPedido(baseContext, listaPedidoFinalizado)
+        adapterPedidoFinalizado.onClickListener = { pedido ->
+            clickbtn(pedido)
+        }
+        recyclerView_pedidos_abertos.adapter = adapterPedidoFinalizado
     }
 
 }
