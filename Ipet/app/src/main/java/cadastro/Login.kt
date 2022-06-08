@@ -41,20 +41,19 @@ class Login : AppCompatActivity() {
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    println( "AQUI********" + response.body())
 
                     val getUsuarios = ApiIpet.criar().get()
                     getUsuarios.enqueue(object : Callback<List<Usuario>>{
                         override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>
                         ) {
-                            Toast.makeText(baseContext, "Funcionou", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(baseContext, "Login ou senha incorretos", Toast.LENGTH_SHORT).show()
                             response.body()?.forEach { usuario ->
                                 if (usuario.senha.equals(novoUsuario.senha, ignoreCase = true) &&
                                     usuario.email.equals(novoUsuario.email, ignoreCase = true)
                                 ) {
                                     val usuarioLogado = Usuario(usuario.idUsuario, usuario.nome, usuario.email, usuario.senha)
 
-                                    println("AQUI O ID do LOGIN"+ usuarioLogado.idUsuario)
+
                                     telaHome.putExtra("idUsuario", usuarioLogado.idUsuario)
                                     telaHome.putExtra("nomeUsuario", usuarioLogado.nome)
                                     telaHome.putExtra("emailUsuario", usuarioLogado.email)
@@ -65,7 +64,6 @@ class Login : AppCompatActivity() {
                                     telaCadastro.putExtra("emailUsuario", usuarioLogado.email)
                                     telaCadastro.putExtra("senhaUsuario", usuarioLogado.senha)
 
-                                    println("ID USUARIO"+ usuarioLogado.idUsuario)
                                     telaCarrinho.putExtra("idUsuario", usuarioLogado.idUsuario)
                                     telaCarrinho.putExtra("nomeUsuario", usuarioLogado.nome)
                                     telaCarrinho.putExtra("emailUsuario", usuarioLogado.email)

@@ -37,7 +37,6 @@ class Cadastro : AppCompatActivity() {
 
         postUsuario.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                println("AQUI")
                 t.printStackTrace()
                 Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
             }

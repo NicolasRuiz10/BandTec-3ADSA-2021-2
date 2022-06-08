@@ -6,12 +6,14 @@ import Model.ProdutosModel
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import home.Home
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,12 +66,10 @@ class ProdutoPetshop : AppCompatActivity() {
 
             override fun onResponse(call: Call<List<ProdutosModel>>, response: Response<List<ProdutosModel>>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(baseContext, "ENTROU", Toast.LENGTH_SHORT).show()
                     response.body()?.forEach { produto ->
                         println("ID1."+ produto.idPet)
                         println("ID2."+ idPetshop)
                         if (produto.idPet == idPetshop) {
-                            println("ENTROU PORRA")
                             listaProdutoPetshop.add(ProdutosModel(produto.idProduto, produto.nome, produto.idPet, produto.descricao, produto.valor))
                         }
                     }
@@ -92,7 +92,7 @@ class ProdutoPetshop : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<List<ProdutosModel>>, t: Throwable) {
-                Toast.makeText(baseContext, "NÂO ENTROU OTARIO", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Erro", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -119,8 +119,10 @@ class ProdutoPetshop : AppCompatActivity() {
     private fun clickbtn(produtos: ProdutosModel) {
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
         val telaProdutoDatalhe = Intent(this, Produto::class.java)
         telaProdutoDatalhe.putExtra("idUsuario", idUsuario)
+        telaProdutoDatalhe.putExtra("nomeUsuario", nomeUsuario)
         telaProdutoDatalhe.putExtra("idProduto", produtos.idProduto)
         telaProdutoDatalhe.putExtra("nomeProduto", produtos.nome)
         telaProdutoDatalhe.putExtra("valor", produtos.valor)
@@ -128,4 +130,39 @@ class ProdutoPetshop : AppCompatActivity() {
         telaProdutoDatalhe.putExtra("idpet", produtos.idPet)
         startActivity(telaProdutoDatalhe)
     }
+    fun irTelaPetshops(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaPetshop = Intent(this, PetShop::class.java)
+        telaPetshop.putExtra("idUsuario", idUsuario)
+        telaPetshop.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaPetshop)
+
+    }
+
+    override fun onBackPressed() {
+        // não chame o super desse método
+    }
+
+    fun irTelaPedidos(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaPedidos = Intent(this, Pedidos::class.java)
+        telaPedidos.putExtra("idUsuario", idUsuario)
+        telaPedidos.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaPedidos)
+    }
+
+    fun irTelaHome(view: View){
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaHome = Intent(this, Home::class.java)
+        telaHome.putExtra("idUsuario", idUsuario)
+        telaHome.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaHome)
+    }
+
 }

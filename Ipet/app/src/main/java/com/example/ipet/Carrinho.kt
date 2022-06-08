@@ -67,13 +67,15 @@ class Carrinho: AppCompatActivity() {
 
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
 
-
+        telaPedidos.putExtra("idUsuario", idUsuario)
+        telaPedidos.putExtra("nomeUsuario", nomeUsuario)
 //        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
 //        var emailUsuario = dadosUsuario?.getString("emailUsuario")
 //        var senhaUsuario = dadosUsuario?.getString("senhaUsuario")
 
-        val novoPedido = PedidosModel(350, "teste", valorTotal.toDouble(), "aberto")
+        val novoPedido = PedidosModel(350, "teste457", valorTotal.toDouble(), "aberto")
         val postPedido = ApiIpet.criar().postPedidos(novoPedido, idUsuario.toString().toInt())
         postPedido.enqueue(object : Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -95,11 +97,12 @@ class Carrinho: AppCompatActivity() {
                                     itensPedidos.enqueue(object : Callback<Void> {
                                         override fun onResponse(call: Call<Void>, response: Response<Void>) {
                                             telaPedidos.putExtra("idUsuario", idUsuario)
+                                            telaPedidos.putExtra("nomeUsuario", nomeUsuario)
                                             startActivity(telaPedidos)
                                             Toast.makeText(baseContext, "Pedido Realizado", Toast.LENGTH_SHORT).show()
                                         }
                                         override fun onFailure(call: Call<Void>, t: Throwable) {
-                                            Toast.makeText(baseContext, "Erro na API 2", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
                                         }
                                     })
                                 }
@@ -108,7 +111,7 @@ class Carrinho: AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<List<PedidosModel>>, t: Throwable) {
-                        Toast.makeText(baseContext, "Erro na API 3", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "Erro na API", Toast.LENGTH_SHORT).show()
                     }
 
                 } )

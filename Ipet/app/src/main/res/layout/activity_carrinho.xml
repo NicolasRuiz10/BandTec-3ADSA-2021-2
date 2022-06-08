@@ -72,7 +72,7 @@
                 android:text="Cancelar"
                 android:backgroundTint="@android:color/holo_red_light"
                 android:layout_marginEnd="20dp"
-                android:onClick="irTelaProdutos"
+                android:onClick="irTelaHome"
                 />
             <Button
                 android:id="@+id/btn_finalizar_compra"

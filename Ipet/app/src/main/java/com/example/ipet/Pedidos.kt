@@ -3,6 +3,7 @@ package com.example.ipet
 import API.ApiIpet
 import Adapter.AdapterPedido
 import Model.*
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import home.Home
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +28,12 @@ class Pedidos : AppCompatActivity()  {
 
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+
+
+        val telaHome = Intent(this, Home::class.java)
+        telaHome.putExtra("idUsuario", idUsuario)
+        telaHome.putExtra("nomeUsuario", nomeUsuario)
 
         val recyclerView_pedidos_abertos = findViewById<RecyclerView>(R.id.lista_pedidos)
 
@@ -44,13 +52,9 @@ class Pedidos : AppCompatActivity()  {
                         val usuario = Usuario(pedido.pedido.fkUsuario.idUsuario, pedido.pedido.fkUsuario.nome, pedido.pedido.fkUsuario.email, pedido.pedido.fkUsuario.senha)
                         val Pedido = PedidoModel(pedido.pedido.idPedido, pedido.pedido.pagamento, pedido.pedido.valorTotal, pedido.pedido.status, usuario)
                         val Produto = ProdutosModel(pedido.produto.idProduto, pedido.produto.nome, pedido.produto.idPet, pedido.produto.descricao, pedido.produto.valor)
-                        println("PEDIDO VINDO 1"+ pedido)
-                        println("USUARIO VINDO"+ usuario.idUsuario)
-                        println("PRODUTO VINDO"+ Produto.idProduto)
-                        println("PEDIDO VINDO"+ Pedido.idPedido)
+
                         if (usuario.idUsuario == idUsuario) {
                             val pedido1 = PedidosModel(Pedido.idPedido, Pedido.pagamento, Pedido.valorTotal, Pedido.status)
-                            println("ID PEDIDO VINDO"+ Pedido.idPedido)
                                 listaPedidoAberto.add(pedido1)
                                 val adapterPedidoAberto = AdapterPedido(baseContext, listaPedidoAberto)
                                 adapterPedidoAberto.onClickListener = { pedido ->
@@ -63,12 +67,46 @@ class Pedidos : AppCompatActivity()  {
             }
 
             override fun onFailure(call: Call<List<PedidoRealizado>>, t: Throwable) {
-                Toast.makeText(baseContext, "NÂO LISTOU OTARIO", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Erro", Toast.LENGTH_SHORT).show()
             }
 
         })
     }
     fun clickbtn(pedido: PedidosModel) {
-        println("Cliquei aqui"+ pedido.toString())
+
     }
+    fun irTelaPetshops(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaPetshop = Intent(this, PetShop::class.java)
+        telaPetshop.putExtra("idUsuario", idUsuario)
+        telaPetshop.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaPetshop)
+
+    }
+    fun irTelaHome(view: View){
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaHome = Intent(this, Home::class.java)
+        telaHome.putExtra("idUsuario", idUsuario)
+        telaHome.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaHome)
+    }
+
+    override fun onBackPressed() {
+
+    }
+
+    fun irTelaPedidos(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaPedidos = Intent(this, Pedidos::class.java)
+        telaPedidos.putExtra("idUsuario", idUsuario)
+        telaPedidos.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaPedidos)
+    }
+
 }

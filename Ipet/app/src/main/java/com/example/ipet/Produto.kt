@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import home.Home
 
 class Produto: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +65,7 @@ class Produto: AppCompatActivity() {
     fun irTelaCarrinho(v: View) {
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
         val telaCarrinho = Intent(this, Carrinho::class.java)
         val quantidade = findViewById<TextView>(R.id.tv_quantidade_produto)
         val dadosProduto = intent.extras
@@ -73,6 +75,7 @@ class Produto: AppCompatActivity() {
         var descricao = dadosProduto?.getString("descricao")
         var idPetshop = dadosProduto?.getInt("idpet")
         var idProduto = dadosProduto?.getInt("idProduto")
+        telaCarrinho.putExtra("nomeUsuario",nomeUsuario)
         telaCarrinho.putExtra("idUsuario", idUsuario)
         telaCarrinho.putExtra("nomeProduto", nomeProduto)
         telaCarrinho.putExtra("valor", valor)
@@ -87,4 +90,38 @@ class Produto: AppCompatActivity() {
         val telaProduto = Intent(this, ProdutoPetshop::class.java)
         startActivity(telaProduto)
     }
+    fun irTelaPetshops(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaPetshop = Intent(this, PetShop::class.java)
+        telaPetshop.putExtra("idUsuario", idUsuario)
+        telaPetshop.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaPetshop)
+
+    }
+    fun irTelaHome(view: View){
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaHome = Intent(this, Home::class.java)
+        telaHome.putExtra("idUsuario", idUsuario)
+        telaHome.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaHome)
+    }
+
+    override fun onBackPressed() {
+        // não chame o super desse método
+    }
+
+    fun irTelaPedidos(view: View) {
+        val dadosUsuario = intent.extras
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        val telaPedidos = Intent(this, Pedidos::class.java)
+        telaPedidos.putExtra("idUsuario", idUsuario)
+        telaPedidos.putExtra("nomeUsuario", nomeUsuario)
+        startActivity(telaPedidos)
+    }
+
 }

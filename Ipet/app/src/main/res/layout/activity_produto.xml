@@ -10,10 +10,9 @@
     tools:context=".Produto"
     >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <TextView
         android:id="@+id/tt_title_page_produto"
@@ -180,21 +179,21 @@
                 android:text="Cancelar"
                 android:backgroundTint="@android:color/holo_red_light"
                 android:layout_marginEnd="20dp"
-                android:onClick="irTelaAnterior"
+                android:onClick="irTelaHome"
                 />
+
             <Button
                 android:id="@+id/btn_adicionar_produto"
                 android:layout_width="130dp"
                 android:layout_height="40dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@android:color/holo_green_light"
+                android:onClick="irTelaCarrinho"
+                android:text="Adicionar"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/holo_green_light"
-                android:layout_marginStart="20dp"
-                android:text="Adicionar"
-                android:onClick="irTelaCarrinho"
-                />
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 

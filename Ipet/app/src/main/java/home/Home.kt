@@ -39,42 +39,35 @@ class Home : AppCompatActivity() {
         var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
         var emailUsuario = dadosUsuario?.getString("emailUsuario")
         var senhaUsuario = dadosUsuario?.getString("senhaUsuario")
-        println("AQUI O NOME DO USUARIO QUE PASSOU"+nomeUsuario)
+
         val usuario = findViewById<TextView>(R.id.nomeUsuario)
         usuario.text = nomeUsuario.toString().toUpperCase()
-
-
-
-
-        fun voltarTelaLogin(v: View) {
-            val telaLogin2 = Intent(this, Login::class.java)
-            val dadosUsuario = intent.extras
-
-            var idUsuario = dadosUsuario?.getInt("idUsuario")
-            var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
-            var emailUsuario = dadosUsuario?.getString("emailUsuario")
-            var senhaUsuario = dadosUsuario?.getString("senhaUsuario")
-
-            val novoUsuario = Usuario(idUsuario.toString().toInt(), nomeUsuario.toString(), emailUsuario.toString(), senhaUsuario.toString())
-            val deslogar= ApiIpet.criar().deslogar(idUsuario.toString().toInt())
-            deslogar.enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    println("O USUARIO QUE VAI SER DESLOGADO "+ novoUsuario.idUsuario.toString().toInt() +"\n"+ idUsuario.toString().toInt() +"\n"+ novoUsuario.nome)
-                    Toast.makeText(baseContext, "Você Saiu", Toast.LENGTH_SHORT).show()
-                    startActivity(telaLogin2)
-                }
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Toast.makeText(baseContext, "Erro no logOff", Toast.LENGTH_SHORT).show()
-                }
-            })
-        }
-
-
 
 
         setupViews()
     }
 
+    fun voltarTelaLogin(v: View) {
+        val telaLogin2 = Intent(this, Login::class.java)
+        val dadosUsuario = intent.extras
+
+        var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuario = dadosUsuario?.getString("nomeUsuario")
+        var emailUsuario = dadosUsuario?.getString("emailUsuario")
+        var senhaUsuario = dadosUsuario?.getString("senhaUsuario")
+
+        val novoUsuario = Usuario(idUsuario.toString().toInt(), nomeUsuario.toString(), emailUsuario.toString(), senhaUsuario.toString())
+        val deslogar= ApiIpet.criar().deslogar(idUsuario.toString().toInt())
+        deslogar.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Toast.makeText(baseContext, "Você Saiu", Toast.LENGTH_SHORT).show()
+                startActivity(telaLogin2)
+            }
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(baseContext, "Erro no logOff", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
     private fun setupViews(){
         val tabLayout = binding.addTab
@@ -90,8 +83,10 @@ class Home : AppCompatActivity() {
     fun irTelaPetshops(view: View) {
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuarios = dadosUsuario?.getString("nomeUsuario")
         val telaPetshop = Intent(this, PetShop::class.java)
         telaPetshop.putExtra("idUsuario", idUsuario)
+        telaPetshop.putExtra("nomeUsuario", nomeUsuarios)
         startActivity(telaPetshop)
 
     }
@@ -103,8 +98,10 @@ class Home : AppCompatActivity() {
     fun irTelaPedidos(view: View) {
         val dadosUsuario = intent.extras
         var idUsuario = dadosUsuario?.getInt("idUsuario")
+        var nomeUsuarios = dadosUsuario?.getString("nomeUsuario")
         val telaPedidos = Intent(this, Pedidos::class.java)
         telaPedidos.putExtra("idUsuario", idUsuario)
+        telaPedidos.putExtra("nomeUsuario", nomeUsuarios)
         startActivity(telaPedidos)
     }
 
