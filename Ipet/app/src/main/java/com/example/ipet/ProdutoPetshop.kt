@@ -34,9 +34,9 @@ class ProdutoPetshop : AppCompatActivity() {
         var nomePetshop = dadosPetshop?.getString("nomePet")
         var imagemPetshop = dadosPetshop?.getInt("fotoPet")
         var kmPetshop = dadosPetshop?.getString("cnpj")
-        var telPetshop = dadosPetshop?.getInt("telefone")
+        var telPetshop = dadosPetshop?.getString("telefone")
         var idPetshop = dadosPetshop?.getInt("idPetshop")
-        var emailPetshop = dadosPetshop?.getInt("email")
+        var emailPetshop = dadosPetshop?.getString("email")
 
 
 
@@ -92,7 +92,7 @@ class ProdutoPetshop : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<List<ProdutosModel>>, t: Throwable) {
-                Toast.makeText(baseContext, "Erro", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Erro AQUII", Toast.LENGTH_SHORT).show()
             }
         })
     }

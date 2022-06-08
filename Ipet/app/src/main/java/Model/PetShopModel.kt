@@ -6,5 +6,6 @@ data class PetShopModel (
     val nome: String,
     val cnpj: String,
     val telefone: String,
-    val email: String
+    val email: String,
+    val complemento: String,
 ) {}

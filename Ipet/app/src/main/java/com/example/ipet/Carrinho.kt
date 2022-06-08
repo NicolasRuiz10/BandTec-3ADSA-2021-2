@@ -40,7 +40,7 @@ class Carrinho: AppCompatActivity() {
         println("Valor"+ valor)
         var valorTotal = valor.toString().toInt() * quantidade.toString().toInt()
 
-        var p1 = ProdutosModel(idProduto, nomeProduto, idPetshop, descricao,valorTotal)
+        var p1 = ProdutosModel(idProduto, nomeProduto, idPetshop, descricao,valorTotal.toDouble())
         listaProdutosCarrinho.add(p1)
         recyclerView_produtosCarrinho.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView_produtosCarrinho.setHasFixedSize(true)

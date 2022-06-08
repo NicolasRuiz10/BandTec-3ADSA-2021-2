@@ -38,8 +38,8 @@ class PetShop : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.forEach { petshop ->
 
-                        listaPetshops.add(PetShopModel(petshop.idPetshop, petshop.nome, petshop.cnpj, petshop.telefone, petshop.email))
-
+                        listaPetshops.add(PetShopModel(petshop.idPetshop, petshop.nome, petshop.cnpj, petshop.telefone, petshop.email,petshop.complemento))
+                        println("URL "+ petshop.complemento)
                         val adapterPet = AdapterPetshop(baseContext, listaPetshops)
                         adapterPet.onClickListener = { pet ->
                             clickbtn(pet)
@@ -50,7 +50,7 @@ class PetShop : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<List<PetShopModel>>, t: Throwable) {
-                Toast.makeText(baseContext, "Erro", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Erro AQUI ?", Toast.LENGTH_SHORT).show()
             }
         })
 

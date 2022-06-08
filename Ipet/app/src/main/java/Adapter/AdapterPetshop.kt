@@ -2,10 +2,14 @@ package Adapter
 
 import Model.PetShopModel
 import android.content.Context
+import android.icu.number.NumberFormatter.with
+import android.icu.number.NumberRangeFormatter.with
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ipet.databinding.PetshopItemBinding
+import com.squareup.picasso.Picasso
+import retrofit2.http.Url
 
 class AdapterPetshop  (private val context: Context,
                        private val petshopList: MutableList<PetShopModel>,
@@ -31,6 +35,9 @@ class AdapterPetshop  (private val context: Context,
                 emailPetshop.text = item.email
                 numeroPetshop.text = item.telefone
                 idPet.text = item.idPetshop.toString()
+
+          Picasso.get().load(item.complemento).into(imagemPetshop)
+
                 llItemPetshop.setOnClickListener{
                     onClickListener(item)
                 }
@@ -53,3 +60,5 @@ class AdapterPetshop  (private val context: Context,
 
 
 }
+
+
